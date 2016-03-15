@@ -1,0 +1,45 @@
+<section class="content-header">
+<h1>Company Profile</h1>
+  <% if (CompanyProfile.count == 0) %>
+    <%= link_to "Add Company Info", new_company_profile_path, class: "btn btn-primary btn-s" %>
+  <% else %>
+  <% end %>
+<!-- dito ilalagay yung logo o avatar na iaaupload -->
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="box box-success">
+        <div class="box-header with-border">
+        </div>
+        <div class="box-body">
+        <% @company_profiles.each do |company| %>
+          <strong><i class="fa fa-book margin-r-5"></i>  Company</strong>
+           <br> <%= company.company_name %>
+          <hr>
+          <strong><i class="fa fa-book margin-r-5"></i>  Website</strong>
+            <br><%= company.website %>
+          <hr>
+          <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+           <br> <%= company.address %>
+          <hr>
+          <strong><i class="fa fa-pencil margin-r-5"></i> Telephone number</strong>
+            <br><%= company.telephone %>
+          <hr>
+          <strong><i class="fa fa-file-text-o margin-r-5"></i> Tin</strong>
+          <br><%= company.tin %>
+          <hr>
+          <%= link_to "Edit Company Info", edit_company_profile_path(company.id), class: "btn btn-primary btn-s" %>
+      <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="container">
+      <img src="assets/cbs.png" style="position: relative; height: 500px;"></img> 
+      </div> 
+    </div>
+  </div>
+</section>
+          
+    
