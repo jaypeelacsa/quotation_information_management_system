@@ -1,0 +1,44 @@
+<section class="content-header">
+<h1>Clients Informations</h1>
+<br>
+    <%= link_to "Add New Client Info", new_client_path, class: "btn btn-primary btn-s" %>
+</section>
+<section class="content">
+    <div class="box box-success">
+      <div class="box-header with-border">
+      </div>
+      <div class="box-body">
+        <table class="table hp-table-bordered table-striped">
+          <thead>
+            <tr>
+              <th><strong><i class="fa fa-book margin-r-5"></i>  Client Name</strong></th>
+              <th><strong><i class="fa fa-pencil margin-r-5"></i> Email Address</strong></th>
+              <th><strong><i class="fa fa-book margin-r-5"></i>  Company Name</strong></th>
+              <th><strong><i class="fa fa-book margin-r-5"></i>  Website</strong></th>
+              <th><strong><i class="fa fa-pencil margin-r-5"></i> Tin</strong></th>
+              <th><strong><i class="fa fa-pencil margin-r-5"></i> Action</strong></th>
+            </tr>
+          </thead>
+          <tbody>
+              <% @clients.each do |c| %>
+                <tr>
+                   <td><%= c.client_name %></td>
+                   <td><%= c.email_address %></td>
+                   <td><%= c.company_name %></td>
+                   <td><%= c.website %></td>
+                   <td><%= c.tin %></td>
+                   <td>
+                    <%= link_to "Show..", client_path(c.id), class: "btn btn-primary btn-s" %>
+                    <%= link_to "Edit.....", edit_client_path(c.id), class: "btn btn-success btn-s" %>
+                    <%= link_to "Delete", client_path(c.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-danger btn-s" %>
+                   </td>
+                </tr>
+              <% end %>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+          
+    
