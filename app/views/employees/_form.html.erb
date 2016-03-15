@@ -1,0 +1,57 @@
+<%= simple_form_for @employee, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |e| %>
+    <form role="form">
+    <div class="row">
+    	<div class="col-md-6">
+    		<div class="box box-success">
+        		<div class="box-body">
+        			<div class="field">
+                        <%= e.input :firstname %>
+                    </div>
+
+                    <div class="form-group">
+                        <%= e.input :lastname %>
+                    </div>
+
+                    <div class="form-group">
+                            <%= e.input :middlename %>
+                    </div>
+
+                    <div class="form-group">
+                            <%= e.input :gender, as: :select, collection: Employee::GENDER %>
+                    </div>
+
+                    <div class="form-group">
+                            <%= e.input :birthdate %>
+                    </div>
+
+                    <div class="form-group">
+                            <%= e.input :email %>
+                    </div>
+
+                    <div class="form-group">
+                            <%= e.input :contact_no %>
+                    </div>
+
+                    <div class="form-group">
+                            <%= e.input :address %>
+                    </div>
+
+                    <div class="form-group">
+                            <%= e.input :position %>
+                    </div>
+        		</div>
+    		</div> 
+    	</div>
+
+        <div class="col-md-6">
+            <div class="box box-success">
+                <div class="box-body">
+                    asd
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <center><button class="btn btn-success"><i class="save icon"></i>SAVE</button></center>
+    </form>
+<% end %>

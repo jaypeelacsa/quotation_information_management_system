@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>QuotationInformationManagementSystem</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+	<head>
+	  <title>QuotationInformationManagementSystem</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+	
+	<body class="fixed skin-green">
+		<div class="wrapper">
+			<%= render partial: "shared/header" %>
+			<%= render partial: "shared/side_nav" %>
+			<div class="content-wrapper" style="min-height: 916px;">
+				<%= yield %>
+			</div>
+		</div>
+		<%= render partial: "shared/footer" %>
+	</body>
 </html>
