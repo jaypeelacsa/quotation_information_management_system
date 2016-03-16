@@ -1,0 +1,24 @@
+<div class="row">
+  <%= simple_form_for [@employee, @work_experience], defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |f| %>
+  <form role="form">
+    <div class="col-md-6">
+      <div class="field">
+        <%= f.input :title %>
+       </div>
+       <div class="field">
+        <%= f.input :company_name %>
+       </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="field">
+        <%= f.input :company_address %>
+       </div>
+       <div class="field">
+          <%= f.date_select :date_ended, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' } %>
+        </div>
+    </div>
+    <%= f.submit class: "btn btn-success" %>
+  </form>
+  <% end %>
+</div>

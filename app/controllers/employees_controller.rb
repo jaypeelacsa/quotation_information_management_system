@@ -18,6 +18,8 @@ class EmployeesController < ApplicationController
 
 		def show
 			@employee = Employee.find(params[:id])
+			@work_experience = WorkExperience.new
+			@work_experiences = WorkExperience.where(employee_id: @employee.id)
 		end
 
 		def edit

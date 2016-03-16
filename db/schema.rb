@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(version: 20160316035808) do
     t.string   "check_no"
   end
 
+  create_table "company_profiles", force: :cascade do |t|
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "company_name"
+    t.text     "address"
+    t.string   "telephone"
+    t.string   "website"
+    t.string   "tin"
+    t.text     "mission"
+    t.text     "vission"
+  end
+
   create_table "clients", force: :cascade do |t|
     t.string   "client_name"
     t.string   "address"
@@ -40,18 +52,6 @@ ActiveRecord::Schema.define(version: 20160316035808) do
     t.string   "company_address"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-  end
-
-  create_table "company_profiles", force: :cascade do |t|
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "company_name"
-    t.text     "address"
-    t.string   "telephone"
-    t.string   "website"
-    t.string   "tin"
-    t.text     "mission"
-    t.text     "vission"
   end
 
   create_table "employees", force: :cascade do |t|
