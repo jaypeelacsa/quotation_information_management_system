@@ -1,0 +1,64 @@
+%section.content-header
+  %h1
+    Statement Of Account
+    %small Information
+%section.content
+  .row
+    .col-md-12
+      .ui.top.attached.tabular.menu
+        %a.active.item{"data-tab" => "first"} Details
+        %a.item{"data-tab" => "second"} Particulars
+      .ui.bottom.attached.active.tab.segment{"data-tab" => "first"}
+        .box.box-success
+          .box-body
+            %table.ui.selectable.celled.table
+              %tbody
+                %tr
+                  %td
+                    %b Bill No:
+                  %td= @billing.bill_no
+                %tr
+                  %td
+                    %b Date:
+                  %td= @billing.bill_date
+                %tr
+                  %td
+                    %b Billed To:
+                  %td= @billing.client.company_name
+                %tr
+                  %td
+                    %b Client TIN:
+                  %td= @billing.client.tin
+                %tr
+                  %td
+                    %b Certified By:
+                  %td= @billing.certified_by
+
+      .ui.bottom.attached.tab.segment{"data-tab" => "second"}
+        .box.box-success
+          .box-body
+          = render partial:"billings/billing_particulars/new"
+          %table.ui.selectable.celled.table
+            %thead
+              %th Particulars
+              %th Currency
+              %th Amount
+              %th Actions
+            %tbody
+              - @billing_particulars.each do |bp|
+                %tr
+                  %td= bp.particular
+                  %td= bp.currency
+                  %td= bp.amount
+                  %td
+                    = link_to "EDIT", edit_billing_billing_particular_path(bp.billing, bp), class: "btn btn-success"
+                    = link_to "DELETE", [bp.billing, bp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
+              %tr
+                %th
+                  %center TOTAL
+                %th 
+                %th
+                  XXX
+                %th
+:javascript
+  $('.menu .item').tab();

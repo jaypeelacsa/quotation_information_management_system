@@ -1,0 +1,35 @@
+%section.content-header
+  %h1
+    Statement Of Account
+    %small Control Panel
+%section.content
+  .row
+    .col-md-3
+      %br
+        = link_to "NEW BILLING", new_billing_path, class: "btn btn-block btn-success"
+  %br
+    .row
+      .col-md-12
+        .box.box-success
+          .box-header
+            %h3.box-title Billings Table
+          .box-body
+            %table.ui.selectable.celled.table
+              %thead
+                %tr
+                  %th Bill No.
+                  %th Bill To
+                  %th Client TIN
+                  %th Date
+                  %th Actions
+              %tbody
+                - @billings.each do |b|
+                  %tr
+                    %td= b.bill_no
+                    %td= b.client.company_name
+                    %td= b.client.tin
+                    %td= b.bill_date
+                    %td
+                      = link_to "SHOW", billing_path(b.id), class: "btn btn-success btn-s"
+                      = link_to "EDIT", edit_billing_path(b.id), class: "btn btn-primary btn-s"
+                      = link_to "DELETE", billing_path(b.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"

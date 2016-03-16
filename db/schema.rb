@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316075128) do
+ActiveRecord::Schema.define(version: 20160316091309) do
+
+  create_table "billing_particulars", force: :cascade do |t|
+    t.string   "particular"
+    t.string   "currency"
+    t.float    "amount"
+    t.integer  "billing_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "billings", force: :cascade do |t|
     t.integer  "bill_no"
