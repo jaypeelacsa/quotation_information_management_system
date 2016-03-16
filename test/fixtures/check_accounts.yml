@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account_charge: MyString
+  account_code: MyString
+  debit: 9.99
+  credit: 9.99
+  check_voucher_id: 1
+
+two:
+  account_charge: MyString
+  account_code: MyString
+  debit: 9.99
+  credit: 9.99
+  check_voucher_id: 1

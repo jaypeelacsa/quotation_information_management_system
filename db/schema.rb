@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316063858) do
+ActiveRecord::Schema.define(version: 20160316090936) do
+
+  create_table "billings", force: :cascade do |t|
+    t.integer  "bill_no"
+    t.date     "bill_date"
+    t.string   "certified_by"
+    t.integer  "client_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "check_accounts", force: :cascade do |t|
+    t.string   "account_charge"
+    t.string   "account_code"
+    t.decimal  "debit"
+    t.decimal  "credit"
+    t.integer  "check_voucher_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "check_particulars", force: :cascade do |t|
     t.string   "particular"
@@ -20,14 +39,6 @@ ActiveRecord::Schema.define(version: 20160316063858) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.string   "amount_in_word"
-    end
-  create_table "billings", force: :cascade do |t|
-    t.integer  "bill_no"
-    t.date     "bill_date"
-    t.string   "certified_by"
-    t.integer  "client_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
   end
 
   create_table "check_vouchers", force: :cascade do |t|
@@ -45,9 +56,6 @@ ActiveRecord::Schema.define(version: 20160316063858) do
     t.string   "si_no"
     t.string   "or_no"
     t.string   "apv_no"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.string   "check_no"
   end
 
   create_table "clients", force: :cascade do |t|

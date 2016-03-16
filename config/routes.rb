@@ -16,5 +16,6 @@ Rails.application.routes.draw do
 
   resources :check_vouchers do
   	resources :check_particulars, module: 'check_vouchers'
+  	resources :check_accounts, module: 'check_vouchers'
   end
 end
