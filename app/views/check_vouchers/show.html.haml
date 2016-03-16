@@ -1,0 +1,37 @@
+.container
+  .ui.segment
+    %br
+      %h1 Check Voucher Information
+      %table.table.table-bordered
+        .box.box-success
+        %thead
+          %tr
+            %th Payee
+            %th Reference No.
+            %th Date
+            %th Amount in Word(in pesos)
+            %th Bank
+            %th Check No.
+            %th Received by:
+            %th Prepared by:
+            %th Certified by:
+            %th Approved by:
+            /
+              <th>Mission</th>
+              <th>Vission</th>
+        %tbody
+          - @check_voucher.each do |cv|
+            %tr
+              %td= cv.payee
+              %td= cv.reference_no
+              %td= cv.check_date
+              %td= cv.amount_in_word
+              %td= cv.bank
+              %td= cv.check_no
+              %td= cv.received_by
+              %td= cv.prepared_by
+              %td= cv.certified_by
+              %td= cv.approved_by
+              /
+                <td><haml:loud> company.mission </haml:loud></td>
+                <td><haml:loud> company.vission </haml:loud></td>

@@ -5,4 +5,6 @@ Rails.application.routes.draw do
 	resources :service_products
   resources :company_profiles
   resources :clients
+
+  resources :check_vouchers
 end

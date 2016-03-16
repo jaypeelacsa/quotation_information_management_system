@@ -1,0 +1,47 @@
+%section.content-header
+  %h1 Company Profile
+  - if (CompanyProfile.count == 0)
+    = link_to "Add Company Info", new_company_profile_path, class: "btn btn-primary btn-s"
+  - else
+  / dito ilalagay yung logo o avatar na iaaupload
+%section.content
+  .row
+    .col-md-4
+      .box.box-success
+        .box-header.with-border
+        .box-body
+          - @company_profiles.each do |company|
+            %strong
+              %i.fa.fa-book.margin-r-5
+              Company
+            %br
+              = company.company_name
+              %hr
+                %strong
+                  %i.fa.fa-book.margin-r-5
+                  Website
+                %br
+                  = company.website
+                  %hr
+                    %strong
+                      %i.fa.fa-map-marker.margin-r-5
+                      Location
+                    %br
+                      = company.address
+                      %hr
+                        %strong
+                          %i.fa.fa-pencil.margin-r-5
+                          Telephone number
+                        %br
+                          = company.telephone
+                          %hr
+                            %strong
+                              %i.fa.fa-file-text-o.margin-r-5
+                              Tin
+                            %br
+                              = company.tin
+                              %hr
+                                = link_to "Edit Company Info", edit_company_profile_path(company.id), class: "btn btn-primary btn-s"
+    .col-md-8
+      .container
+        %img{:src => "assets/cbs.png", :style => "position: relative; height: 400px;"}

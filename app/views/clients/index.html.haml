@@ -1,0 +1,47 @@
+%section.content-header
+  %h1 Clients Informations
+  %br
+    = link_to "Add New Client Info", new_client_path, class: "btn btn-primary btn-s"
+%section.content
+  .box.box-success
+    .box-header.with-border
+    .box-body
+      %table.table.hp-table-bordered.table-striped
+        %thead
+          %tr
+            %th
+              %strong
+                %i.fa.fa-book.margin-r-5
+                Client Name
+            %th
+              %strong
+                %i.fa.fa-pencil.margin-r-5
+                Email Address
+            %th
+              %strong
+                %i.fa.fa-book.margin-r-5
+                Company Name
+            %th
+              %strong
+                %i.fa.fa-book.margin-r-5
+                Website
+            %th
+              %strong
+                %i.fa.fa-pencil.margin-r-5
+                Tin
+            %th
+              %strong
+                %i.fa.fa-pencil.margin-r-5
+                Action
+        %tbody
+          - @clients.each do |c|
+            %tr
+              %td= c.client_name
+              %td= c.email_address
+              %td= c.company_name
+              %td= c.website
+              %td= c.tin
+              %td
+                = link_to "Show..", client_path(c.id), class: "btn btn-primary btn-s"
+                = link_to "Edit.....", edit_client_path(c.id), class: "btn btn-success btn-s"
+                = link_to "Delete", client_path(c.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-danger btn-s"

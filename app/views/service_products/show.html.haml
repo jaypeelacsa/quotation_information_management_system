@@ -1,0 +1,21 @@
+%section.content-header
+  %h1 Services and Products
+%section.content
+  .box.box-success
+    .box-body
+      %table.table.hp-table.table-splited
+        %thead
+          %tr
+            %th Name
+            %th Price
+            %th Description
+            %th Code
+            %th Type Offered
+        %tbody
+          - @service_product.each do |sp|
+            %tr
+              %td= sp.name
+              %td= sp.price
+              %td= sp.description
+              %td= sp.code
+              %td= sp.type

@@ -1,0 +1,26 @@
+%section.content-header
+  %h1 Information To Add:
+%section.content
+  .well
+    .box.box-success
+      = simple_form_for @company_profile, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |cp|
+        %form{:role => "form"}
+          .box-body
+            .form-group
+              = cp.input :company_name
+            .form-group
+              = cp.input :website
+            .form-group
+              = cp.input :telephone
+            .form-group
+              = cp.input :address
+          .form-group
+            = cp.input :tin
+          .form-group
+            = cp.input :mission
+          .form-group
+            = cp.input :vission
+          .box-footer
+            %button.btn.btn-success
+              %i.save.icon>
+              SAVE

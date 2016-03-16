@@ -1,0 +1,30 @@
+%section.content-header
+  %h1 Information To Add:
+%section.content
+  .well
+    .box.box-success
+      = simple_form_for @client, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |c|
+        %form{:role => "form"}
+          .box-body
+            .form-group
+              = c.input :client_name
+            .form-group
+              = c.input :address
+            .form-group
+              = c.input :telephone
+            .form-group
+              = c.input :email_address
+            .form-group
+              = c.input :company_name
+            .form-group
+              = c.input :website
+            .field
+              = c.input :status, as: :select, collection: Client::STATUS
+            .form-group
+              = c.input :tin
+            .form-group
+              = c.input :company_address
+            .box-footer
+              %button.btn.btn-success
+                %i.save.icon>
+                SAVE

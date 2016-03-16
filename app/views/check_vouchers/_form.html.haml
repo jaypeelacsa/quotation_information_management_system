@@ -1,0 +1,32 @@
+%section.content-header
+  %h1 Information To Add:
+%section.content
+  .well
+    .box.box-success
+      = simple_form_for @check_voucher, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |cv|
+        %form{:role => "form"}
+          .box-body
+            .form-group
+              = cv.input :payee
+            .form-group
+              = cv.input :reference_no
+            .form-group
+              = cv.input :check_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
+            .form-group
+              = cv.input :amount_in_word
+            .form-group
+              = cv.input :bank
+            .form-group
+              = cv.input :check_no
+            .field
+              = cv.input :received_by
+            .form-group
+              = cv.input :prepared_by
+            .form-group
+              = cv.input :certified_by
+            .form-group
+              = cv.input :approved_by
+            .box-footer
+              %button.btn.btn-success
+                %i.save.icon>
+                SAVE

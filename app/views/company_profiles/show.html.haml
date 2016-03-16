@@ -1,0 +1,27 @@
+.container
+  .ui.segment
+    %br
+      %h1 Company Information
+      %table.table.table-bordered
+        .box.box-success
+        %thead
+          %tr
+            %th Name of Company
+            %th Telephone Number
+            %th Website
+            %th Address
+            %th Tin
+            /
+              <th>Mission</th>
+              <th>Vission</th>
+        %tbody
+          - @company_profile.each do |company|
+            %tr
+              %td= company.company_name
+              %td= company.telephone
+              %td= company.website
+              %td= company.address
+              %td= company.tin
+              /
+                <td><haml:loud> company.mission </haml:loud></td>
+                <td><haml:loud> company.vission </haml:loud></td>

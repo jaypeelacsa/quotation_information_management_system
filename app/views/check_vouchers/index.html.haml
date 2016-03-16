@@ -1,0 +1,47 @@
+%section.content-header
+  %h1 Checks Informations
+  %br
+    = link_to "Add Check Info", new_check_voucher_path, class: "btn btn-primary btn-s"
+%section.content
+  .box.box-success
+    .box-header.with-border
+    .box-body
+      %table.table.hp-table-bordered.table-striped
+        %thead
+          %tr
+            %th
+              %strong
+                %i.fa.fa-book.margin-r-5
+                Name
+            %th
+              %strong
+                %i.fa.fa-pencil.margin-r-5
+                Reference No.
+            %th
+              %strong
+                %i.fa.fa-book.margin-r-5
+                Date
+            %th
+              %strong
+                %i.fa.fa-book.margin-r-5
+                Bank
+            %th
+              %strong
+                %i.fa.fa-pencil.margin-r-5
+                Check No.
+            %th
+              %strong
+                %i.fa.fa-pencil.margin-r-5
+                Action
+        %tbody
+          - @check_vouchers.each do |cv|
+            %tr
+              %td= cv.payee
+              %td= cv.reference_no
+              %td= cv.check_date
+              %td= cv.bank
+              %td= cv.check_no
+              %td
+                = link_to "Show..", check_voucher_path(cv.id), class: "btn btn-primary btn-s"
+                = link_to "Edit.....", edit_check_voucher_path(cv.id), class: "btn btn-success btn-s"
+                = link_to "Delete", check_voucher_path(cv.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-danger btn-s"

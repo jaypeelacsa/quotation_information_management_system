@@ -1,0 +1,44 @@
+.ui.segment
+  .ui.top.attached.tabular.menu
+    %a.active.item{"data-tab" => "first"} Client Info
+    %a.item{"data-tab" => "second"} Client Company Info
+  .ui.bottom.attached.active.tab.segment{"data-tab" => "first"}
+    %h1 Clients Information
+    %table.table.table-bordered
+      .box.box-success
+      %thead
+        %tr
+          %th Name of Client
+          %th Address
+          %th Telephone
+          %th Email Address
+      %tbody
+        - @client.each do |c|
+          %tr
+            %td= c.client_name
+            %td= c.address
+            %td= c.telephone
+            %td= c.email_address
+  .ui.bottom.attached.tab.segment{"data-tab" => "second"}
+    %h1 Clients Company Information
+    %table.table.table-bordered
+      .box.box-success
+      %thead
+        %tr
+          %th Name of Company
+          %th Website
+          %th Status
+          %th tin
+          %th Company Address
+      %tbody
+        - @client.each do |company|
+          %tr
+            %td= company.company_name
+            %td= company.website
+            %td= company.status
+            %td= company.tin
+            %td= company.company_address
+:javascript
+  $('.menu .item')
+    .tab()
+  ;
