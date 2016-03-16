@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 		resources :petty_particulars, module: 'petty_vouchers'
 	end
 
-	resources :billings
+	resources :billings do
+		resources :billing_particulars, module: 'billings'
+	end
 	
 	resources :service_products
   resources :company_profiles
