@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 20160316091309) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "check_particulars", force: :cascade do |t|
+    t.string   "particular"
+    t.decimal  "amount"
+    t.integer  "check_voucher_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "amount_in_word"
+    end
   create_table "billings", force: :cascade do |t|
     t.integer  "bill_no"
     t.date     "bill_date"
@@ -35,12 +43,17 @@ ActiveRecord::Schema.define(version: 20160316091309) do
     t.string   "payee"
     t.string   "reference_no"
     t.date     "check_date"
-    t.text     "amount_in_word"
     t.string   "bank"
     t.string   "received_by"
     t.string   "prepared_by"
     t.string   "certified_by"
     t.string   "approved_by"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "check_no"
+    t.string   "si_no"
+    t.string   "or_no"
+    t.string   "apv_no"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.string   "check_no"

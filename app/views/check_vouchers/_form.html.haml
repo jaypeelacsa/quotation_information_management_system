@@ -13,7 +13,11 @@
             .form-group
               = cv.input :check_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
             .form-group
-              = cv.input :amount_in_word
+              = cv.input :si_no
+            .form-group
+              = cv.input :or_no
+            .form-group
+              = cv.input :apv_no
             .form-group
               = cv.input :bank
             .form-group

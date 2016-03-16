@@ -19,7 +19,9 @@ class CheckVouchersController < ApplicationController
 	end
 
 	def show
-		@check_voucher = CheckVoucher.all
+		@check_voucher = CheckVoucher.find(params[:id])
+		@check_particular = CheckParticular.new
+		@check_particulars = CheckParticular.where(check_voucher_id: @check_voucher.id)
 	end
 
 	def edit
