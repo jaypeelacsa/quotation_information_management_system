@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   resources :company_profiles
   resources :clients
 
-  resources :check_vouchers
+  resources :check_vouchers do
+  	resources :check_particulars, module: 'check_vouchers'
+  end
 end

@@ -1,37 +1,76 @@
-.container
-  .ui.segment
-    %br
-      %h1 Check Voucher Information
-      %table.table.table-bordered
-        .box.box-success
+.ui.segment
+  .ui.top.attached.tabular.menu
+    %a.active.item{"data-tab" => "first"} Check Voucher
+    %a.item{"data-tab" => "second"} Check Particular
+    %a.item{"data-tab" => "third"} Check Accounts
+  .ui.bottom.attached.active.tab.segment{"data-tab" => "first"}
+    %h1 Check Voucher
+    %table.table.table-bordered
+      .box.box-success
         %thead
           %tr
             %th Payee
             %th Reference No.
             %th Date
-            %th Amount in Word(in pesos)
+            %th SI_no
+            %th OR_no
+            %th APV_no
             %th Bank
             %th Check No.
             %th Received by:
             %th Prepared by:
             %th Certified by:
             %th Approved by:
-            /
-              <th>Mission</th>
-              <th>Vission</th>
         %tbody
-          - @check_voucher.each do |cv|
-            %tr
-              %td= cv.payee
-              %td= cv.reference_no
-              %td= cv.check_date
-              %td= cv.amount_in_word
-              %td= cv.bank
-              %td= cv.check_no
-              %td= cv.received_by
-              %td= cv.prepared_by
-              %td= cv.certified_by
-              %td= cv.approved_by
-              /
-                <td><haml:loud> company.mission </haml:loud></td>
-                <td><haml:loud> company.vission </haml:loud></td>
+          %tr
+            %td= @check_voucher.payee
+            %td= @check_voucher.reference_no
+            %td= @check_voucher.check_date
+            %td= @check_voucher.si_no
+            %td= @check_voucher.or_no
+            %td= @check_voucher.apv_no
+            %td= @check_voucher.bank
+            %td= @check_voucher.check_no
+            %td= @check_voucher.received_by
+            %td= @check_voucher.prepared_by
+            %td= @check_voucher.certified_by
+            %td= @check_voucher.approved_by
+  .ui.bottom.attached.tab.segment{"data-tab" => "second"}
+    %h1 Check Particular
+    %table.table.table-bordered
+      .box.box-success
+      %thead
+        %tr
+          %th Particular
+          %th Amount
+          %th Amount in Word(in Peso)
+          %th Action
+      %tbody
+        - @check_particular.each do |cp|
+          %tr
+            %td= cp.particular
+            %td= cp.amount
+            %td= cp.amount_in_word
+            = render partial:"check_vouchers/check_particulars/new"
+  .ui.bottom.attached.tab.segment{"data-tab" => "third"}
+    %h1 Check Accounts
+    %table.table.table-bordered
+      .box.box-success
+      %thead
+        %tr
+          %th Account Charge
+          %th Account Code
+          %th Debit
+          %th Credit
+      %tbody
+        %tr
+          %td
+          %td
+          %td
+          %td
+:javascript
+  $('.menu .item')
+    .tab()
+  ;
+
+
