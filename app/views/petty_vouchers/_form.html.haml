@@ -1,0 +1,21 @@
+= simple_form_for @petty_voucher, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |pv|
+  %form{:role => "form"}
+    .row
+      .col-md-6
+        .box.box-success
+          .box-body
+            .field
+              = pv.input :reference_no
+            .form-group
+              = pv.input :payee
+            .form-group
+              = pv.date_select :petty_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
+            .form-group
+              = pv.input :approved_by
+            .form-group
+              = pv.input :paid_by
+            .form-group
+              = pv.input :received_by
+        %button.btn.btn-success
+          %i.save.icon>
+          SAVE

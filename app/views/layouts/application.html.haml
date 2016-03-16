@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %title QuotationInformationManagementSystem
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body.fixed.skin-green
+    .wrapper
+      = render partial: "shared/header"
+      = render partial: "shared/side_nav"
+      .content-wrapper{:style => "min-height: 916px;"}
+        = yield
+    = render partial: "shared/footer"

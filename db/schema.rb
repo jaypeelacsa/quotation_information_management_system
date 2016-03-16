@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 20160316063858) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.string   "amount_in_word"
+    end
+  create_table "billings", force: :cascade do |t|
+    t.integer  "bill_no"
+    t.date     "bill_date"
+    t.string   "certified_by"
+    t.integer  "client_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "check_vouchers", force: :cascade do |t|
@@ -37,6 +45,9 @@ ActiveRecord::Schema.define(version: 20160316063858) do
     t.string   "si_no"
     t.string   "or_no"
     t.string   "apv_no"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "check_no"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -77,6 +88,25 @@ ActiveRecord::Schema.define(version: 20160316063858) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "gender"
+  end
+
+  create_table "petty_particulars", force: :cascade do |t|
+    t.string   "particular"
+    t.float    "amount"
+    t.integer  "petty_voucher_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "petty_vouchers", force: :cascade do |t|
+    t.string   "reference_no"
+    t.date     "petty_date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "payee"
+    t.string   "approved_by"
+    t.string   "paid_by"
+    t.string   "received_by"
   end
 
   create_table "service_products", force: :cascade do |t|
