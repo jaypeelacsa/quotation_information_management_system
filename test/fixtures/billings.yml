@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bill_no: 1
+  bill_date: 2016-03-16
+  certified_by: MyString
+  client_id: 1
+
+two:
+  bill_no: 1
+  bill_date: 2016-03-16
+  certified_by: MyString
+  client_id: 1

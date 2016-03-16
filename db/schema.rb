@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316035808) do
+ActiveRecord::Schema.define(version: 20160316075128) do
+
+  create_table "billings", force: :cascade do |t|
+    t.integer  "bill_no"
+    t.date     "bill_date"
+    t.string   "certified_by"
+    t.integer  "client_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "check_vouchers", force: :cascade do |t|
     t.string   "payee"
@@ -28,18 +37,6 @@ ActiveRecord::Schema.define(version: 20160316035808) do
     t.string   "check_no"
   end
 
-  create_table "company_profiles", force: :cascade do |t|
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "company_name"
-    t.text     "address"
-    t.string   "telephone"
-    t.string   "website"
-    t.string   "tin"
-    t.text     "mission"
-    t.text     "vission"
-  end
-
   create_table "clients", force: :cascade do |t|
     t.string   "client_name"
     t.string   "address"
@@ -54,6 +51,18 @@ ActiveRecord::Schema.define(version: 20160316035808) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "company_profiles", force: :cascade do |t|
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "company_name"
+    t.text     "address"
+    t.string   "telephone"
+    t.string   "website"
+    t.string   "tin"
+    t.text     "mission"
+    t.text     "vission"
+  end
+
   create_table "employees", force: :cascade do |t|
     t.string   "firstname"
     t.string   "middlename"
@@ -66,6 +75,25 @@ ActiveRecord::Schema.define(version: 20160316035808) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "gender"
+  end
+
+  create_table "petty_particulars", force: :cascade do |t|
+    t.string   "particular"
+    t.float    "amount"
+    t.integer  "petty_voucher_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "petty_vouchers", force: :cascade do |t|
+    t.string   "reference_no"
+    t.date     "petty_date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "payee"
+    t.string   "approved_by"
+    t.string   "paid_by"
+    t.string   "received_by"
   end
 
   create_table "service_products", force: :cascade do |t|

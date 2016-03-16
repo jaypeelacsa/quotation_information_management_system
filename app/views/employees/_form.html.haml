@@ -1,0 +1,28 @@
+= simple_form_for @employee, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |e|
+  %form{:role => "form"}
+    .row
+      .col-md-6
+        .box.box-success
+          .box-body
+            .field
+              = e.input :firstname
+            .form-group
+              = e.input :lastname
+            .form-group
+              = e.input :middlename
+            .form-group
+              = e.input :gender, as: :select, collection: Employee::GENDER
+            .form-group
+              = e.input :birthdate
+            .form-group
+              = e.input :email
+            .form-group
+              = e.input :contact_no
+            .form-group
+              = e.input :address
+            .form-group
+              = e.input :position
+    %center
+      %button.btn.btn-success
+        %i.save.icon>
+        SAVE

@@ -1,0 +1,44 @@
+%section.content-header
+  %h1
+    Dashboard
+    %small Control Panel
+%section.content
+  .row
+    .col-lg-3.col-xs-6
+      .small-box.bg-aqua
+        .inner
+          %h3 xxx
+          %p Hindi pa alam
+        .icon
+        %a.small-box-footer{:href => "/management/items"}
+          More Info
+          %i.fa.fa-arrow-circle-right
+    .col-lg-3.col-xs-6
+      .small-box.bg-green
+        .inner
+          %h3 xxx
+          %p Hindi pa alam
+        .icon
+        %a.small-box-footer{:href => "#"}
+          More Info
+          %i.fa.fa-arrow-circle-right
+    .col-lg-3.col-xs-6
+      .small-box.bg-yellow
+        .inner
+          %h3= Employee.count
+          %p Employee
+        .icon
+          %i.users.icon{:style => "top:50px;"}
+        %a.small-box-footer{:href => "/employees"}
+          More Info
+          %i.fa.fa-arrow-circle-right
+    .col-lg-3.col-xs-6
+      .small-box.bg-red
+        .inner
+          %h3 100
+          %p HINDI PA ALAM
+        .icon
+          %i.ion.ion-bag
+        %a.small-box-footer{:href => "#"}
+          More Info
+          %i.fa.fa-arrow-circle-right
