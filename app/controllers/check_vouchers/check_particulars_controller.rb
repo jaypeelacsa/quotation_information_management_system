@@ -2,11 +2,7 @@ module CheckVouchers
 	class CheckParticularsController < ApplicationController
 
 			before_filter :load_defaults
-
-			def index
-				@check_particulars = CheckParticular.all
-			end
-
+		
 			def new
 				@check_particular = CheckParticular.new
 			end
@@ -19,10 +15,6 @@ module CheckVouchers
 				else
 					render "new"
 				end
-			end
-
-			def show
-				@check_voucher = CheckVoucher.find(params[:id])
 			end
 
 			def edit

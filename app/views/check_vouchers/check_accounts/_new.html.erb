@@ -1,0 +1,19 @@
+<%= simple_form_for [@check_voucher, @check_account], defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |ca| %>
+  <form role="form">
+      <div class="field">
+        <%= ca.input :account_charge %>
+       </div>
+       <div class="field">
+        <%= ca.input :account_code %>
+       </div>
+       <div class="field">
+          <%= ca.input :debit %>
+        </div>
+        <div class="field">
+          <%= ca.input :credit %>
+        </div>
+    </div>
+    <%= ca.submit class: "btn btn-success" %>
+  </form>
+  <% end %>
+</div>
