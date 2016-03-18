@@ -13,6 +13,8 @@
  *= require_self
  *= require AdminLTE.min
  *= require _all-skins.min
+ *= require select2
+ *= require select2-bootstrap
  */
   @import "bootstrap";
   @import "semantic-ui";

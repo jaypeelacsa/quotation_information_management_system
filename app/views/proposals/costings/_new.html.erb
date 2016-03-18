@@ -1,0 +1,11 @@
+<%= simple_form_for [@proposal, @costing], defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |c| %>
+  <form role="form">
+      <div class="field">
+        <%= c.input :description %>
+       </div>
+       <div class="field">
+        <%= c.input :cost %>
+       </div>
+    <%= c.submit class: "btn btn-success" %>
+  </form>
+  <% end %>

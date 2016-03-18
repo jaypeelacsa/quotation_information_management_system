@@ -1,0 +1,37 @@
+%section.content-header
+  %h1
+    Proposals
+    %small Control Panel
+    
+%section.content
+  .row
+    .col-md-3
+      .box.box-success
+        .box-header
+          %h3.box-title Search Tool
+        .box-body
+    .col-md-9
+      .box.box-success.box-solid
+        .box-header
+          %h3.box-title List of Proposals
+        .box-body
+          .row
+            .col-md-9
+            .col-md-3
+              = link_to "Add Proposal", new_proposal_path, class: "btn btn-block btn-success"
+          %table.table.hp-table-bordered.table-striped
+            %thead
+              %tr
+                %th Title Of Proposal
+                %th Date
+                %th Overview
+                %th Actions
+            %tbody
+              - @proposals.each do |p|
+                %tr
+                  %td= p.title
+                  %td= p.proposal_date
+                  %td= p.overview
+                  %td
+                    = link_to "Details..", proposal_path(p.id), class: "btn btn-primary btn-s"
+                   

@@ -1,0 +1,19 @@
+<section class="content-header">
+	<h1>Software Browsers
+		<small>Edit</small>
+	</h1>
+</section>
+
+<section class="content">
+	<%= simple_form_for [@proposal, @software_browser], defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |sb| %>
+  <form role="form">
+     <div class="field">
+      <%= sb.input :name %>
+     </div>
+    <%= sr.submit class: "btn btn-success" %>
+  </form>
+  <% end %>
+</div>
+
+</section>
+

@@ -1,0 +1,121 @@
+%section.content-header
+  %h1
+    Proposal
+    %small Information
+%section.content
+  .row
+    .col-md-12
+      = link_to "Edit...", edit_proposal_path(@proposal.id), class: "btn btn-success btn-s"
+      = link_to "Delete", proposal_path(@proposal.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-danger btn-s"
+      .ui.top.attached.tabular.menu
+        %a.active.item{"data-tab" => "first"} Details
+        %a.item{"data-tab" => "second"} Software Requirements
+        %a.item{"data-tab" => "third"} Software Browser Requirements
+        %a.item{"data-tab" => "fourth"} Project Costing
+      .ui.bottom.attached.active.tab.segment{"data-tab" => "first"}
+        .box.box-success
+          .box-body
+            %table.ui.selectable.celled.table
+              %tbody
+                %tr
+                  %td
+                    %b Title Proposal:
+                  %td= @proposal.title
+                %tr
+                  %td
+                    %b Date:
+                  %td= @proposal.proposal_date
+                %tr
+                  %td
+                    %b Overview:
+                  %td= @proposal.overview
+                %tr
+                  %td
+                    %b Objectives:
+                  %td= @proposal.objective
+                %tr
+                  %td
+                    %b Hardware:
+                  %td= @proposal.hardware
+                %tr
+                  %td
+                    %b Software:
+                  %td= @proposal.software
+                %tr
+                  %td
+                    %b Features:
+                  %td= @proposal.feature
+                %tr
+                  %td
+                    %b Project Costing:
+                  %td= @proposal.project_costing_text
+                %tr
+                  %td
+                    %b Signatories:
+                  %td= @proposal.signatory
+                %tr
+                  %td
+                    %b Prepared by:
+                  %td= @proposal.employee.to_s
+                %tr
+                  %td
+                    %b Recieved by:
+                  %td= @proposal.client.client_name
+      .ui.bottom.attached.tab.segment{"data-tab" => "second"}
+        %h1 Software Requirements
+        %table.table.table-bordered
+          .box.box-success
+          = render partial:"proposals/software_requirements/new"
+          %thead
+            %tr
+              %th Components
+              %th Amount
+              %th Action
+          %tbody
+            - @software_requirements.each do |sr|
+              %tr
+                %td= sr.component
+                %td= sr.cost
+                %td
+                  = link_to "EDIT", edit_proposal_software_requirement_path(sr.proposal, sr), class: "btn btn-success"
+                  = link_to "DELETE", [sr.proposal, sr],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
+            %th Total
+            %td= @software_requirements.sum(:cost) 
+      .ui.bottom.attached.tab.segment{"data-tab" => "third"}
+        %h1 Software Browsers
+        %table.table.table-bordered
+          .box.box-success
+          = render partial:"proposals/software_browsers/new"
+          %thead
+            %tr
+              %th Browsers
+          %tbody
+            - @software_browsers.each do |sb|
+              %tr
+                %td= sb.name
+                %td
+                  = link_to "EDIT", edit_proposal_software_browser_path(sb.proposal, sb), class: "btn btn-success"
+                  = link_to "DELETE", [sb.proposal, sb],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
+      .ui.bottom.attached.tab.segment{"data-tab" => "fourth"}
+        %h1 Costing
+        %table.table.table-bordered
+          .box.box-success
+          = render partial:"proposals/costings/new"
+          %thead
+            %tr
+              %th Description
+              %th Cost
+              %th Action
+          %tbody
+            - @costings.each do |c|
+              %tr
+                %td= c.description
+                %td= c.cost
+                %td
+                  = link_to "EDIT", edit_proposal_costing_path(c.proposal, c), class: "btn btn-success"
+                  = link_to "DELETE", [c.proposal, c],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
+            %th Total
+            %td= @costings.sum(:cost) 
+                
+:javascript
+  $('.menu .item').tab();
