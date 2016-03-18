@@ -56,7 +56,7 @@
             %th
               %center TOTAL
             %th 
-              XXX
+              = @petty_particulars.sum(:amount)
             %th
 :javascript
   $('.menu .item').tab();

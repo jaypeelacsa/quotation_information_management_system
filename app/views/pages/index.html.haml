@@ -7,38 +7,40 @@
     .col-lg-3.col-xs-6
       .small-box.bg-aqua
         .inner
-          %h3 xxx
-          %p Hindi pa alam
+          %h3= Client.count
+          %p Clients
         .icon
-        %a.small-box-footer{:href => "/management/items"}
-          More Info
-          %i.fa.fa-arrow-circle-right
-    .col-lg-3.col-xs-6
-      .small-box.bg-green
-        .inner
-          %h3 xxx
-          %p Hindi pa alam
-        .icon
-        %a.small-box-footer{:href => "#"}
+          %i.users.icon{:style => "top:50px;"}
+        %a.small-box-footer{:href => "/clients"}
           More Info
           %i.fa.fa-arrow-circle-right
     .col-lg-3.col-xs-6
       .small-box.bg-yellow
         .inner
           %h3= Employee.count
-          %p Employee
+          %p Employees
         .icon
           %i.users.icon{:style => "top:50px;"}
         %a.small-box-footer{:href => "/employees"}
           More Info
           %i.fa.fa-arrow-circle-right
     .col-lg-3.col-xs-6
+      .small-box.bg-green
+        .inner
+          %h3= ServiceProduct.count
+          %p Service/Products
+        .icon
+          %i.cube.icon{:style => "top:50px;"}
+        %a.small-box-footer{:href => "/service_products"}
+          More Info
+          %i.fa.fa-arrow-circle-right
+    .col-lg-3.col-xs-6
       .small-box.bg-red
         .inner
-          %h3 100
-          %p HINDI PA ALAM
+          %h3= Order.count
+          %p Orders
         .icon
-          %i.ion.ion-bag
-        %a.small-box-footer{:href => "#"}
+          %i.in.cart.icon{:style => "top:50px;"}
+        %a.small-box-footer{:href => "/orders"}
           More Info
           %i.fa.fa-arrow-circle-right

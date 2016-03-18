@@ -5,4 +5,6 @@ class CheckVoucher < ActiveRecord::Base
   accepts_nested_attributes_for :check_accounts, reject_if: :all_blank, allow_destroy: true
 
   has_many :accounting_codes
+
+  
 end

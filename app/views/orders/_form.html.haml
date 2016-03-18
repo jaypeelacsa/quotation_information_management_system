@@ -1,0 +1,14 @@
+= simple_form_for @order, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |o|
+  %form{:role => "form"}
+    .row
+      .col-md-6
+        .box.box-success
+          .box-body
+            .field
+              = o.association :employee, as: :select, collection: Employee.all
+            .form-group
+              = o.association :client, as: :select, collection: Client.all
+
+    %button.btn.btn-success
+      %i.save.icon>
+      SAVE

@@ -58,7 +58,7 @@
                   %center TOTAL
                 %th 
                 %th
-                  XXX
+                  = @billing_particulars.sum(:amount)
                 %th
 :javascript
   $('.menu .item').tab();

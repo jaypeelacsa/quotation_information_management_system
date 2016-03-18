@@ -1,0 +1,38 @@
+%section.content-header
+  %h1
+    Order
+    %small Control Panel
+%section.content
+  .row
+    .col-md-3
+      .box.box-success
+        .box-header
+          %h3.box-title Search Tool
+        .box-body
+
+    .col-md-9
+      .box.box-success.box-solid
+        .box-header
+          %h3.box-title Order List
+        .box-body
+          .row
+            .col-md-9
+            .col-md-3
+              = link_to "ADD NEW ORDER", new_order_path, class: "btn btn-block btn-success"
+          %table.ui.selectable.celled.table
+            %thead
+              %tr
+                %th No.
+                %th Employee Name
+                %th Client Name
+                %th Actions
+            %tbody
+              - @num = 1
+              - @orders.each do |o|
+                %tr
+                  %td= @num
+                  %td= o.employee.to_s
+                  %td= o.client.to_s
+                  %td
+                    = link_to "Details", order_path(o.id), class: "btn btn-flat btn-xs btn-primary"    
+                  - @num += 1

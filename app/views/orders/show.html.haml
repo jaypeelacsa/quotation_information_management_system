@@ -1,0 +1,82 @@
+%section.content-header
+  %h1
+    Order
+    %small Information
+%section.content
+  .row
+    .col-md-12
+      = link_to "EDIT", edit_order_path(@order.id), class: "btn btn-flat btn-xs btn-success"
+      = link_to "DELETE", order_path(@order.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+      .ui.top.attached.tabular.menu
+        %a.active.item{"data-tab" => "first"} Details
+        %a.item{"data-tab" => "second"} List
+        %a.item{"data-tab" => "third"} Payment
+      .ui.bottom.attached.active.tab.segment{"data-tab" => "first"}
+        .box.box-success
+          .box-body
+            %table.ui.selectable.celled.table
+              %tbody
+                %tr
+                  %td
+                    %b Employee Name:
+                  %td= @order.employee.to_s
+                %tr
+                  %td
+                    %b Position:
+                  %td= @order.employee.position
+                %tr
+                  %td
+                    %b Client Company Name:
+                  %td= @order.client.to_s
+                %tr
+                  %td
+                    %b Client Name:
+                  %td= @order.client.client_name
+                %tr
+                  %td
+                    %b Contact No:
+                  %td= @order.client.telephone
+      .ui.bottom.attached.tab.segment{"data-tab" => "second"}
+        .box.box-success
+          .box-body
+            = render partial:"orders/order_particulars/new"
+            %table.ui.selectable.celled.table
+              %thead
+                %th Service/Product Name
+                %th Quantity
+                %th Status
+                %th Actions
+              %tbody
+                - @order_particulars.each do |op|
+                  %tr
+                    %td= op.service_product.name
+                    %td= op.quantity
+                    %td 
+                      %span.label.label-warning= op.status
+                    %td
+                      = link_to "EDIT", edit_order_order_particular_path(op.order, op), class: "btn btn-success"
+                      = link_to "DELETE", [op.order, op],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
+
+      .ui.bottom.attached.tab.segment{"data-tab" => "third"}
+        .box.box-success
+          .box-body
+            / = render partial:"employees/work_experiences/new"
+            / %table.ui.selectable.celled.table
+            /   %thead
+            /     %th Title
+            /     %th Company Name
+            /     %th Address
+            /     %th Date Ended
+            /     %th Actions
+            /   %tbody
+            /     - @work_experiences.each do |we|
+            /       %tr
+            /         %td= we.title
+            /         %td= we.company_name
+            /         %td= we.company_address
+            /         %td= we.date_ended
+            /         %td
+            /           = link_to "EDIT", edit_employee_work_experience_path(we.employee, we), class: "btn btn-success"
+            /           = link_to "DELETE", [we.employee, we],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
+:javascript
+  $('.menu .item').tab();

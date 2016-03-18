@@ -16,10 +16,16 @@ Rails.application.routes.draw do
 		resources :cash_particulars, module: 'cash_vouchers'
 	end
 
+	resources :orders do
+		resources :order_particulars, module: 'orders'
+	end
+
 	resources :service_products
   resources :company_profiles
   resources :clients
   resources :accounting_codes
+
+  
   
 
   resources :check_vouchers do
