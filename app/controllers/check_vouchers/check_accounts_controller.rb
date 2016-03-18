@@ -33,7 +33,7 @@ module CheckVouchers
 
 			def destroy
 				@check_account = CheckAccount.find(params[:id])
-				@check_particular.destroy
+				@check_account.destroy
 				redirect_to check_voucher_path(@check_voucher)
 			end
 

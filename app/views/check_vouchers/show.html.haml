@@ -82,12 +82,16 @@
           %th Particular
           %th Amount
           %th Amount in word(in peso)
+          %th Action
       %tbody
         - @check_particulars.each do |cp|
           %tr
             %td= cp.particular
             %td= cp.amount
             %td= cp.amount_in_word
+            %td
+              = link_to "EDIT", edit_check_voucher_check_particular_path(cp.check_voucher, cp), class: "btn btn-success"
+              = link_to "DELETE", [cp.check_voucher, cp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
   .ui.bottom.attached.tab.segment{"data-tab" => "third"}
     %h1 Check Accounts
     %table.table.table-bordered
@@ -95,18 +99,23 @@
       = render partial:"check_vouchers/check_accounts/new"
       %thead
         %tr
-          %th Account Charge
-          %th Account Code
-          %th Debit
-          %th Credit
+          %th Account Title
+          %th Accounting Code
+          %th Transaction Type
+          %th Amount
+          %th Action
       %tbody
-        - @check_accounts.each do |ca|
+        - @check_accounts.each do |ac|
           %tr
-            %td= ca.account_charge
-            %td= ca.account_code
-            %td= ca.debit
-            %td= ca.credit
+            %td= ac.accounting_code.name
+            %td= ac.accounting_code.code
+            %td= ac.trans_type
+            %td= ac.amount
+            %td
+              = link_to "EDIT", edit_check_voucher_check_account_path(ac.check_voucher, ac), class: "btn btn-success"
+              = link_to "DELETE", [ac.check_voucher, ac],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
 :javascript
   $('.menu .item')
     .tab()
   ;
+

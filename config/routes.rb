@@ -15,9 +15,11 @@ Rails.application.routes.draw do
 	resources :service_products
   resources :company_profiles
   resources :clients
+  resources :accounting_codes
+  
 
   resources :check_vouchers do
   	resources :check_particulars, module: 'check_vouchers'
   	resources :check_accounts, module: 'check_vouchers'
-  end
+  	end
 end

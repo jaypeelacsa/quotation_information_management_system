@@ -24,6 +24,7 @@ class CheckVouchersController < ApplicationController
 		@check_particulars = CheckParticular.where(check_voucher_id: @check_voucher.id)
 		@check_account = CheckAccount.new
 		@check_accounts = CheckAccount.where(check_voucher_id: @check_voucher.id)
+		# @check_vouchers = CheckVoucher.where(accounting_code_id: @accounting_code.id)
 	end
 
 	def edit
@@ -34,7 +35,7 @@ class CheckVouchersController < ApplicationController
 		@check_voucher = CheckVoucher.find(params[ :id])
 
 		if @check_voucher.update_attributes(check_voucher_params)
-			redirect_to check_voucher_path
+			redirect_to check_vouchers_path
 		else
 			render "edit"
 		end

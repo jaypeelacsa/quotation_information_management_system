@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316090936) do
+ActiveRecord::Schema.define(version: 20160317053633) do
+
+  create_table "accounting_codes", force: :cascade do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "billing_particulars", force: :cascade do |t|
     t.string   "particular"
@@ -32,13 +39,12 @@ ActiveRecord::Schema.define(version: 20160316090936) do
   end
 
   create_table "check_accounts", force: :cascade do |t|
-    t.string   "account_charge"
-    t.string   "account_code"
-    t.decimal  "debit"
-    t.decimal  "credit"
     t.integer  "check_voucher_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "accounting_code_id"
+    t.decimal  "amount"
+    t.string   "trans_type"
   end
 
   create_table "check_particulars", force: :cascade do |t|

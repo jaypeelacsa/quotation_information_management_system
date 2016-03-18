@@ -1,0 +1,29 @@
+%section.content-header
+  %h1 Accounting Informations
+  %br
+    = link_to "Add Info", new_accounting_code_path, class: "btn btn-primary btn-s"
+%section.content
+  .box.box-success
+    .box-header.with-border
+    .box-body
+      %table.table.hp-table-bordered.table-striped
+        %thead
+          %tr
+            %th
+              %strong
+                %i.fa.fa-book.margin-r-5
+                Account Title
+            %th
+              %strong
+                %i.fa.fa-pencil.margin-r-5
+                Account Code
+            %th
+              %strong
+        %tbody
+          - @accounting_codes.each do |ac|
+            %tr
+              %td= ac.name
+              %td= ac.code
+              %td
+                = link_to "Edit.....", edit_accounting_code_path(ac.id), class: "btn btn-success btn-s"
+                = link_to "Delete", accounting_code_path(ac.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-danger btn-s"
