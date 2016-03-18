@@ -18,7 +18,7 @@ class ServiceProductsController < ApplicationController
 	end
 
 	def show
-		@service_product = ServiceProduct.all
+		@service_product = ServiceProduct.find(params[:id])
 	end
 
 	def edit

@@ -1,0 +1,27 @@
+= simple_form_for @cash_voucher, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |pv|
+  %form{:role => "form"}
+    .row
+      .col-md-6
+        .box.box-success
+          .box-body
+            .field
+              = pv.input :reference_no
+            .form-group
+              = pv.input :paid_to
+            .form-group
+              = pv.date_select :cash_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
+            .form-group
+              = pv.input :address
+            .form-group
+              = pv.input :received_from
+            .form-group
+              = pv.input :amount
+            .form-group
+              = pv.input :approved_by
+            .form-group
+              = pv.input :prepared_by
+            .form-group
+              = pv.input :checked_by
+        %button.btn.btn-success
+          %i.save.icon>
+          SAVE

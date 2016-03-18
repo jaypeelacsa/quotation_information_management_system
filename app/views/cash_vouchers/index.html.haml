@@ -1,0 +1,35 @@
+%section.content-header
+  %h1
+    Cash Voucher
+    %small Control Panel
+%section.content
+  .row
+    .col-md-3
+      %br
+        = link_to "NEW CASH VOUCHER", new_cash_voucher_path, class: "btn btn-block btn-success"
+  %br
+    .row
+      .col-md-12
+        .box.box-success
+          .box-header
+            %h3.box-title Cash Voucher Table
+          .box-body
+            %table.ui.selectable.celled.table
+              %thead
+                %tr
+                  %th Reference No.
+                  %th Paid To
+                  %th Address
+                  %th Date
+                  %th Actions
+              %tbody
+                - @cash_vouchers.each do |cv|
+                  %tr
+                    %td= cv.reference_no
+                    %td= cv.paid_to
+                    %td= cv.address
+                    %td= cv.cash_date
+                    %td
+                      = link_to "SHOW", cash_voucher_path(cv.id), class: "btn btn-success btn-s"
+                      = link_to "EDIT", edit_cash_voucher_path(cv.id), class: "btn btn-primary btn-s"
+                      = link_to "DELETE", cash_voucher_path(cv.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"

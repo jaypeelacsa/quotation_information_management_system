@@ -5,31 +5,36 @@
 %section.content
   .row
     .col-md-3
-      %br
-        = link_to "NEW SERVICE/PRODUCT", new_service_product_path, class: "btn btn-block btn-success"
-  %br
-    .row
-      .col-md-12
-        .box.box-success
-          .box-header
-            %h3.box-title Service And products Table
-          .box-body
-            %table.table.hp-table.table-splited
-              %thead
+      .box.box-success
+        .box-header
+          %h3.box-title Search Tool
+        .box-body
+
+    .col-md-9
+      .box.box-success.box-solid
+        .box-header
+          %h3.box-title Service And products List
+        .box-body
+          .row
+            .col-md-8
+            .col-md-4
+              = link_to "ADD NEW SERVICE/PRODUCT", new_service_product_path, class: "btn btn-block btn-success"
+          %table.table.hp-table.table-splited
+            %thead
+              %tr
+                %th No.
+                %th Name
+                %th Price
+                %th Type Offer
+                %th Action
+            %tbody
+              - @num = 1
+              - @service_products.each do |sp|
                 %tr
-                  %th Name
-                  %th Price
-                  %th Code
-                  %th Type Offer
-                  %th Action
-              %tbody
-                - @service_products.each do |sp|
-                  %tr
-                    %td= sp.name
-                    %td= sp.price
-                    %td= sp.code
-                    %td= sp.type
-                    %td
-                      = link_to "SHOW", service_product_path(sp.id), class: "btn btn-success btn-s"
-                      = link_to "EDIT", edit_service_product_path(sp.id), class: "btn btn-primary btn-s"
-                      = link_to "DELETE", service_product_path(sp.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
+                  %td= @num
+                  %td= sp.name
+                  %td= sp.price
+                  %td= sp.type
+                  %td
+                    = link_to "SHOW", service_product_path(sp.id), class: "btn btn-flat btn-xs btn-primary"
+                  - @num += 1

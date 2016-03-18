@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reference_no: 1
+  cash_date: 2016-03-17
+  paid_to: MyString
+  address: MyString
+  received_from: MyString
+  amount: MyString
+  prepared_by: MyString
+  checked_by: MyString
+  approved_by: MyString
+
+two:
+  reference_no: 1
+  cash_date: 2016-03-17
+  paid_to: MyString
+  address: MyString
+  received_from: MyString
+  amount: MyString
+  prepared_by: MyString
+  checked_by: MyString
+  approved_by: MyString

@@ -38,6 +38,28 @@ ActiveRecord::Schema.define(version: 20160317053633) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "cash_particulars", force: :cascade do |t|
+    t.string   "particular"
+    t.float    "amount"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "cash_voucher_id"
+  end
+
+  create_table "cash_vouchers", force: :cascade do |t|
+    t.integer  "reference_no"
+    t.date     "cash_date"
+    t.string   "paid_to"
+    t.string   "address"
+    t.string   "received_from"
+    t.string   "amount"
+    t.string   "prepared_by"
+    t.string   "checked_by"
+    t.string   "approved_by"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "check_accounts", force: :cascade do |t|
     t.integer  "check_voucher_id"
     t.datetime "created_at",         null: false
