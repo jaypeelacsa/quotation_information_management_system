@@ -1,21 +1,33 @@
 %section.content-header
-  %h1 Services and Products
+  %h1
+    Services and Products
+    %small Information
 %section.content
-  .box.box-success
-    .box-body
-      %table.table.hp-table.table-splited
-        %thead
-          %tr
-            %th Name
-            %th Price
-            %th Description
-            %th Code
-            %th Type Offered
-        %tbody
-          - @service_product.each do |sp|
-            %tr
-              %td= sp.name
-              %td= sp.price
-              %td= sp.description
-              %td= sp.code
-              %td= sp.type
+  .row
+    .col-md-12
+      = link_to "EDIT", edit_service_product_path(@service_product.id), class: "btn btn-flat btn-xs btn-success"
+      = link_to "DELETE", service_product_path(@service_product.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+      .box.box-success
+        .box-body
+          %table.ui.selectable.celled.table
+            %tbody
+              %tr
+                %td
+                  %b Type:
+                %td= @service_product.type
+              %tr
+                %td
+                  %b Name:
+                %td= @service_product.name
+              %tr
+                %td
+                  %b Price:
+                %td= @service_product.price
+              %tr
+                %td
+                  %b Code:
+                %td= @service_product.code
+              %tr
+                %td
+                  %b Description:
+                %td= @service_product.description

@@ -5,31 +5,36 @@
 %section.content
   .row
     .col-md-3
-      %br
-        = link_to "NEW EMPLOYEE", new_employee_path, class: "btn btn-block btn-success"
-  %br
-    .row
-      .col-md-12
-        .box.box-success
-          .box-header
-            %h3.box-title Employee Table
-          .box-body
-            %table.ui.selectable.celled.table
-              %thead
+      .box.box-success
+        .box-header
+          %h3.box-title Search Tool
+        .box-body
+
+    .col-md-9
+      .box.box-success.box-solid
+        .box-header
+          %h3.box-title Employee List
+        .box-body
+          .row
+            .col-md-9
+            .col-md-3
+              = link_to "ADD NEW EMPLOYEE", new_employee_path, class: "btn btn-block btn-success"
+          %table.ui.selectable.celled.table
+            %thead
+              %tr
+                %th No.
+                %th Name
+                %th Position
+                %th Email
+                %th Actions
+            %tbody
+              - @num = 1
+              - @employees.each do |e|
                 %tr
-                  %th Name
-                  %th Position
-                  %th Email
-                  %th Contact No.
-                  %th Actions
-              %tbody
-                - @employees.each do |e|
-                  %tr
-                    %td= e.to_s
-                    %td= e.position
-                    %td= e.email
-                    %td= e.contact_no
-                    %td
-                      = link_to "SHOW", employee_path(e.id), class: "btn btn-success btn-s"
-                      = link_to "EDIT", edit_employee_path(e.id), class: "btn btn-primary btn-s"
-                      = link_to "DELETE", employee_path(e.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
+                  %td= @num
+                  %td= e.to_s
+                  %td= e.position
+                  %td= e.email
+                  %td
+                    = link_to "Details", employee_path(e.id), class: "btn btn-flat btn-xs btn-primary"    
+                  - @num += 1

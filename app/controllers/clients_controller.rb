@@ -19,7 +19,7 @@ class ClientsController < ApplicationController
 	end
 
 	def show
-		@client = Client.all
+		@client = Client.find(params[:id])
 	end
 
 	def edit

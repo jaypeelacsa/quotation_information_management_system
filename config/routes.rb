@@ -12,6 +12,10 @@ Rails.application.routes.draw do
 		resources :billing_particulars, module: 'billings'
 	end
 	
+	resources :cash_vouchers do
+		resources :cash_particulars, module: 'cash_vouchers'
+	end
+
 	resources :service_products
   resources :company_profiles
   resources :clients
