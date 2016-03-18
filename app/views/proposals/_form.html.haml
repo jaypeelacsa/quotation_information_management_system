@@ -1,0 +1,34 @@
+%section.content-header
+  %h1 Information To Add:
+%section.content
+  .well
+    .box.box-success
+      = simple_form_for @proposal, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |p|
+        %form{:role => "form"}
+          .box-body
+            .form-group
+              = p.input :title
+            .form-group
+              = p.input :proposal_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
+            .form-group
+              = p.input :overview
+            .form-group
+              = p.input :objective
+            .form-group
+              = p.input :hardware
+            .form-group
+              = p.input :software
+            .form-group
+              = p.input :feature
+            .field
+              = p.input :project_costing_text
+            .form-group
+              = p.input :signatory
+            .form-group
+              = p.association :employee, as: :select, collection: Employee.all
+            .form-group
+              = p.association :client, as: :select, collection: Client.all
+            .box-footer
+              %button.btn.btn-success
+                %i.save.icon>
+                SAVE

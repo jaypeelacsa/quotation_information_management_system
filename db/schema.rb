@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317053633) do
+ActiveRecord::Schema.define(version: 20160318064710) do
 
   create_table "accounting_codes", force: :cascade do |t|
     t.string   "name"
@@ -121,6 +121,14 @@ ActiveRecord::Schema.define(version: 20160317053633) do
     t.text     "vission"
   end
 
+  create_table "costings", force: :cascade do |t|
+    t.string   "description"
+    t.decimal  "cost"
+    t.integer  "proposal_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "employees", force: :cascade do |t|
     t.string   "firstname"
     t.string   "middlename"
@@ -154,6 +162,22 @@ ActiveRecord::Schema.define(version: 20160317053633) do
     t.string   "received_by"
   end
 
+  create_table "proposals", force: :cascade do |t|
+    t.string   "title"
+    t.date     "proposal_date"
+    t.text     "overview"
+    t.text     "objective"
+    t.text     "hardware"
+    t.text     "software"
+    t.text     "feature"
+    t.string   "project_costing_text"
+    t.text     "signatory"
+    t.integer  "employee_id"
+    t.integer  "client_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
   create_table "service_products", force: :cascade do |t|
     t.string   "name"
     t.float    "price"
@@ -162,6 +186,21 @@ ActiveRecord::Schema.define(version: 20160317053633) do
     t.string   "type"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "software_browsers", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "proposal_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "software_requirements", force: :cascade do |t|
+    t.string   "component"
+    t.decimal  "cost"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "proposal_id"
   end
 
   create_table "work_experiences", force: :cascade do |t|

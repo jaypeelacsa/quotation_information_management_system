@@ -15,5 +15,10 @@
 //= require bootstrap
 //= require semantic-ui
 //= require cocoon
+//= require select2
+//= require select2-full
+$(document).ready(function(){
+  $('select').select2();
+});
 
 

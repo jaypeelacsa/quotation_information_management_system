@@ -1,4 +1,6 @@
 class Employee < ActiveRecord::Base
+
+	has_many :proposals
 	GENDER=["Male","Female"]
 	
 	has_many :work_experiences

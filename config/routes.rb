@@ -20,10 +20,16 @@ Rails.application.routes.draw do
   resources :company_profiles
   resources :clients
   resources :accounting_codes
-  
+
+  resources :proposals do
+  	resources :software_requirements, module: 'proposals'
+  	resources :software_browsers, module: 'proposals'
+  	resources :costings, module: 'proposals'
+ 	end
 
   resources :check_vouchers do
   	resources :check_particulars, module: 'check_vouchers'
   	resources :check_accounts, module: 'check_vouchers'
-  	end
+  end
+  
 end
