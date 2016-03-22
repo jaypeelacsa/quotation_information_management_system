@@ -6,20 +6,20 @@
 %section.content
   .row
     .col-md-3
-      .box.box-success
+      .box.box-default
         .box-header
           %h3.box-title Search Tool
         .box-body
     .col-md-9
-      .box.box-success.box-solid
+      .box.box-default.box-solid
         .box-header
-          %h3.box-title List of Proposals
+          %h3.box-title Proposal List
         .box-body
           .row
             .col-md-9
             .col-md-3
-              = link_to "Add Proposal", new_proposal_path, class: "btn btn-block btn-success"
-          %table.table.hp-table-bordered.table-striped
+              = link_to "ADD NEW PROPOSAL", new_proposal_path, class: "btn btn-block btn-primary"
+          %table.ui.selectable.celled.table
             %thead
               %tr
                 %th Title Of Proposal
@@ -33,5 +33,5 @@
                   %td= p.proposal_date
                   %td= p.overview
                   %td
-                    = link_to "Details..", proposal_path(p.id), class: "btn btn-primary btn-s"
+                    = link_to "Details", proposal_path(p.id), class: "btn btn-flat btn-xs btn-default"
                    
