@@ -1,0 +1,14 @@
+<div class="ui tall stacked segment">
+  <%= simple_form_for [@proposal, @feature_list] do |fl| %>
+  <%= fl.association :parent_feature_list, as: :hidden %>
+  <div class="field">
+    <%= fl.input :name %>
+  </div>
+  <div class="field">
+    <%= fl.input :description %>
+    </div>
+  <div class="actions">
+    <%= fl.submit class: "btn btn-default" %>
+  </div>
+  <% end %>
+</div>
