@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321022850) do
+ActiveRecord::Schema.define(version: 20160321072159) do
 
   create_table "accounting_codes", force: :cascade do |t|
     t.string   "name"
@@ -138,9 +138,16 @@ ActiveRecord::Schema.define(version: 20160321022850) do
     t.string   "contact_no"
     t.date     "birthdate"
     t.string   "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.string   "gender"
+    t.string   "profile_file_name"
+    t.string   "profile_content_type"
+    t.integer  "profile_file_size"
+    t.datetime "profile_updated_at"
+    t.integer  "employee_no"
+    t.date     "date_employed"
+    t.string   "status"
   end
 
   create_table "order_particulars", force: :cascade do |t|

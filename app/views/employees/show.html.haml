@@ -5,8 +5,8 @@
 %section.content
   .row
     .col-md-12
-      = link_to "EDIT", edit_employee_path(@employee.id), class: "btn btn-flat btn-xs btn-success"
-      = link_to "DELETE", employee_path(@employee.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+      = link_to "UPDATE", edit_employee_path(@employee.id), class: "btn btn-flat btn-xs btn-success"
+      = link_to "REMOVE", employee_path(@employee.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
       .ui.top.attached.tabular.menu
         %a.active.item{"data-tab" => "first"} Details
         %a.item{"data-tab" => "second"} Work Experience
@@ -15,6 +15,10 @@
           .box-body
             %table.ui.selectable.celled.table
               %tbody
+                %tr
+                  %td
+                    %b Employee No:
+                  %td= @employee.employee_no
                 %tr
                   %td
                     %b Firstname:
@@ -33,13 +37,25 @@
                   %td= @employee.position
                 %tr
                   %td
+                    %b Satus:
+                  %td= @employee.status
+                %tr
+                  %td
+                    %b Date Employed:
+                  %td= @employee.date_employed
+                %tr
+                  %td
+                    %b Working Years:
+                  / %td= @employee.total_year
+                %tr
+                  %td
                     %b Gender:
                   %td= @employee.gender
                 %tr
                   %td
-                    %b Position:
+                    %b Birthdate:
                   %td= @employee.birthdate
-                %tr
+                %tr  
                   %td
                     %b Email:
                   %td= @employee.email
@@ -70,7 +86,7 @@
                     %td= we.company_address
                     %td= we.date_ended
                     %td
-                      = link_to "EDIT", edit_employee_work_experience_path(we.employee, we), class: "btn btn-success"
-                      = link_to "DELETE", [we.employee, we],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
+                      = link_to "UPDATE", edit_employee_work_experience_path(we.employee, we), class: "btn btn-flat btn-xs btn-success"
+                      = link_to "REMOVE", [we.employee, we],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
 :javascript
   $('.menu .item').tab();

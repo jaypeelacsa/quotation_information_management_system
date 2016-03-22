@@ -2,27 +2,49 @@
   %form{:role => "form"}
     .row
       .col-md-6
-        .box.box-success
+        .box.box-default.box-solid
+          .box-header
+            %h3.box-title New Employee
           .box-body
             .field
+              - if (Employee.count==0)
+                = e.hidden_field :employee_no, :value => 101
+              - else
+                = e.hidden_field :employee_no, :value => Employee.last.id + 101
+            .field
               = e.input :firstname
-            .form-group
+            .field
               = e.input :lastname
-            .form-group
+            .field
               = e.input :middlename
-            .form-group
+            .field
               = e.input :gender, as: :select, collection: Employee::GENDER
-            .form-group
-              = e.input :birthdate
-            .form-group
+            .field
+              %label
+                Birthdate
+              %br
+              = e.date_select :birthdate, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
+            .field
               = e.input :email
-            .form-group
+            .field
               = e.input :contact_no
-            .form-group
+            .field
               = e.input :address
-            .form-group
+            .field
               = e.input :position
-    %center
-      %button.btn.btn-success
-        %i.save.icon>
-        SAVE
+            .field
+              %label
+                Date Employed
+              %br
+              = e.date_select :date_employed, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
+
+            - if @employee.new_record?
+              
+            - else
+              .field
+              = e.input :status, as: :select, collection: Employee::STATUS
+
+            %center
+              %button.btn.btn-primary
+                %i.save.icon>
+                SAVE

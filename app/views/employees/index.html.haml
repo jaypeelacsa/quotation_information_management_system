@@ -5,36 +5,35 @@
 %section.content
   .row
     .col-md-3
-      .box.box-success
+      .box.box-default
         .box-header
           %h3.box-title Search Tool
         .box-body
 
     .col-md-9
-      .box.box-success.box-solid
+      .box.box-default.box-solid
         .box-header
           %h3.box-title Employee List
         .box-body
           .row
             .col-md-9
             .col-md-3
-              = link_to "ADD NEW EMPLOYEE", new_employee_path, class: "btn btn-block btn-success"
+              = link_to "ADD NEW EMPLOYEE", new_employee_path, class: "btn btn-block btn-primary"
           %table.ui.selectable.celled.table
             %thead
               %tr
                 %th No.
                 %th Name
                 %th Position
-                %th Email
+                %th Status
                 %th Actions
             %tbody
-              - @num = 1
               - @employees.each do |e|
                 %tr
-                  %td= @num
+                  %td= e.employee_nor
                   %td= e.to_s
                   %td= e.position
-                  %td= e.email
+                  %td= e.status
                   %td
-                    = link_to "Details", employee_path(e.id), class: "btn btn-flat btn-xs btn-primary"    
-                  - @num += 1
+                    = link_to "Details", employee_path(e.id), class: "btn btn-flat btn-xs btn-default"    
+
