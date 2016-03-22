@@ -1,18 +1,23 @@
 = simple_form_for @service_product, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |e|
   %form{:role => "form"}
-    .box.box-success
-      .box-body
-        .field
-          = e.input :name
-        .form-group
-          = e.input :price
-        .form-group
-          = e.input :description
-        .form-group
-          = e.input :code
-        .form-group
-          = e.input :type, as: :select, collection: ServiceProduct::TYPE
-      .box-footer
-        %button.btn.btn-success
-          %i.save.icon>
-          SAVE
+    .row
+      .col-md-6
+        .box.box-default.box-solid
+          .box-header
+            %h3.box-title New Service/Product
+          .box-body
+            .field
+              = e.input :name
+            .form-group
+              = e.input :price
+            .form-group
+              = e.input :description
+            .form-group
+              = e.input :code
+            .form-group
+              = e.input :type, as: :select, collection: ServiceProduct::TYPE
+          .box-footer
+            %center
+              %button.btn.btn-primary
+                %i.save.icon>
+                SAVE

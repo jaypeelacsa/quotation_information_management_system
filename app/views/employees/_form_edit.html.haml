@@ -7,10 +7,7 @@
             %h3.box-title New Employee
           .box-body
             .field
-              - if (Employee.count==0)
-                = e.hidden_field :employee_no, :value => 101
-              - else
-                = e.hidden_field :employee_no, :value => Employee.last.employee_no + 1
+              = e.hidden_field :employee_no
             .field
               = e.input :firstname
             .field
@@ -43,7 +40,7 @@
             - else
               .field
               = e.input :status, as: :select, collection: Employee::STATUS
-          .box-footer
+
             %center
               %button.btn.btn-primary
                 %i.save.icon>

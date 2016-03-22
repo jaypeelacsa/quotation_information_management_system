@@ -5,33 +5,31 @@
 %section.content
   .row
     .col-md-3
-      %br
-        = link_to "NEW PETTY CASH VOUCHER", new_petty_voucher_path, class: "btn btn-block btn-success"
-  %br
-    .row
-      .col-md-12
-        .box.box-success
-          .box-header
-            %h3.box-title Petty Cash Voucher Table
-          .box-body
-            %table.ui.selectable.celled.table
-              %thead
+      .box.box-default
+        .box-header
+          %h3.box-title Search Tool
+        .box-body
+    .col-md-9  
+      .box.box-default.box-solid
+        .box-header
+          %h3.box-title Petty Cash Voucher List
+        .box-body
+          .row
+            .col-md-8
+            .col-md-4
+              = link_to "NEW PETTY CASH VOUCHER", new_petty_voucher_path, class: "btn btn-block btn-primary"
+          %table.ui.selectable.celled.table
+            %thead
+              %tr
+                %th Reference No.
+                %th Payee
+                %th Date
+                %th Actions
+            %tbody
+              - @petty_vouchers.each do |pv|
                 %tr
-                  %th Reference No.
-                  %th Payee
-                  %th Approved By
-                  %th Paid By
-                  %th Received By
-                  %th Actions
-              %tbody
-                - @petty_vouchers.each do |pv|
-                  %tr
-                    %td= pv.reference_no
-                    %td= pv.payee
-                    %td= pv.approved_by
-                    %td= pv.paid_by
-                    %td= pv.received_by
-                    %td
-                      = link_to "SHOW", petty_voucher_path(pv.id), class: "btn btn-success btn-s"
-                      = link_to "EDIT", edit_petty_voucher_path(pv.id), class: "btn btn-primary btn-s"
-                      = link_to "DELETE", petty_voucher_path(pv.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
+                  %td= pv.reference_no
+                  %td= pv.payee
+                  %td= pv.petty_date
+                  %td
+                    = link_to "Details", petty_voucher_path(pv.id), class: "btn btn-flat btn-xs btn-default"

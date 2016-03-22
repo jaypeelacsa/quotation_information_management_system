@@ -3,6 +3,10 @@
     Check Voucher
     %small Information
 %section.content
+  .row
+    .col-md-12
+      = link_to "UPDATE", edit_check_voucher_path(@check_voucher.id), class: "btn btn-flat btn-xs btn-success"
+      = link_to "REMOVE", check_voucher_path(@check_voucher.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
   .ui.top.attached.tabular.menu
     %a.active.item{"data-tab" => "first"} Check Voucher
     %a.item{"data-tab" => "second"} Check Particular
@@ -74,7 +78,7 @@
                 = @check_voucher.approved_by
   .ui.bottom.attached.tab.segment{"data-tab" => "second"}
     %h1 Check Particular
-    %table.table.table-bordered
+    %table.ui.selectable.celled.table
       .box.box-success
       = render partial:"check_vouchers/check_particulars/new"
       %thead
@@ -90,14 +94,16 @@
             %td= cp.amount
             %td= cp.amount_in_word
             %td
-              = link_to "EDIT", edit_check_voucher_check_particular_path(cp.check_voucher, cp), class: "btn btn-success"
-              = link_to "DELETE", [cp.check_voucher, cp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
+              = link_to "UPDATE", edit_check_voucher_check_particular_path(cp.check_voucher, cp), class: "btn btn-flat btn-xs btn-success"
+              = link_to "REMOVE", [cp.check_voucher, cp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+        %tr
           %th Total
-          %td= @check_particulars.sum(:amount) 
-         
+          %th= @check_particulars.sum(:amount) 
+          %th
+          %th
   .ui.bottom.attached.tab.segment{"data-tab" => "third"}
     %h1 Check Accounts
-    %table.table.table-bordered
+    %table.ui.selectable.celled.table
       .box.box-success
       = render partial:"check_vouchers/check_accounts/new"
       %thead
@@ -115,8 +121,8 @@
             %td= ac.trans_type
             %td= ac.amount
             %td
-              = link_to "EDIT", edit_check_voucher_check_account_path(ac.check_voucher, ac), class: "btn btn-success"
-              = link_to "DELETE", [ac.check_voucher, ac],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
+              = link_to "UPDATE", edit_check_voucher_check_account_path(ac.check_voucher, ac), class: "btn btn-flat btn-xs btn-success"
+              = link_to "REMOVE", [ac.check_voucher, ac],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
           %th Total
           %td
           %td

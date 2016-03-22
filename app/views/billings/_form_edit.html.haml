@@ -2,15 +2,10 @@
   %form{:role => "form"}
     .row
       .col-md-6
-        .box.box-default.box-solid
-          .box-header
-            %h3.box-title New Billing
+        .box.box-success
           .box-body
             .form-group
-              - if (Billing.count==0)
-                = e.hidden_field :bill_no, :value => 001
-              - else
-                = e.hidden_field :bill_no, :value => Billing.last.bill_no + 1
+              = e.hidden_field :bill_no
             .form-group
               = e.association :client, as: :select, client: Client.all
             .form-group

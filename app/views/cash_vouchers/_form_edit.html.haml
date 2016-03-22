@@ -7,10 +7,7 @@
             %h3.box-title New Cash Voucher
           .box-body
             .field
-              - if (CashVoucher.count==0)
-                = pv.hidden_field :reference_no, :value => 10001
-              - else
-                = pv.hidden_field :reference_no, :value => CashVoucher.last.reference_no + 1
+              = pv.hidden_field :reference_no
             .form-group
               = pv.input :paid_to
             .form-group

@@ -5,8 +5,9 @@
 %section.content
   .row
     .col-md-12
-      = link_to "EDIT", edit_service_product_path(@service_product.id), class: "btn btn-flat btn-xs btn-success"
-      = link_to "DELETE", service_product_path(@service_product.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+      = link_to "UPDATE", edit_service_product_path(@service_product.id), class: "btn btn-flat btn-xs btn-success"
+      = link_to "REMOVE", service_product_path(@service_product.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+      
       .box.box-success
         .box-body
           %table.ui.selectable.celled.table

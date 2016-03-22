@@ -1,16 +1,19 @@
 %section.content-header
   %h1
-    Work Experience
+    Order
     %small Edit
 %section.content
   .row
     = simple_form_for [@order, @order_particular], defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |f|
       %form{:role => "form"}
         .col-md-6
-          .field
-            = f.association :service_product, as: :select, collection: ServiceProduct.all
-        .col-md-6
-          .field
-            = f.input :quantity
-        %center
-          = f.submit class: "btn btn-success"
+          .box.box-default.box-solid
+            .box-header
+              %h3.box-title Edit
+            .box-body
+              .field
+                = f.association :service_product, as: :select, collection: ServiceProduct.all
+              .field
+                = f.input :quantity
+              %center
+                = f.submit class: "btn btn-primary"

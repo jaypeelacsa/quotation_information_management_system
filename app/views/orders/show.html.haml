@@ -5,8 +5,8 @@
 %section.content
   .row
     .col-md-12
-      = link_to "EDIT", edit_order_path(@order.id), class: "btn btn-flat btn-xs btn-success"
-      = link_to "DELETE", order_path(@order.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+      = link_to "UPDATE", edit_order_path(@order.id), class: "btn btn-flat btn-xs btn-success"
+      = link_to "REMOVE", order_path(@order.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
       .ui.top.attached.tabular.menu
         %a.active.item{"data-tab" => "first"} Details
         %a.item{"data-tab" => "second"} List
@@ -54,8 +54,9 @@
                     %td 
                       %span.label.label-warning= op.status
                     %td
-                      = link_to "EDIT", edit_order_order_particular_path(op.order, op), class: "btn btn-success"
-                      = link_to "DELETE", [op.order, op],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
+                      = link_to "APPROVED", edit_order_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-primary"
+                      = link_to "UPDATE", edit_order_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-success"
+                      = link_to "REMOVE", [op.order, op],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
 
       .ui.bottom.attached.tab.segment{"data-tab" => "third"}
         .box.box-success

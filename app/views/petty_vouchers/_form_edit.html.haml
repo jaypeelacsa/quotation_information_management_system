@@ -7,10 +7,7 @@
             %h3.box-title New Petty Voucher
           .box-body
             .field
-              - if (PettyVoucher.count==0)
-                = pv.hidden_field :reference_no, :value => 101
-              - else
-                = pv.hidden_field :reference_no, :value => PettyVoucher.last.reference_no + 1
+              = pv.hidden_field :reference_no
             .form-group
               = pv.input :payee
             .form-group
@@ -21,8 +18,6 @@
               = pv.input :paid_by
             .form-group
               = pv.input :received_by
-          .box-footer
-            %center
-              %button.btn.btn-success
-                %i.save.icon>
-                SAVE
+        %button.btn.btn-success
+          %i.save.icon>
+          SAVE

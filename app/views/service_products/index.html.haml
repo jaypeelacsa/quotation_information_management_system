@@ -5,21 +5,21 @@
 %section.content
   .row
     .col-md-3
-      .box.box-success
+      .box.box-default
         .box-header
           %h3.box-title Search Tool
         .box-body
 
     .col-md-9
-      .box.box-success.box-solid
+      .box.box-default.box-solid
         .box-header
           %h3.box-title Service And products List
         .box-body
           .row
             .col-md-8
             .col-md-4
-              = link_to "ADD NEW SERVICE/PRODUCT", new_service_product_path, class: "btn btn-block btn-success"
-          %table.table.hp-table.table-splited
+              = link_to "ADD NEW SERVICE/PRODUCT", new_service_product_path, class: "btn btn-block btn-primary"
+          %table.ui.selectable.celled.table
             %thead
               %tr
                 %th No.
@@ -36,5 +36,5 @@
                   %td= sp.price
                   %td= sp.type
                   %td
-                    = link_to "SHOW", service_product_path(sp.id), class: "btn btn-flat btn-xs btn-primary"
+                    = link_to "Details", service_product_path(sp.id), class: "btn btn-flat btn-xs btn-default"
                   - @num += 1

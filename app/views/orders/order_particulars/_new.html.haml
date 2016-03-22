@@ -4,8 +4,6 @@
       .col-md-6
         .field
           = f.association :service_product, as: :select, collection: ServiceProduct.all
-      .col-md-6
         .field
           = f.input :quantity
-      %center
-        = f.submit class: "btn btn-success"
+          = f.submit class: "btn btn-primary"

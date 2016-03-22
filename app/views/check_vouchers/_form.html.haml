@@ -1,36 +1,42 @@
 %section.content-header
-  %h1 Information To Add:
+  %h1
+    Cash Voucher
+    %small Information
 %section.content
-  .well
-    .box.box-success
-      = simple_form_for @check_voucher, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |cv|
-        %form{:role => "form"}
-          .box-body
-            .form-group
-              = cv.input :payee
-            .form-group
-              = cv.input :reference_no
-            .form-group
-              = cv.input :check_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
-            .form-group
-              = cv.input :si_no
-            .form-group
-              = cv.input :or_no
-            .form-group
-              = cv.input :apv_no
-            .form-group
-              = cv.input :bank
-            .form-group
-              = cv.input :check_no
-            .field
-              = cv.input :received_by
-            .form-group
-              = cv.input :prepared_by
-            .form-group
-              = cv.input :certified_by
-            .form-group
-              = cv.input :approved_by
+  = simple_form_for @check_voucher, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |cv|
+    %form{:role => "form"}
+      .row
+        .col-md-6
+          .box.box-default.box-solid
+            .box-header
+              %h3.box-title New Cash Voucher
+            .box-body
+              .form-group
+                = cv.input :payee
+              .form-group
+                = cv.input :reference_no
+              .form-group
+                = cv.input :check_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
+              .form-group
+                = cv.input :si_no
+              .form-group
+                = cv.input :or_no
+              .form-group
+                = cv.input :apv_no
+              .form-group
+                = cv.input :bank
+              .form-group
+                = cv.input :check_no
+              .field
+                = cv.input :received_by
+              .form-group
+                = cv.input :prepared_by
+              .form-group
+                = cv.input :certified_by
+              .form-group
+                = cv.input :approved_by
             .box-footer
-              %button.btn.btn-success
-                %i.save.icon>
-                SAVE
+              %center
+                %button.btn.btn-success
+                  %i.save.icon>
+                  SAVE

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321072159) do
+ActiveRecord::Schema.define(version: 20160322035347) do
 
   create_table "accounting_codes", force: :cascade do |t|
     t.string   "name"
@@ -175,7 +175,7 @@ ActiveRecord::Schema.define(version: 20160321072159) do
   end
 
   create_table "petty_vouchers", force: :cascade do |t|
-    t.string   "reference_no"
+    t.integer  "reference_no"
     t.date     "petty_date"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false

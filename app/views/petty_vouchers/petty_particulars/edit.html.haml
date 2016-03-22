@@ -1,16 +1,19 @@
 %section.content-header
   %h1
-    Work Experience
+    Petty Cash Voucher
     %small Edit
 %section.content
   .row
   = simple_form_for [@petty_voucher, @petty_particular], defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |f|
     %form{:role => "form"}
       .col-md-6
-        .field
-          = f.input :particular
-      .col-md-6
-        .field
-          = f.input :amount
-      %center
-        = f.submit class: "btn btn-success"
+        .box.box-default.box-solid
+          .box-header
+            %h3.box-title Edit
+          .box-body
+            .field
+              = f.input :particular
+              .field
+                = f.input :amount
+              %center
+                = f.submit class: "btn btn-success"

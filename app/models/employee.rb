@@ -22,8 +22,8 @@ class Employee < ActiveRecord::Base
     self.status ||= 'Regular'
   end
 
-  # def total_year
-  #   ((Time.now - date_employed.to_time)/ (60*60*24*356)).floor
-  # end
+  def total_year
+    # ((Time.now - date_employed.to_time)/ (60*60*24*356)).floor
+  end
 
 end

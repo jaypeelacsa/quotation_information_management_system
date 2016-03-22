@@ -3,6 +3,10 @@
     Cash Voucher
     %small Information
 %section.content
+  .row
+    .col-md-12
+      = link_to "UPDATE", edit_cash_voucher_path(@cash_voucher.id), class: "btn btn-flat btn-xs btn-success"
+      = link_to "REMOVE", cash_voucher_path(@cash_voucher.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
   .ui.top.attached.tabular.menu
     %a.active.item{"data-tab" => "first"} Details
     %a.item{"data-tab" => "second"} Particulars
@@ -62,13 +66,13 @@
               %td= pp.particular
               %td= pp.amount
               %td
-                = link_to "EDIT", edit_cash_voucher_cash_particular_path(pp.cash_voucher, pp), class: "btn btn-success"
-                = link_to "DELETE", [pp.cash_voucher, pp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
+                = link_to "UPDATE", edit_cash_voucher_cash_particular_path(pp.cash_voucher, pp), class: "btn btn-flat btn-xs btn-success"
+                = link_to "REMOVE", [pp.cash_voucher, pp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
           %tr
             %th
               %center TOTAL
             %th 
-              XXX
+              = @cash_particulars.sum(:amount)
             %th
 :javascript
   $('.menu .item').tab();

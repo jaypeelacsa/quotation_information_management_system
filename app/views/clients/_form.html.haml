@@ -1,10 +1,10 @@
-%section.content-header
-  %h1 Information To Add:
-%section.content
-  .well
-    .box.box-success
-      = simple_form_for @client, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |c|
-        %form{:role => "form"}
+= simple_form_for @client, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |c|
+  %form{:role => "form"}
+    .row
+      .col-md-6
+        .box.box-default.box-solid
+          .box-header
+            %h3.box-title New Client
           .box-body
             .form-group
               = c.input :client_name

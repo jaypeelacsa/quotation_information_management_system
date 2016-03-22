@@ -2,13 +2,17 @@
   %form{:role => "form"}
     .row
       .col-md-6
-        .box.box-success
+        .box.box-default.box-solid
+          .box-header
+            %h3.box-title New Order Detail
           .box-body
             .field
               = o.association :employee, as: :select, collection: Employee.all
             .form-group
               = o.association :client, as: :select, collection: Client.all
 
-    %button.btn.btn-success
-      %i.save.icon>
-      SAVE
+          .box-footer
+            %center
+              %button.btn.btn-primary
+                %i.save.icon>
+                SAVE
