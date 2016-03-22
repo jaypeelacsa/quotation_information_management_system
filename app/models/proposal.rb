@@ -1,4 +1,5 @@
 class Proposal < ActiveRecord::Base
+	
 	belongs_to :employee
 	belongs_to :client
 
@@ -8,5 +9,8 @@ class Proposal < ActiveRecord::Base
   accepts_nested_attributes_for :software_browsers, reject_if: :all_blank, allow_destroy: true
    has_many :costings
   accepts_nested_attributes_for :costings, reject_if: :all_blank, allow_destroy: true
+
+  has_attached_file :system_architecture, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :system_architecture, content_type: /\Aimage\/.*\Z/
 
 end

@@ -35,6 +35,10 @@
                   %td= @proposal.objective
                 %tr
                   %td
+                    %b System Architecture
+                  %td= image_tag @proposal.system_architecture.url(:thumb)
+                %tr
+                  %td
                     %b Hardware:
                   %td= @proposal.hardware
                 %tr
@@ -60,7 +64,7 @@
                 %tr
                   %td
                     %b Recieved by:
-                  %td= @proposal.client.client_name
+                  %td= @proposal.client.to_s
       .ui.bottom.attached.tab.segment{"data-tab" => "second"}
         %h1 Software Requirements
         %table.table.table-bordered

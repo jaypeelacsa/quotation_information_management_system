@@ -21,4 +21,7 @@ $(document).ready(function(){
   $('select').select2();
 });
 
+$(document).ready(function() {
+  $('.datepick').datepicker({ dateFormat: "MM d, yy" });
+});
 

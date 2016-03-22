@@ -11,7 +11,7 @@ class Client < ActiveRecord::Base
 
 	has_many :proposals
 
-	def to_s2
+	def to_s
 	  	"#{client_name}"
 	end
 end
