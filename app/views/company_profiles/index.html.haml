@@ -42,13 +42,7 @@
                             %br
                               = company.tin
                               %hr
-                                %strong
-                                  %i.fa.fa-pencil.margin-r-5
-                                  Logo
-                                %br
-                                  / = image_tag @company.logo.url(:thumb)
-                                  %hr
-                                    = link_to "Edit Company Info", edit_company_profile_path(company.id), class: "btn btn-primary btn-s"
-        .col-md-8
-        .container
-          %img{:src => "assets/cbs.png", :style => "position: relative; height: 400px;"}/
+                                = link_to "Edit Company Info", edit_company_profile_path(company.id), class: "btn btn-primary btn-s"
+    .col-md-8
+    .container
+      %img{:src => "assets/cbs.png", :style => "position: relative; height: 400px;"}/

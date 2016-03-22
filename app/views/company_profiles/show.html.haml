@@ -11,9 +11,6 @@
             %th Website
             %th Address
             %th Tin
-            /
-              <th>Mission</th>
-              <th>Vission</th>
         %tbody
           - @company_profile.each do |company|
             %tr
@@ -22,6 +19,5 @@
               %td= company.website
               %td= company.address
               %td= company.tin
-              /
-                <td><haml:loud> company.mission </haml:loud></td>
-                <td><haml:loud> company.vission </haml:loud></td>
+              / %td= image_tag @company.logo.url(:thumb)
+              

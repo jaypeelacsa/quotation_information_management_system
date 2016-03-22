@@ -46,5 +46,4 @@ class CompanyProfilesController < ApplicationController
 	def company_profile_params
 			params.require(:company_profile).permit!
 	end
-
 end
