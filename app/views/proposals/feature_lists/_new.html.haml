@@ -1,0 +1,8 @@
+= simple_form_for [@proposal, @feature_list] do |fl|
+  .ui.form
+    .field
+      = fl.input :name
+    .field
+      = fl.input :description
+    .actions
+      = fl.submit class: "btn btn-success"

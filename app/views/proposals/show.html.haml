@@ -5,8 +5,8 @@
 %section.content
   .row
     .col-md-12
-      = link_to "Edit...", edit_proposal_path(@proposal.id), class: "btn btn-success btn-s"
-      = link_to "Delete", proposal_path(@proposal.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-danger btn-s"
+      = link_to "UPDATE", edit_proposal_path(@proposal.id), class: "btn btn-flat btn-xs btn-success"
+      = link_to "REMOVE", proposal_path(@proposal.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
       .ui.top.attached.tabular.menu
         %a.active.item{"data-tab" => "first"} Details
         %a.item{"data-tab" => "second"} Software Requirements
@@ -83,8 +83,8 @@
                 %td= sr.component
                 %td= sr.cost
                 %td
-                  = link_to "EDIT", edit_proposal_software_requirement_path(sr.proposal, sr), class: "btn btn-success"
-                  = link_to "DELETE", [sr.proposal, sr],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
+                  = link_to "UPDATE", edit_proposal_software_requirement_path(sr.proposal, sr), class: "btn btn-flat btn-xs btn-success"
+                  = link_to "REMOVE", [sr.proposal, sr],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
             %th Total
             %td= @software_requirements.sum(:cost) 
       .ui.bottom.attached.tab.segment{"data-tab" => "third"}
@@ -100,8 +100,8 @@
               %tr
                 %td= sb.name
                 %td
-                  = link_to "EDIT", edit_proposal_software_browser_path(sb.proposal, sb), class: "btn btn-success"
-                  = link_to "DELETE", [sb.proposal, sb],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
+                  = link_to "UPDATE", edit_proposal_software_browser_path(sb.proposal, sb), class: "btn btn-flat btn-xs btn-success"
+                  = link_to "REMOVE", [sb.proposal, sb],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
       .ui.bottom.attached.tab.segment{"data-tab" => "fourth"}
         %h1 Costing
         %table.table.table-bordered
@@ -118,8 +118,8 @@
                 %td= c.description
                 %td= c.cost
                 %td
-                  = link_to "EDIT", edit_proposal_costing_path(c.proposal, c), class: "btn btn-success"
-                  = link_to "DELETE", [c.proposal, c],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-warning btn-s"
+                  = link_to "UPDATE", edit_proposal_costing_path(c.proposal, c), class: "btn btn-flat btn-xs btn-success"
+                  = link_to "REMOVE", [c.proposal, c],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
             %th Total
             %td= @costings.sum(:cost) 
         
@@ -141,8 +141,8 @@
                     %td
                       = fl.description
                     %td
-                      = link_to "DELETE", [fl.proposal, fl],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-primary btn-s"
-                      = link_to "Add Particular Feature", new_proposal_feature_list_path(@proposal.id, parent_feature_list_id: fl.id), class: "btn btn-warning btn-s"
+                      = link_to "DELETE", [fl.proposal, fl],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+                      = link_to "Add Particular Feature", new_proposal_feature_list_path(@proposal.id, parent_feature_list_id: fl.id), class: "btn btn-flat btn-xs btn-success"
                 %tr
                   %td 
                     %ul.list-group
@@ -151,6 +151,7 @@
                           = fl.name
                           \-->
                           = fl.description
+
 
       .ui.bottom.attached.tab.segment{"data-tab" => "sixth"}
         .box.box-success
