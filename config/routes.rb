@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   	resources :software_requirements, module: 'proposals'
   	resources :software_browsers, module: 'proposals'
   	resources :costings, module: 'proposals'
+  	resources :feature_lists, module: 'proposals'
+  	resources :terms_conditions, module: 'proposals'
  	end
 
 

@@ -26,6 +26,11 @@ class ProposalsController < ApplicationController
 		@software_browsers = SoftwareBrowser.where(proposal_id: @proposal.id)
 		@costing = Costing.new
 		@costings = Costing.where(proposal_id: @proposal.id)
+		@feature_list = FeatureList.new
+		@feature_lists = FeatureList.where(proposal_id: @proposal.id)
+		@terms_condition = TermsCondition.new
+		@terms_conditions = TermsCondition.where(proposal_id: @proposal.id)
+		
 	end
 
 	def edit
