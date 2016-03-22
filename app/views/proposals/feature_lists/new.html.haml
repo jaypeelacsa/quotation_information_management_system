@@ -9,9 +9,10 @@
       .col-md-6
         .box.box-default.box-solid
           .box-header
-            %h3.box-title Add
+            %h3.box-title New
           .box-body
             .field
+              = f.association :parent_feature_list, as: :hidden
               = f.input :name
               .field
                 = f.input :description
