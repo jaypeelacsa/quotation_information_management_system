@@ -2,6 +2,24 @@ class ClientsController < ApplicationController
 	
 	def index
 		@clients = Client.all
+
+
+		if params[:client_name].present?
+			@client_name = params[:client_name]
+			@clients = @clients.where("lower(client_name) LIKE :client_name",client_name: "%#{@client_name}")
+		end
+
+		if params[:company_name].present?
+			@company_name = params[:company_name]
+			@clients = @clients.where("lower(company_name) LIKE :company_name",company_name: "%#{@company_name}")
+		end
+
+		if params[:status].present?
+			@status = params[:status]
+			@clients = @clients.where("status = :status",status: params[:status])
+		end
+
+
 	end
 
 	def new

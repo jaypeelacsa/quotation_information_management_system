@@ -10,6 +10,7 @@
         .box-header
           %h3.box-title Search Tool
         .box-body
+          = render partial: "search"
     .col-md-9
       .box.box-default.box-solid
         .box-header
@@ -24,14 +25,12 @@
               %tr
                 %th Title Of Proposal
                 %th Date
-                %th Overview
                 %th Actions
             %tbody
               - @proposals.each do |p|
                 %tr
                   %td= p.title
                   %td= p.proposal_date
-                  %td= p.overview
                   %td
                     = link_to "Details", proposal_path(p.id), class: "btn btn-flat btn-xs btn-default"
                    

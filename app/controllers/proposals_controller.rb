@@ -2,6 +2,17 @@ class ProposalsController < ApplicationController
 	
 	def index
 		@proposals = Proposal.all
+
+		if params[:title].present?
+			@title = params[:title]
+			@proposals = @proposals.where("lower(title) LIKE :title",title: "%#{@title}")
+		end
+
+		if params[:start_date].present? && params[:end_date].present?
+			@start_date = params[:start_date]
+			@end_date = params[:end_date]
+			@proposals = @proposals.where(proposal_date: (@start_date.to_date..@end_date.to_date))
+		end
 	end
 
 	def new

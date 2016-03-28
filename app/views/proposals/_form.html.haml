@@ -1,10 +1,10 @@
-%section.content-header
-  %h1 Information To Add:
-%section.content
-  .well
-    .box.box-success
-      = simple_form_for @proposal, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |p|
-        %form{:role => "form"}
+= simple_form_for @proposal, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |p|
+  %form{:role => "form"}
+    .row
+      .col-md-12
+        .box.box-default.box-solid
+          .box-header
+            %h3.box-title New Proposal
           .box-body
             .form-group
               = p.input :title
@@ -30,7 +30,10 @@
               = p.association :employee, as: :select, collection: Employee.all
             .form-group
               = p.association :client, as: :select, collection: Client.all
-            .box-footer
-              %button.btn.btn-success
-                %i.save.icon>
-                SAVE
+          .box-footer
+            .row
+              .col-md-10
+              .col-md-2
+                %button.btn.btn-primary
+                  %i.save.icon>
+                  SAVE

@@ -1,10 +1,9 @@
 %section.content-header
   %h1
-    Cash Voucher
+    Check Particular
     %small Edit
 %section.content
-  .row
-  = simple_form_for [@cash_voucher, @cash_particular], defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |f|
+  = simple_form_for [@check_voucher, @check_particular], defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |cp|
     %form{:role => "form"}
       .col-md-12
         .box.box-default.box-solid
@@ -12,9 +11,11 @@
             %h3.box-title Edit
           .box-body
             .field
-              = f.input :particular
-              .field
-                = f.input :amount
+              = cp.input :particular
+            .field
+              = cp.input :amount
+            .field
+              = cp.input :amount_in_word
           .box-footer
             .row
               .col-md-10

@@ -1,0 +1,14 @@
+= simple_form_for [@check_voucher, @check_account], defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |ca|
+  %form{:role => "form"}
+    .field
+      = ca.association :accounting_code, as: :select, collection: AccountingCode.all
+    .field
+      = ca.input :trans_type, as: :select, collection: CheckAccount::POST_TYPE
+    .field
+      = ca.input :amount
+    .row
+      .col-md-10
+      .col-md-2
+        %button.btn.btn-primary
+          %i.save.icon>
+          SAVE

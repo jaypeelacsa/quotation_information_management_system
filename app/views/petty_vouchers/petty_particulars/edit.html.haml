@@ -6,7 +6,7 @@
   .row
   = simple_form_for [@petty_voucher, @petty_particular], defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |f|
     %form{:role => "form"}
-      .col-md-6
+      .col-md-12
         .box.box-default.box-solid
           .box-header
             %h3.box-title Edit
@@ -15,5 +15,10 @@
               = f.input :particular
               .field
                 = f.input :amount
-              %center
-                = f.submit class: "btn btn-success"
+          .box-footer
+            .row
+              .col-md-10
+              .col-md-2
+                %button.btn.btn-primary
+                  %i.save.icon>
+                  SAVE

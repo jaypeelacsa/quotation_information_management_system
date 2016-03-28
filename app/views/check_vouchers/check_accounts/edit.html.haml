@@ -1,0 +1,14 @@
+%section.content-header
+  %h1
+    Check Account
+    %small Edit
+%section.content
+  = simple_form_for [@check_voucher, @check_account], defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |ca|
+    %form{:role => "form"}
+      .field
+        = ca.association :accounting_codes, as: :select, collection: AccountingCode.all
+      .field
+        = ca.input :trans_type, as: :select, collection: CheckAccount::POST_TYPE
+      .field
+        = ca.input :amount
+      = ca.submit class: "btn btn-primary"

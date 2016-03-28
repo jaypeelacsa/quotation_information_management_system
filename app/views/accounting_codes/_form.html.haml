@@ -1,7 +1,7 @@
 = simple_form_for @accounting_code, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |ac|
   %form{:role => "form"}
     .row
-      .col-md-6
+      .col-md-12
         .box.box-default.box-solid
           .box-header
             %h3.box-title Accounting Code
@@ -11,6 +11,9 @@
             .form-group
               = ac.input :code
           .box-footer
-            %button.btn.btn-success
-              %i.save.icon>
-              SAVE
+            .row
+              .col-md-10
+              .col-md-2
+                %button.btn.btn-primary
+                  %i.save.icon>
+                  SAVE

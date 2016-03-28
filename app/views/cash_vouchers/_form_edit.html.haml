@@ -1,7 +1,7 @@
 = simple_form_for @cash_voucher, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |pv|
   %form{:role => "form"}
     .row
-      .col-md-6
+      .col-md-12
         .box.box-default.box-solid
           .box-header
             %h3.box-title New Cash Voucher
@@ -25,7 +25,9 @@
             .form-group
               = pv.input :checked_by
           .box-footer
-            %center
-              %button.btn.btn-success
-                %i.save.icon>
-                SAVE
+            .row
+              .col-md-10
+              .col-md-2
+                %button.btn.btn-primary
+                  %i.save.icon>
+                  SAVE

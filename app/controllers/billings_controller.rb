@@ -1,6 +1,12 @@
 class BillingsController < ApplicationController
 		def index
 			@billings= Billing.all
+
+			if params[:start_date].present? && params[:end_date].present?
+				@start_date = params[:start_date]
+				@end_date = params[:end_date]
+				@billings = @billings.where(bill_date: (@start_date.to_date..@end_date.to_date))
+			end
 		end
 
 		def new
