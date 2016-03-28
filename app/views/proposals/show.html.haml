@@ -136,9 +136,19 @@
                       = link_to "DELETE", [fl.proposal, fl],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
                       = link_to "Add Particular Feature", new_proposal_feature_list_path(@proposal.id, parent_feature_list_id: fl.id), class: "btn btn-flat btn-xs btn-success"
                     .content
-                      %b
-                        = fl.name
-                      = fl.description
+                      %ul
+                        %li
+                          %b
+                            = fl.name
+                        = fl.description
+                      %br
+                        .content
+                          - fl.list_of_features.each do |fl|
+                            %ul
+                              %li
+                                %b
+                                  = fl.name
+                              = fl.description
 
 
 
@@ -163,3 +173,5 @@
                                            
 :javascript
   $('.menu .item').tab();
+
+  $('.ui.accordion').accordion();
