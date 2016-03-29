@@ -19,6 +19,7 @@ gem 'cocoon'
 gem 'hirb'
 gem 'haml'
 gem "select2-rails"
+gem 'activeadmin', github: 'activeadmin'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 group :development, :test do
   gem 'byebug'

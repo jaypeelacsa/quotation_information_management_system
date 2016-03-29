@@ -11,13 +11,13 @@
             %th Website
             %th Address
             %th Tin
+            %th Company Logo
         %tbody
-          - @company_profile.each do |company|
-            %tr
-              %td= company.company_name
-              %td= company.telephone
-              %td= company.website
-              %td= company.address
-              %td= company.tin
-              / %td= image_tag @company.logo.url(:thumb)
+          %tr
+            %td= @company_profile.company_name
+            %td= @company_profile.telephone
+            %td= @company_profile.website
+            %td= @company_profile.address
+            %td= @company_profile.tin
+            %td= image_tag @company_profile.logo.url(:thumb)
               

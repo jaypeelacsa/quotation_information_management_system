@@ -19,7 +19,7 @@ class CompanyProfilesController < ApplicationController
 	end
 
 	def show
-		@company_profile = CompanyProfile.all
+		@company_profile = CompanyProfile.find(params[:id])
 	end
 
 	def edit

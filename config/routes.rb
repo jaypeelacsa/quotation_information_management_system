@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
+  
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  get 'auth/:provider/callback' => 'sessions#create'
+  get 'logout' => 'sessions#destroy'
   root to: "pages#index"
   resources :employees do
 		resources :work_experiences, module: 'employees'
