@@ -1,0 +1,34 @@
+= form_tag send("service_products_path"),method: "GET" do
+	.row
+		.col-md-12
+			.ui.icon.input
+				%input{:name => "name", :placeholder => "Enter Name", :type => "text"}
+				%i.inverted.circular.search.link.icon
+	%br
+	.row
+		.col-md-12
+			= select_tag :type, options_for_select(ServiceProduct::TYPE, @type), class: "form-control select-select2", prompt: "Select Type"
+	%br
+	.row
+		.col-md-12
+			.ui.icon.input
+				%input{:name => "code", :placeholder => "Enter Code", :type => "text"}
+				%i.inverted.circular.search.link.icon
+	%br
+	.row
+		.col-md-12
+			.ui.icon.input
+				%input{:name => "price_from", :placeholder => "Price From", :type => "text"}
+				%i.inverted.circular.search.link.icon
+	%br
+	.row
+		.col-md-12
+			.ui.icon.input
+				%input{:name => "price_to", :placeholder => "Price To", :type => "text"}
+				%i.inverted.circular.search.link.icon
+	%br
+	%center
+		.ui.buttons
+			%button.ui.positive.button Search
+			.or
+			= link_to "Clear", service_products_path, class: "ui button"

@@ -1,0 +1,15 @@
+= form_tag send("orders_path"),method: "GET" do
+	/ .row
+	/ 	.col-md-12
+	/ 		= select_tag :client_id, options_from_collection_for_select(Client.all, :id,:client_name, @client.try(:id)), class: "form-control select-select2", prompt: "Select Client Name"
+	/ %br
+	/ .row
+	/ 	.col-md-12
+	/ 		= select_tag :client_id, options_from_collection_for_select(Client.all, :id,:company_name, @client.try(:id)), class: "form-control select-select2", prompt: "Select Company Name"
+	/ %br
+
+	%center
+		.ui.buttons
+			%button.ui.positive.button Search
+			.or
+			= link_to "Clear", orders_path, class: "ui button"

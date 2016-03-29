@@ -1,4 +1,13 @@
 class Employee < ActiveRecord::Base
+  validates :firstname, presence: true
+  validates :lastname, presence: true
+  validates :middlename, presence: true
+  validates :position, presence: true
+  validates :email, presence: true
+  validates :contact_no, presence: true
+  validates :address, presence: true
+  validates :gender, presence: true
+  validates :date_employed, presence: true
 
 	has_many :proposals
 	GENDER=["Male","Female"]
@@ -23,7 +32,7 @@ class Employee < ActiveRecord::Base
   end
 
   def total_year
-    # ((Time.now - date_employed.to_time)/ (60*60*24*356)).floor
+    ((Time.now - date_employed.to_time)/ (60*60*24*356)).floor
   end
 
 end

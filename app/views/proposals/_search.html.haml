@@ -1,0 +1,25 @@
+= form_tag send("proposals_path"),method: "GET" do
+	.row
+		.col-md-12
+			.ui.icon.input
+				%input{:name => "title", :placeholder => "Enter Title", :type => "text"}
+				%i.inverted.circular.search.link.icon
+	%br
+	.row
+		.col-md-12
+			.ui.icon.input
+				%input{:name => "start_date", :placeholder => "Proposed From", class: "datepick"}
+				%i.inverted.circular.search.link.icon
+	%br
+	.row
+		.col-md-12
+			.ui.icon.input
+				%input{:name => "end_date", :placeholder => "Proposed To", class: "datepick"}
+				%i.inverted.circular.search.link.icon
+
+	%br
+	%center
+		.ui.buttons
+			%button.ui.positive.button Search
+			.or
+			= link_to "Clear", proposals_path, class: "ui button"

@@ -1,0 +1,22 @@
+= form_tag send("clients_path"),method: "GET" do
+	.row
+		.col-md-12
+			.ui.icon.input
+				%input{:name => "client_name", :placeholder => "Enter Name", :type => "text"}
+				%i.inverted.circular.search.link.icon
+	%br
+	.row
+		.col-md-12
+			.ui.icon.input
+				%input{:name => "company_name", :placeholder => "Enter Company Name", :type => "text"}
+				%i.inverted.circular.search.link.icon
+	%br
+	.row
+		.col-md-12
+			= select_tag :status, options_for_select(Client::STATUS, @status), class: "form-control select-select2", prompt: "Select Status"
+	%br
+	%center
+		.ui.buttons
+			%button.ui.positive.button Search
+			.or
+			= link_to "Clear", clients_path, class: "ui button"

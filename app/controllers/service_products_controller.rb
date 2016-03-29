@@ -2,6 +2,28 @@ class ServiceProductsController < ApplicationController
 	
 	def index
 		@service_products = ServiceProduct.all
+
+		if params[:name].present?
+			@name = params[:name]
+			@service_products = @service_products.where("lower(name) LIKE :name",name: "%#{@name}")
+		end
+
+		if params[:type].present?
+			@type = params[:type]
+			@service_products = @service_products.where("type = :type",type: params[:type])
+		end
+
+		if params[:code].present?
+			@code = params[:code]
+			@service_products = @service_products.where("code LIKE :code",code: "%#{@code}")
+		end
+
+		# if params[:price_from].present? && params[:price_to].present?
+		# 	@price_from = params[:price_from]
+		# 	@price_to = params[:price_to]
+		# 	@service_products = @service_product.where(price: >= @price_from && price: <= @price_to )
+		# end
+
 	end
 
 	def new

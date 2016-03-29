@@ -17,6 +17,8 @@
 //= require cocoon
 //= require select2
 //= require select2-full
+//= require jquery-ui
+
 $(document).ready(function(){
   $('select').select2();
 });

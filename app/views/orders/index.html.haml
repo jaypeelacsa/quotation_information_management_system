@@ -9,7 +9,7 @@
         .box-header
           %h3.box-title Search Tool
         .box-body
-
+          = render partial:"search"
     .col-md-9
       .box.box-default.box-solid
         .box-header
@@ -25,6 +25,7 @@
                 %th No.
                 %th Employee Name
                 %th Client Name
+                %th Client Company Name
                 %th Actions
             %tbody
               - @num = 1
@@ -33,6 +34,7 @@
                   %td= @num
                   %td= o.employee.to_s
                   %td= o.client.to_s
+                  %td= o.client.company_name
                   %td
                     = link_to "Details", order_path(o.id), class: "btn btn-flat btn-xs btn-default"    
                   - @num += 1

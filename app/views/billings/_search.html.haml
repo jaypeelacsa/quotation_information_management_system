@@ -1,0 +1,26 @@
+= form_tag send("billings_path"),method: "GET" do
+	/ .row
+	/ 	.col-md-12
+	/ 		.ui.icon.input
+	/ 			%input{:name => "name", :placeholder => "Enter Name", :type => "text"}
+	/ 			%i.inverted.circular.search.link.icon
+	/ %br
+	.row
+		.col-md-12
+			.ui.icon.input
+				%input{:name => "start_date", :placeholder => "Billed From", class: "datepick"}
+				%i.inverted.circular.search.link.icon
+	%br
+	.row
+		.col-md-12
+			.ui.icon.input
+				%input{:name => "end_date", :placeholder => "Billed To", class: "datepick"}
+				%i.inverted.circular.search.link.icon
+
+
+	%br
+	%center
+		.ui.buttons
+			%button.ui.positive.button Search
+			.or
+			= link_to "Clear", billings_path, class: "ui button"

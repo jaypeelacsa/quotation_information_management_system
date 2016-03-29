@@ -83,7 +83,7 @@
                 %td= sr.component
                 %td= sr.cost
                 %td
-                  = link_to "UPDATE", edit_proposal_software_requirement_path(sr.proposal, sr), class: "btn btn-flat btn-xs btn-success"
+                  / = link_to "UPDATE", edit_proposal_software_requirement_path(sr.proposal, sr), class: "btn btn-flat btn-xs btn-success"
                   = link_to "REMOVE", [sr.proposal, sr],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
             %th Total
             %td= @software_requirements.sum(:cost) 
@@ -95,12 +95,13 @@
           %thead
             %tr
               %th Browsers
+              %th Action
           %tbody
             - @software_browsers.each do |sb|
               %tr
                 %td= sb.name
                 %td
-                  = link_to "UPDATE", edit_proposal_software_browser_path(sb.proposal, sb), class: "btn btn-flat btn-xs btn-success"
+                  / = link_to "UPDATE", edit_proposal_software_browser_path(sb.proposal, sb), class: "btn btn-flat btn-xs btn-success"
                   = link_to "REMOVE", [sb.proposal, sb],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
       .ui.bottom.attached.tab.segment{"data-tab" => "fourth"}
         %h1 Costing
@@ -118,7 +119,7 @@
                 %td= c.description
                 %td= c.cost
                 %td
-                  = link_to "UPDATE", edit_proposal_costing_path(c.proposal, c), class: "btn btn-flat btn-xs btn-success"
+                  / = link_to "UPDATE", edit_proposal_costing_path(c.proposal, c), class: "btn btn-flat btn-xs btn-success"
                   = link_to "REMOVE", [c.proposal, c],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
             %th Total
             %td= @costings.sum(:cost) 
@@ -126,31 +127,30 @@
       .ui.bottom.attached.tab.segment{"data-tab" => "fifth"}
         .box.box-success
           .box-body
-          = render partial:"proposals/feature_lists/new"
-          %table.ui.selectable.celled.table
-            %thead
-              %th Feature List
-              %th Description
-              %th Actions
-            %tbody
+            = render partial:"proposals/feature_lists/new"
+            .ui.middle.aligned.divided.list
               - @feature_lists.each do |fl|
                 - if fl.is_not_feature?
-                  %tr
-                    %td
-                      = fl.name
-                    %td
-                      = fl.description
-                    %td
+                  .item
+                    .right.floated.content
                       = link_to "DELETE", [fl.proposal, fl],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
                       = link_to "Add Particular Feature", new_proposal_feature_list_path(@proposal.id, parent_feature_list_id: fl.id), class: "btn btn-flat btn-xs btn-success"
-                %tr
-                  %td 
-                    %ul.list-group
-                      - fl.list_of_features.each do |fl|
-                        %li.list.group-item
-                          = fl.name
-                          \-->
-                          = fl.description
+                    .content
+                      %ul
+                        %li
+                          %b
+                            = fl.name
+                        = fl.description
+                      %br
+                        .content
+                          - fl.list_of_features.each do |fl|
+                            %ul
+                              %li
+                                %b
+                                  = fl.name
+                              = fl.description
+
+
 
 
       .ui.bottom.attached.tab.segment{"data-tab" => "sixth"}
@@ -168,8 +168,10 @@
                     %td= tc.name
                     %td= tc.content
                     %td
-                      = link_to "UPDATE", edit_proposal_terms_condition_path(tc.proposal, tc), class: "btn btn-flat btn-xs btn-success"
+                      / = link_to "UPDATE", edit_proposal_terms_condition_path(tc.proposal, tc), class: "btn btn-flat btn-xs btn-success"
                       = link_to "REMOVE", [tc.proposal, tc],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"                
                                            
 :javascript
   $('.menu .item').tab();
+
+  $('.ui.accordion').accordion();
