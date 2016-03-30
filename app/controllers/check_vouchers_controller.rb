@@ -5,7 +5,12 @@ class CheckVouchersController < ApplicationController
 	end
 
 	def new
-		@check_voucher = CheckVoucher.new
+		if ( current_user.role == 'Admin' )
+			@check_voucher = CheckVoucher.new
+		else
+			redirect_to check_vouchers_path
+		end
+
 	end
 
 	def create		
@@ -27,7 +32,12 @@ class CheckVouchersController < ApplicationController
 	end
 
 	def edit
-		@check_voucher = CheckVoucher.find(params[ :id])
+		if ( current_user.role == 'Admin' )
+			@check_voucher = CheckVoucher.find(params[ :id])
+		else
+			redirect_to check_vouchers_path
+		end
+		
 	end
 
 	def update

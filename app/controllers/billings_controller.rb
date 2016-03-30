@@ -10,7 +10,12 @@ class BillingsController < ApplicationController
 		end
 
 		def new
-			@billing = Billing.new
+		if ( current_user.role == 'Admin' )
+				@billing = Billing.new
+		else
+				redirect_to billings_path
+		end
+			
 		end
 
 		def create
@@ -29,7 +34,12 @@ class BillingsController < ApplicationController
 		end
 
 		def edit
-			@billing = Billing.find(params[:id])
+			if ( current_user.role == 'Admin' )
+				@billing = Billing.find(params[:id])
+		else
+				redirect_to billings_path
+		end
+			
 		end
 
 		def update

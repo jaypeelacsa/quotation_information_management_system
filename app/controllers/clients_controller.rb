@@ -23,7 +23,12 @@ class ClientsController < ApplicationController
 	end
 
 	def new
-		@client = Client.new
+		if ( current_user.role == 'Admin' )
+				@client = Client.new
+		else
+				redirect_to clients_path
+		end
+		
 	end
 
 	def create		
@@ -41,7 +46,12 @@ class ClientsController < ApplicationController
 	end
 
 	def edit
-		@client = Client.find(params[ :id])
+		if ( current_user.role == 'Admin' )
+				@client = Client.find(params[ :id])
+		else
+				redirect_to clients_path
+		end
+		
 	end
 
 	def update

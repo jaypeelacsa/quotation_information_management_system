@@ -15,5 +15,6 @@
                 = f.association :service_product, as: :select, collection: ServiceProduct.all
               .field
                 = f.input :quantity
+
               %center
                 = f.submit class: "btn btn-primary"

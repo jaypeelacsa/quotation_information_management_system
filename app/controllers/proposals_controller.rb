@@ -16,7 +16,12 @@ class ProposalsController < ApplicationController
 	end
 
 	def new
-		@proposal = Proposal.new
+		if ( current_user.role == 'Admin' )
+				@proposal = Proposal.new
+		else
+				redirect_to proposals_path
+		end
+		
 	end
 
 	def create		
@@ -45,7 +50,12 @@ class ProposalsController < ApplicationController
 	end
 
 	def edit
-		@proposal = Proposal.find(params[ :id])
+		if ( current_user.role == 'Admin' )
+				@proposal = Proposal.find(params[ :id])
+		else
+				redirect_to proposals_path
+		end
+		
 	end
 
 	def update

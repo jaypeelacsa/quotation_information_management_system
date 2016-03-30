@@ -1,0 +1,25 @@
+%body{:onload => "window.print();"}
+  .wrapper
+    - @company_profiles.each do |company|
+      %h2.page-header
+        = company.company_name
+    / %center
+    /   List of All Employee
+    %table.table.table-striped
+      %thead
+        %tr
+          %th No.
+          %th Name
+          %th Position
+          %th Status
+          %th Address
+      %tbody
+        - @num = 1
+        - @employees.each do |e|
+          %tr
+            %td= @num
+            %td= e.to_s
+            %td= e.position
+            %td= e.status
+            %td= e.address
+            - @num += 1

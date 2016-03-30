@@ -5,8 +5,9 @@
 %section.content
   .row
     .col-md-12
-      = link_to "UPDATE", edit_check_voucher_path(@check_voucher.id), class: "btn btn-flat btn-xs btn-success"
-      = link_to "REMOVE", check_voucher_path(@check_voucher.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+      - if ( current_user.role == 'Admin' )
+        = link_to "UPDATE", edit_check_voucher_path(@check_voucher.id), class: "btn btn-flat btn-xs btn-success"
+        = link_to "REMOVE", check_voucher_path(@check_voucher.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
   .ui.top.attached.tabular.menu
     %a.active.item{"data-tab" => "first"} Check Voucher
     %a.item{"data-tab" => "second"} Check Particular
@@ -80,61 +81,67 @@
     %h1 Check Particular
     %table.ui.selectable.celled.table
       .box.box-success
-      = render partial:"check_vouchers/check_particulars/new"
-      %thead
-        %tr
-          %th Particular
-          %th Amount
-          %th Amount in word(in peso)
-          %th Action
-      %tbody
-        - @check_particulars.each do |cp|
+        - if ( current_user.role == 'Admin' )
+          = render partial:"check_vouchers/check_particulars/new"
+        %thead
           %tr
-            %td= cp.particular
-            %td= cp.amount
-            %td= cp.amount_in_word
-            %td
-              = link_to "UPDATE", edit_check_voucher_check_particular_path(cp.check_voucher, cp), class: "btn btn-flat btn-xs btn-success"
-              = link_to "REMOVE", [cp.check_voucher, cp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-        %tr
-          %th Total
-          %th= @check_particulars.sum(:amount) 
-          %th
-          %th
+            %th Particular
+            %th Amount
+            %th Amount in word(in peso)
+            - if ( current_user.role == 'Admin' )
+              %th Action
+        %tbody
+          - @check_particulars.each do |cp|
+            %tr
+              %td= cp.particular
+              %td= cp.amount
+              %td= cp.amount_in_word
+              - if ( current_user.role == 'Admin' )
+                %td
+                  = link_to "UPDATE", edit_check_voucher_check_particular_path(cp.check_voucher, cp), class: "btn btn-flat btn-xs btn-success"
+                  = link_to "REMOVE", [cp.check_voucher, cp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+          %tr
+            %th Total
+            %th= @check_particulars.sum(:amount) 
+            %th
+            %th
   .ui.bottom.attached.tab.segment{"data-tab" => "third"}
     %h1 Check Accounts
     %table.ui.selectable.celled.table
       .box.box-success
-      = render partial:"check_vouchers/check_accounts/new"
-      %thead
-        %tr
-          %th Account Title
-          %th Accounting Code
-          %th Debit
-          %th Credit
-          %th Action
-      %tbody
-        - @debit = 0
-        - @credit = 0
-        - @check_accounts.each do |ac|
+        - if ( current_user.role == 'Admin' )
+          = render partial:"check_vouchers/check_accounts/new"
+        %thead
           %tr
-            %td= ac.accounting_code.name
-            %td= ac.accounting_code.code
-            - if ac.trans_type == 'Debit'
-              %td= ac.amount
-              %td
-              - @debit += ac.amount
-            - else
-              %td
-              %td= ac.amount
-              - @credit += ac.amount
-            %td
-              = link_to "UPDATE", edit_check_voucher_check_account_path(ac.check_voucher, ac), class: "btn btn-flat btn-xs btn-success"
-              = link_to "REMOVE", [ac.check_voucher, ac],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-        %th{:colspan => "2"}
-          %center Total
-        %th= @debit
-        %th= @credit
+            %th Account Title
+            %th Accounting Code
+            %th Debit
+            %th Credit
+            - if ( current_user.role == 'Admin' )
+              %th Action
+        %tbody
+          - @debit = 0
+          - @credit = 0
+          - @check_accounts.each do |ac|
+            %tr
+              %td= ac.accounting_code.name
+              %td= ac.accounting_code.code
+              - if ac.trans_type == 'Debit'
+                %td= ac.amount
+                %td
+                - @debit += ac.amount
+              - else
+                %td
+                %td= ac.amount
+                - @credit += ac.amount
+              - if ( current_user.role == 'Admin' ) 
+                %td
+                  = link_to "UPDATE", edit_check_voucher_check_account_path(ac.check_voucher, ac), class: "btn btn-flat btn-xs btn-success"
+                  = link_to "REMOVE", [ac.check_voucher, ac],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+          %th{:colspan => "2"}
+            %center Total
+          %th= @debit
+          %th= @credit
 :javascript
   $('.menu .item')
     .tab()

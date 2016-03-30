@@ -5,8 +5,9 @@
 %section.content
   .row
     .col-md-12
-      = link_to "UPDATE", edit_cash_voucher_path(@cash_voucher.id), class: "btn btn-flat btn-xs btn-success"
-      = link_to "REMOVE", cash_voucher_path(@cash_voucher.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+      - if ( current_user.role == 'Admin' )
+        = link_to "UPDATE", edit_cash_voucher_path(@cash_voucher.id), class: "btn btn-flat btn-xs btn-success"
+        = link_to "REMOVE", cash_voucher_path(@cash_voucher.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
   .ui.top.attached.tabular.menu
     %a.active.item{"data-tab" => "first"} Details
     %a.item{"data-tab" => "second"} Particulars
@@ -54,20 +55,23 @@
   .ui.bottom.attached.tab.segment{"data-tab" => "second"}
     .box.box-success
       .box-body
-      = render partial:"cash_vouchers/cash_particulars/new"
+      - if ( current_user.role == 'Admin' )
+        = render partial:"cash_vouchers/cash_particulars/new"
       %table.ui.selectable.celled.table
         %thead
           %th Particulars
           %th Amount
-          %th Actions
+          - if ( current_user.role == 'Admin' )
+            %th Actions
         %tbody
           - @cash_particulars.each do |pp|
             %tr
               %td= pp.particular
               %td= pp.amount
-              %td
-                = link_to "UPDATE", edit_cash_voucher_cash_particular_path(pp.cash_voucher, pp), class: "btn btn-flat btn-xs btn-success"
-                = link_to "REMOVE", [pp.cash_voucher, pp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+              - if ( current_user.role == 'Admin' )
+                %td
+                  = link_to "UPDATE", edit_cash_voucher_cash_particular_path(pp.cash_voucher, pp), class: "btn btn-flat btn-xs btn-success"
+                  = link_to "REMOVE", [pp.cash_voucher, pp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
           %tr
             %th
               %center TOTAL

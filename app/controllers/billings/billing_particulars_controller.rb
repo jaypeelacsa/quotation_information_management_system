@@ -18,7 +18,12 @@ module Billings
 			end
 
 			def edit
-				@billing_particular = BillingParticular.find(params[:id])
+				if ( current_user.role == 'Admin' )
+						@billing_particular = BillingParticular.find(params[:id])
+				else
+						redirect_to billings_path
+				end
+				
 			end
 
 			def update

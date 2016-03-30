@@ -5,7 +5,11 @@ class AccountingCodesController < ApplicationController
 	end
 
 	def new
-		@accounting_code = AccountingCode.new
+		if ( current_user.role == 'Admin' )
+				@accounting_code = AccountingCode.new
+		else
+			redirect_to accounting_codes_path
+		end
 	end
 
 	def create		
@@ -19,7 +23,12 @@ class AccountingCodesController < ApplicationController
 	end
 
 	def edit
-		@accounting_code = AccountingCode.find(params[ :id])
+		if ( current_user.role == 'Admin' )
+			@accounting_code = AccountingCode.find(params[ :id])
+		else
+			redirect_to accounting_codes_path
+		end
+		
 	end
 
 	def update

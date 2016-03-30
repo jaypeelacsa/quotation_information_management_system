@@ -5,7 +5,12 @@ class CashVouchersController < ApplicationController
 	end
 
 	def new
-		@cash_voucher = CashVoucher.new
+		if ( current_user.role == 'Admin' )
+			@cash_voucher = CashVoucher.new
+		else
+			redirect_to cash_vouchers_path
+		end
+		
 	end
 
 	def create		
@@ -24,7 +29,12 @@ class CashVouchersController < ApplicationController
 	end
 
 	def edit
-		@cash_voucher = CashVoucher.find(params[ :id])
+		if ( current_user.role == 'Admin' )
+			@cash_voucher = CashVoucher.find(params[ :id])
+		else
+			redirect_to cash_vouchers_path
+		end
+		
 	end
 
 	def update

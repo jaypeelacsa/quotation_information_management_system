@@ -20,12 +20,14 @@
               %tr
                 %th Name
                 %th Code
-                %th Actions
+                - if ( current_user.role == 'Admin' )
+                  %th Actions
             %tbody
               - @accounting_codes.each do |ac|
                 %tr
                   %td= ac.name
                   %td= ac.code
-                  %td
-                    = link_to "UPDATE", edit_accounting_code_path(ac.id), class: "btn btn-flat btn-xs btn-success"
-                    = link_to "REMOVE", accounting_code_path(ac.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+                  - if ( current_user.role == 'Admin' )
+                    %td
+                      = link_to "UPDATE", edit_accounting_code_path(ac.id), class: "btn btn-flat btn-xs btn-success"
+                      = link_to "REMOVE", accounting_code_path(ac.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"

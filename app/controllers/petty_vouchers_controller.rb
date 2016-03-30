@@ -5,7 +5,11 @@ class PettyVouchersController < ApplicationController
 	end
 
 	def new
-		@petty_voucher = PettyVoucher.new
+		if ( current_user.role == 'Admin' )
+			@petty_voucher = PettyVoucher.new
+		else
+			redirect_to petty_vouchers_path
+		end
 	end
 
 	def create		
@@ -24,7 +28,12 @@ class PettyVouchersController < ApplicationController
 	end
 
 	def edit
-		@petty_voucher = PettyVoucher.find(params[ :id])
+		if ( current_user.role == 'Admin' )
+			@petty_voucher = PettyVoucher.find(params[ :id])
+		else
+			redirect_to petty_vouchers_path
+		end
+		
 	end
 
 	def update

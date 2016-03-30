@@ -18,7 +18,12 @@ module Orders
 			end
 
 			def edit
-				@order_particular = OrderParticular.find(params[:id])
+				if ( current_user.role == 'Admin' )
+					@order_particular = OrderParticular.find(params[:id])
+				else
+						redirect_to orders_path
+				end
+				
 			end
 
 			def update
@@ -44,5 +49,8 @@ module Orders
 			def load_defaults
 				@order = Order.find(params[:order_id])
 			end
+
+
+
 	end
 end

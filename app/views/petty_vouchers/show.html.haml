@@ -5,8 +5,9 @@
 %section.content
   .row
     .col-md-12
-      = link_to "UPDATE", edit_petty_voucher_path(@petty_voucher.id), class: "btn btn-flat btn-xs btn-success"
-      = link_to "REMOVE", petty_voucher_path(@petty_voucher.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+      - if ( current_user.role == 'Admin' )
+        = link_to "UPDATE", edit_petty_voucher_path(@petty_voucher.id), class: "btn btn-flat btn-xs btn-success"
+        = link_to "REMOVE", petty_voucher_path(@petty_voucher.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
   .ui.top.attached.tabular.menu
     %a.active.item{"data-tab" => "first"} Details
     %a.item{"data-tab" => "second"} Particulars
@@ -42,25 +43,28 @@
   .ui.bottom.attached.tab.segment{"data-tab" => "second"}
     .box.box-success
       .box-body
-      = render partial:"petty_vouchers/petty_particulars/new"
-      %table.ui.selectable.celled.table
-        %thead
-          %th Particulars
-          %th Amount
-          %th Actions
-        %tbody
-          - @petty_particulars.each do |pp|
+        - if ( current_user.role == 'Admin' )
+          = render partial:"petty_vouchers/petty_particulars/new"
+        %table.ui.selectable.celled.table
+          %thead
+            %th Particulars
+            %th Amount
+            - if ( current_user.role == 'Admin' )
+              %th Actions
+          %tbody
+            - @petty_particulars.each do |pp|
+              %tr
+                %td= pp.particular
+                %td= pp.amount
+                - if ( current_user.role == 'Admin' )
+                  %td
+                    = link_to "EDIT", edit_petty_voucher_petty_particular_path(pp.petty_voucher, pp), class: "btn btn-flat btn-xs btn-success"
+                    = link_to "DELETE", [pp.petty_voucher, pp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
             %tr
-              %td= pp.particular
-              %td= pp.amount
-              %td
-                = link_to "EDIT", edit_petty_voucher_petty_particular_path(pp.petty_voucher, pp), class: "btn btn-flat btn-xs btn-success"
-                = link_to "DELETE", [pp.petty_voucher, pp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-          %tr
-            %th
-              %center TOTAL
-            %th 
-              = @petty_particulars.sum(:amount)
-            %th
+              %th
+                %center TOTAL
+              %th 
+                = @petty_particulars.sum(:amount)
+              %th
 :javascript
   $('.menu .item').tab();
