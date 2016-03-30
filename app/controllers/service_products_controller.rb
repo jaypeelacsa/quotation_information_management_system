@@ -18,11 +18,11 @@ class ServiceProductsController < ApplicationController
 			@service_products = @service_products.where("code LIKE :code",code: "%#{@code}")
 		end
 
-		# if params[:price_from].present? && params[:price_to].present?
-		# 	@price_from = params[:price_from]
-		# 	@price_to = params[:price_to]
-		# 	@service_products = @service_product.where(price: >= @price_from && price: <= @price_to )
-		# end
+		if params[:price_from].present? && params[:price_to].present?
+			@price_from = params[:price_from]
+			@price_to = params[:price_to]
+			@service_products = @service_products.where( :price => @price_from..@price_to )
+		end
 
 	end
 
