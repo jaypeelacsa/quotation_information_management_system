@@ -27,7 +27,16 @@ $(document).ready(function() {
   $('.datepick').datepicker({ dateFormat: "MM d, yy" });
 });
 
-// $(function () {
+// $(function() { $("[data-widget='collapse']").click(); })
+
+// $('body').bind('expanded.pushMenu', function() {
+//   // ... sidebar expanded, do something...
+// });
+
+// $('body').bind('collapsed.pushMenu', function() {
+//   // ... sidebar collapsed, do something...
+// });
+// // $(function () {
 //   var slideToTop = $("<div />");
 //   slideToTop.html('<i class="fa fa-chevron-up"></i>');
 //   slideToTop.css({
