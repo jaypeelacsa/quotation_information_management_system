@@ -5,6 +5,7 @@
 %section.content
   .row
     .col-md-12
+    - if ( current_user.role == 'Admin' )
       = link_to "UPDATE", edit_billing_path(@billing.id), class: "btn btn-flat btn-xs btn-success"
       = link_to "REMOVE", billing_path(@billing.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
       .ui.top.attached.tabular.menu
@@ -39,6 +40,7 @@
       .ui.bottom.attached.tab.segment{"data-tab" => "second"}
         .box.box-success
           .box-body
+        - if ( current_user.role == 'Admin' )
           = render partial:"billings/billing_particulars/new"
           %table.ui.selectable.celled.table
             %thead
@@ -53,6 +55,7 @@
                   %td= bp.currency
                   %td= bp.amount
                   %td
+                  - if ( current_user.role == 'Admin' )
                     = link_to "UPDATE", edit_billing_billing_particular_path(bp.billing, bp), class: "btn btn-flat btn-xs btn-success"
                     = link_to "REMOVE", [bp.billing, bp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
               %tr

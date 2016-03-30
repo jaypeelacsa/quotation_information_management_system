@@ -19,7 +19,8 @@
           .row
             .col-md-9
             .col-md-3
-              = link_to "ADD NEW EMPLOYEE", new_employee_path, class: "btn btn-block btn-primary"
+              - if ( current_user.role == 'Admin' )
+                = link_to "ADD NEW EMPLOYEE", new_employee_path, class: "btn btn-block btn-primary"
           %table.ui.selectable.celled.table
             %thead
               %tr
