@@ -5,7 +5,12 @@ class CompanyProfilesController < ApplicationController
 	end
 
 	def new
-		@company_profile = CompanyProfile.new
+		if ( current_user.role == 'Admin' )
+				@company_profile = CompanyProfile.new
+			else
+				redirect_to company_profiles_path
+			end
+		
 	end
 
 	def create		
@@ -23,7 +28,12 @@ class CompanyProfilesController < ApplicationController
 	end
 
 	def edit
-		@company_profile = CompanyProfile.find(params[ :id])
+		if ( current_user.role == 'Admin' )
+				@company_profile = CompanyProfile.find(params[ :id])
+			else
+				redirect_to company_profiles_path
+			end
+		
 	end
 
 	def update

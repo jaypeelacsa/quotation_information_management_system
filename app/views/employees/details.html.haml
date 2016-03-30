@@ -1,0 +1,59 @@
+%body{:onload => "window.print();"}
+  .wrapper
+    - @company_profiles.each do |company|
+      %h2.page-header
+        = company.company_name
+    / %center
+    /   List of All Employee
+    %dl
+      %dt Name
+      %dd
+        = @employee.to_s
+      %br
+      %dt Position
+      %dd
+        = @employee.position
+      %br
+      %dt Status
+      %dd
+        = @employee.status
+      %br
+      %dt Date Employed:
+      %dd= @employee.date_employed
+      %br
+      %dt Working Years:
+      %dd= @employee.total_year
+      %br
+      %dt Gender:
+      %dd= @employee.gender
+      %br
+      %dt Birthdate:
+      %dd= @employee.birthdate
+      %br
+      %dt Email:
+      %dd= @employee.email
+      %br
+      %dt Contact No:
+      %dd= @employee.contact_no
+      %br
+      %dt Address:
+      %dd= @employee.address
+      %br
+    %table.table.table-striped
+      %thead
+        %tr
+          %th No.
+          %th Title
+          %th Company Name
+          %th Address
+          %th Date Ended
+      %tbody
+        - @num = 1
+        - @work_experiences.each do |we|
+          %tr
+            %td= @num
+            %td= we.title
+            %td= we.company_name
+            %td= we.company_address
+            %td= we.date_ended
+            - @num += 1

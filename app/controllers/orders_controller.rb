@@ -1,10 +1,20 @@
 class OrdersController < ApplicationController
 		def index
 			@orders= Order.all
+
+			if !params[:client_id].blank?
+				@client = Client.find(params[:client_id])
+				@orders = @orders.where(client_id: @client.id)
+			end
 		end
 
 		def new
-			@order = Order.new
+			if ( current_user.role == 'Admin' )
+					@order = Order.new
+			else
+					redirect_to orders_path
+			end
+			
 		end
 
 		def create
@@ -23,7 +33,12 @@ class OrdersController < ApplicationController
 		end
 
 		def edit
-			@order = Order.find(params[:id])
+			if ( current_user.role == 'Admin' )
+					@order = Order.find(params[:id])
+			else
+					redirect_to orders_path
+			end
+			
 		end
 
 		def update

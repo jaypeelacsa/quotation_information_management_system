@@ -27,7 +27,12 @@ class ServiceProductsController < ApplicationController
 	end
 
 	def new
-		@service_product = ServiceProduct.new
+		if ( current_user.role == 'Admin' )
+				@service_product = ServiceProduct.new
+		else
+				redirect_to service_products_path
+		end
+		
 	end
 
 	def create		
@@ -44,7 +49,12 @@ class ServiceProductsController < ApplicationController
 	end
 
 	def edit
-		@service_product = ServiceProduct.find(params[ :id])
+		if ( current_user.role == 'Admin' )
+				@service_product = ServiceProduct.find(params[ :id])
+		else
+				redirect_to service_products_path
+		end
+		
 	end
 
 	def update

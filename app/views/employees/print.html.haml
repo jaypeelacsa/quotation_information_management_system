@@ -1,0 +1,51 @@
+%section.content-header
+  %h1
+    Employee
+    %small Reports
+%section.content
+  .row
+    .col-md-6
+      .box.box-default
+        .box-header
+          %h3.box-title Filter Tool
+        .box-body
+          .row
+            .col-md-3
+              = link_to "Print All",employees_print_all_path, class: "btn btn-block btn-default"
+          %br
+
+          = form_tag send("employees_print_all_path"),method: "GET" do
+            .row
+              .col-md-12
+                .ui.icon.input
+                  %input{:name => "start_date", :placeholder => "Employed From", class: "datepick"}
+                  %i.inverted.circular.search.link.icon
+            %br
+            .row
+              .col-md-12
+                .ui.icon.input
+                  %input{:name => "end_date", :placeholder => "Employed To", class: "datepick"}
+                  %i.inverted.circular.search.link.icon
+
+            %br
+            .row
+              .col-md-12
+                .ui.icon.input
+                  %input{:name => "pos", :placeholder => "Enter Position", :type => "text"}
+                  %i.inverted.circular.search.link.icon
+            %br
+            .row
+              .col-md-6
+                = select_tag :gender, options_for_select(Employee::GENDER, @gender), class: "form-control select-select2", prompt: "Select Gender"
+            %br
+            .row
+              .col-md-6
+                = select_tag :status, options_for_select(Employee::STATUS, @status), class: "form-control select-select2", prompt: "Select Status"
+            
+            %br
+            %center
+              .ui.buttons
+                %button.ui.positive.button Filter
+                .or
+                = link_to "Clear", employees_path, class: "ui button"
+

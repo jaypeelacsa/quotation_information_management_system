@@ -5,9 +5,9 @@
 %section.content
   .row
     .col-md-12
-    - if ( current_user.role == 'Admin' )
-      = link_to "UPDATE", edit_billing_path(@billing.id), class: "btn btn-flat btn-xs btn-success"
-      = link_to "REMOVE", billing_path(@billing.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+      - if ( current_user.role == 'Admin' )
+        = link_to "UPDATE", edit_billing_path(@billing.id), class: "btn btn-flat btn-xs btn-success"
+        = link_to "REMOVE", billing_path(@billing.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
       .ui.top.attached.tabular.menu
         %a.active.item{"data-tab" => "first"} Details
         %a.item{"data-tab" => "second"} Particulars
@@ -40,30 +40,31 @@
       .ui.bottom.attached.tab.segment{"data-tab" => "second"}
         .box.box-success
           .box-body
-        - if ( current_user.role == 'Admin' )
-          = render partial:"billings/billing_particulars/new"
-          %table.ui.selectable.celled.table
-            %thead
-              %th Particulars
-              %th Currency
-              %th Amount
-              %th Actions
-            %tbody
-              - @billing_particulars.each do |bp|
+            - if ( current_user.role == 'Admin' )
+              = render partial:"billings/billing_particulars/new"
+            %table.ui.selectable.celled.table
+              %thead
+                %th Particulars
+                %th Currency
+                %th Amount
+                - if ( current_user.role == 'Admin' )
+                  %th Actions
+              %tbody
+                - @billing_particulars.each do |bp|
+                  %tr
+                    %td= bp.particular
+                    %td= bp.currency
+                    %td= bp.amount
+                    - if ( current_user.role == 'Admin' )
+                      %td
+                        = link_to "UPDATE", edit_billing_billing_particular_path(bp.billing, bp), class: "btn btn-flat btn-xs btn-success"
+                        = link_to "REMOVE", [bp.billing, bp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
                 %tr
-                  %td= bp.particular
-                  %td= bp.currency
-                  %td= bp.amount
-                  %td
-                  - if ( current_user.role == 'Admin' )
-                    = link_to "UPDATE", edit_billing_billing_particular_path(bp.billing, bp), class: "btn btn-flat btn-xs btn-success"
-                    = link_to "REMOVE", [bp.billing, bp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-              %tr
-                %th
-                  %center TOTAL
-                %th 
-                %th
-                  = @billing_particulars.sum(:amount)
-                %th
+                  %th
+                    %center TOTAL
+                  %th 
+                  %th
+                    = @billing_particulars.sum(:amount)
+                  %th
 :javascript
   $('.menu .item').tab();

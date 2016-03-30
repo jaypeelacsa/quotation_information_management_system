@@ -6,9 +6,15 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
   root to: "pages#index"
+
+  get '/employees/print', :to => 'employees#print'
+  get '/employees/print_all', :to => 'employees#print_all'
+  get '/employees/:id/details', :to => 'employees#details', as: "employees_details"
+  
   resources :employees do
 		resources :work_experiences, module: 'employees'
 	end
+  
 
 	resources :petty_vouchers do
 		resources :petty_particulars, module: 'petty_vouchers'
@@ -44,5 +50,5 @@ Rails.application.routes.draw do
   	resources :check_particulars, module: 'check_vouchers'
   	resources :check_accounts, module: 'check_vouchers'
   end
-  
+
 end

@@ -5,8 +5,9 @@
 %section.content
   .row
     .col-md-12
-      = link_to "UPDATE", edit_proposal_path(@proposal.id), class: "btn btn-flat btn-xs btn-success"
-      = link_to "REMOVE", proposal_path(@proposal.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+      - if ( current_user.role == 'Admin' )
+        = link_to "UPDATE", edit_proposal_path(@proposal.id), class: "btn btn-flat btn-xs btn-success"
+        = link_to "REMOVE", proposal_path(@proposal.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
       .ui.top.attached.tabular.menu
         %a.active.item{"data-tab" => "first"} Details
         %a.item{"data-tab" => "second"} Software Requirements
@@ -69,72 +70,83 @@
                   %td= @proposal.client.to_s
       .ui.bottom.attached.tab.segment{"data-tab" => "second"}
         %h1 Software Requirements
-        %table.table.table-bordered
+        %table.ui.selectable.celled.table
           .box.box-success
-          = render partial:"proposals/software_requirements/new"
+          - if ( current_user.role == 'Admin' )
+            = render partial:"proposals/software_requirements/new"
           %thead
             %tr
               %th Components
               %th Amount
-              %th Action
+              - if ( current_user.role == 'Admin' )
+                %th Action
           %tbody
             - @software_requirements.each do |sr|
               %tr
                 %td= sr.component
                 %td= sr.cost
-                %td
-                  / = link_to "UPDATE", edit_proposal_software_requirement_path(sr.proposal, sr), class: "btn btn-flat btn-xs btn-success"
-                  = link_to "REMOVE", [sr.proposal, sr],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+                - if ( current_user.role == 'Admin' )
+                  %td
+                    / = link_to "UPDATE", edit_proposal_software_requirement_path(sr.proposal, sr), class: "btn btn-flat btn-xs btn-success"
+                    = link_to "REMOVE", [sr.proposal, sr],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
             %th Total
             %td= @software_requirements.sum(:cost) 
       .ui.bottom.attached.tab.segment{"data-tab" => "third"}
         %h1 Software Browsers
-        %table.table.table-bordered
+        %table.ui.selectable.celled.table
           .box.box-success
-          = render partial:"proposals/software_browsers/new"
+          - if ( current_user.role == 'Admin' )
+            = render partial:"proposals/software_browsers/new"
           %thead
             %tr
               %th Browsers
-              %th Action
+              - if ( current_user.role == 'Admin' )
+                %th Action
           %tbody
             - @software_browsers.each do |sb|
               %tr
                 %td= sb.name
-                %td
-                  / = link_to "UPDATE", edit_proposal_software_browser_path(sb.proposal, sb), class: "btn btn-flat btn-xs btn-success"
-                  = link_to "REMOVE", [sb.proposal, sb],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+                - if ( current_user.role == 'Admin' )
+                  %td
+                    / = link_to "UPDATE", edit_proposal_software_browser_path(sb.proposal, sb), class: "btn btn-flat btn-xs btn-success"
+                    = link_to "REMOVE", [sb.proposal, sb],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
       .ui.bottom.attached.tab.segment{"data-tab" => "fourth"}
         %h1 Costing
-        %table.table.table-bordered
+        %table.ui.selectable.celled.table
           .box.box-success
-          = render partial:"proposals/costings/new"
+          - if ( current_user.role == 'Admin' )
+            = render partial:"proposals/costings/new"
           %thead
             %tr
               %th Description
               %th Cost
-              %th Action
+              - if ( current_user.role == 'Admin' )
+                %th Action
           %tbody
             - @costings.each do |c|
               %tr
                 %td= c.description
                 %td= c.cost
-                %td
-                  / = link_to "UPDATE", edit_proposal_costing_path(c.proposal, c), class: "btn btn-flat btn-xs btn-success"
-                  = link_to "REMOVE", [c.proposal, c],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+                - if ( current_user.role == 'Admin' )
+                  %td
+                    / = link_to "UPDATE", edit_proposal_costing_path(c.proposal, c), class: "btn btn-flat btn-xs btn-success"
+                    = link_to "REMOVE", [c.proposal, c],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
             %th Total
             %td= @costings.sum(:cost) 
         
       .ui.bottom.attached.tab.segment{"data-tab" => "fifth"}
         .box.box-success
           .box-body
-            = render partial:"proposals/feature_lists/new"
+            - if ( current_user.role == 'Admin' )
+              = render partial:"proposals/feature_lists/new"
             .ui.middle.aligned.divided.list
               - @feature_lists.each do |fl|
                 - if fl.is_not_feature?
                   .item
                     .right.floated.content
-                      = link_to "DELETE", [fl.proposal, fl],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-                      = link_to "Add Particular Feature", new_proposal_feature_list_path(@proposal.id, parent_feature_list_id: fl.id), class: "btn btn-flat btn-xs btn-success"
+                      - if ( current_user.role == 'Admin' )
+                        = link_to "DELETE", [fl.proposal, fl],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+                        = link_to "Add Particular Feature", new_proposal_feature_list_path(@proposal.id, parent_feature_list_id: fl.id), class: "btn btn-flat btn-xs btn-success"
                     .content
                       %ul
                         %li
@@ -156,20 +168,23 @@
       .ui.bottom.attached.tab.segment{"data-tab" => "sixth"}
         .box.box-success
           .box-body
-            = render partial:"proposals/terms_conditions/new"
+            - if ( current_user.role == 'Admin' )
+              = render partial:"proposals/terms_conditions/new"
             %table.ui.selectable.celled.table
               %thead
                 %th Term
                 %th Conditions
-                %th Actions
+                - if ( current_user.role == 'Admin' )
+                  %th Actions
               %tbody
                 - @terms_conditions.each do |tc|
                   %tr
                     %td= tc.name
                     %td= tc.content
-                    %td
-                      / = link_to "UPDATE", edit_proposal_terms_condition_path(tc.proposal, tc), class: "btn btn-flat btn-xs btn-success"
-                      = link_to "REMOVE", [tc.proposal, tc],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"                
+                    - if ( current_user.role == 'Admin' )
+                      %td
+                        / = link_to "UPDATE", edit_proposal_terms_condition_path(tc.proposal, tc), class: "btn btn-flat btn-xs btn-success"
+                        = link_to "REMOVE", [tc.proposal, tc],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"                
                                            
 :javascript
   $('.menu .item').tab();
