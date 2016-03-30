@@ -110,23 +110,31 @@
         %tr
           %th Account Title
           %th Accounting Code
-          %th Transaction Type
-          %th Amount
+          %th Debit
+          %th Credit
           %th Action
       %tbody
+        - @debit = 0
+        - @credit = 0
         - @check_accounts.each do |ac|
           %tr
             %td= ac.accounting_code.name
             %td= ac.accounting_code.code
-            %td= ac.trans_type
-            %td= ac.amount
+            - if ac.trans_type == 'Debit'
+              %td= ac.amount
+              %td
+              - @debit += ac.amount
+            - else
+              %td
+              %td= ac.amount
+              - @credit += ac.amount
             %td
               = link_to "UPDATE", edit_check_voucher_check_account_path(ac.check_voucher, ac), class: "btn btn-flat btn-xs btn-success"
               = link_to "REMOVE", [ac.check_voucher, ac],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-        %th Total
-        %td
-        %td
-        %td= @check_accounts.sum(:amount)
+        %th{:colspan => "2"}
+          %center Total
+        %th= @debit
+        %th= @credit
 :javascript
   $('.menu .item')
     .tab()

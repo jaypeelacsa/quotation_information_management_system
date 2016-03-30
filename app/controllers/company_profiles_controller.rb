@@ -30,7 +30,7 @@ class CompanyProfilesController < ApplicationController
 		@company_profile = CompanyProfile.find(params[ :id])
 
 		if @company_profile.update_attributes(company_profile_params)
-			redirect_to company_profile_path(@company_profile)
+			redirect_to company_profiles_path
 		else
 			render "edit"
 		end

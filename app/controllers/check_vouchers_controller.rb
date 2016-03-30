@@ -24,7 +24,6 @@ class CheckVouchersController < ApplicationController
 		@check_particulars = CheckParticular.where(check_voucher_id: @check_voucher.id)
 		@check_account = CheckAccount.new
 		@check_accounts = CheckAccount.where(check_voucher_id: @check_voucher.id)
-		# @check_vouchers = CheckVoucher.where(accounting_code_id: @accounting_code.id)
 	end
 
 	def edit

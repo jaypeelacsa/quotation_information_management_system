@@ -1,49 +1,122 @@
 %section.content-header
-  %h1 Company Profile
-  - if (CompanyProfile.count == 0)
-    = link_to "Add Company Info", new_company_profile_path, class: "btn btn-primary btn-s"
-  - else
-  /
-    dito ilalagay yung logo o avatar na iaaupload
+  %h1
+    Company
+    %small Profile
 %section.content
-  .row
-    .col-md-4
-      .box.box-success
-        .box-header.with-border
-        .box-body
-          - @company_profiles.each do |company|
-            %strong
-              %i.fa.fa-book.margin-r-5
-              Company
+  - @company_profiles.each do |company|
+    .row
+      .col-md-12
+        - if (CompanyProfile.count == 0)
+          = link_to "Add Company Information", new_company_profile_path, class: "btn btn-flat btn-xs btn-primary"
+        - else
+          = link_to "Update Company Information", edit_company_profile_path(company.id), class: "btn btn-flat btn-xs btn-success"
+    .ui.top.attached.tabular.menu
+      %a.active.item{"data-tab" => "first"} Details
+      %a.item{"data-tab" => "second"} Mission and Vision
+    .ui.bottom.attached.active.tab.segment{"data-tab" => "first"}
+      .row
+        .col-md-5
+          %dl
+            %dt Company Name
+            %dd= company.company_name
             %br
-              = company.company_name
-              %hr
-                %strong
-                  %i.fa.fa-book.margin-r-5
-                  Website
-                %br
-                  = company.website
-                  %hr
-                    %strong
-                      %i.fa.fa-map-marker.margin-r-5
-                      Location
-                    %br
-                      = company.address
-                      %hr
-                        %strong
-                          %i.fa.fa-pencil.margin-r-5
-                          Telephone number
-                        %br
-                          = company.telephone
-                          %hr
-                            %strong
-                              %i.fa.fa-file-text-o.margin-r-5
-                              Tin
-                            %br
-                              = company.tin
-                              %hr
-                                = link_to "Edit Company Info", edit_company_profile_path(company.id), class: "btn btn-primary btn-s"
-    .col-md-8
-    .container
-      - @company_profiles.each do |company|
-        = image_tag company.logo.url(:medium)
+            %dt Website
+            %dd= company.website
+            %br
+            %dt Address
+            %dd= company.address
+            %br
+            %dt Telephone Number
+            %dd= company.telephone
+            %br
+            %dt TIN Number
+            %dd= company.tin
+        .col-md-7
+          = image_tag company.logo.url(:medium)
+    .ui.bottom.attached.tab.segment{"data-tab" => "second"}
+      %dl
+        %dt Mission
+        %dd= company.mission
+        %br
+        %dt Vision
+        %dd= company.vission
+  
+:javascript
+  $('.menu .item')
+    .tab()
+  ;
+
+
+
+
+
+
+
+
+
+
+
+/ %section.content-header
+/   %h1
+/     Company
+/     %small Profile
+/ %section.content
+/   .row
+/     .col-md-12
+/       .box.box-default.box-solid
+/         .box-header
+/           %h3.box-title Details
+/         .box-body
+/           - if (CompanyProfile.count == 0)
+/             = link_to "Add Company Info", new_company_profile_path, class: "btn btn-primary btn-s"
+/           - else
+
+/           .row
+/             .col-md-6
+/               .box.box-solid
+/                 .box-header.with-border
+/                   %h3.box-title Details
+
+
+
+
+  
+/       .box.box-success
+/         .box-header.with-border
+/         .box-body
+/           - @company_profiles.each do |company|
+/             %strong
+/               %i.fa.fa-book.margin-r-5
+/               Company
+/             %br
+/               = company.company_name
+/               %hr
+/                 %strong
+/                   %i.fa.fa-book.margin-r-5
+/                   Website
+/                 %br
+/                   = company.website
+/                   %hr
+/                     %strong
+/                       %i.fa.fa-map-marker.margin-r-5
+/                       Location
+/                     %br
+/                       = company.address
+/                       %hr
+/                         %strong
+/                           %i.fa.fa-pencil.margin-r-5
+/                           Telephone number
+/                         %br
+/                           = company.telephone
+/                           %hr
+/                             %strong
+/                               %i.fa.fa-file-text-o.margin-r-5
+/                               Tin
+/                             %br
+/                               = company.tin
+/                               %hr
+/                                 = link_to "Edit Company Info", edit_company_profile_path(company.id), class: "btn btn-primary btn-s"
+/     .col-md-8
+/     .container
+/       - @company_profiles.each do |company|
+/         = image_tag company.logo.url(:medium)
