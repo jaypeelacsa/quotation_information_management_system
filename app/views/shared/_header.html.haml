@@ -15,31 +15,31 @@
                           %link{:href => "plugins/datepicker/datepicker3.css", :rel => "stylesheet"}
                             %link{:href => "plugins/daterangepicker/daterangepicker-bs3.css", :rel => "stylesheet"}
                               %link{:href => "plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css", :rel => "stylesheet"}
-    %body.hold-transition.skin-green-light.sidebar-collapse.sidebar-mini
+    %body.hold-transition.skin-blue.sidebar-collapse.sidebar-mini
       .wrapper
         %header.main-header
-          %a.logo{:href => "index2.html"}
+          %a.logo
             %span.logo-mini
-              %b> 
-              CB
+              %b 
+                %img.img-aquare{:src => "/assets/logofinal.png", :height => "30", :width => "43", :color => "white"} 
+               
             %span.logo-lg
-              %img.img-aquare{:src => "/assets/cbs.png", :height => "70", :width => "190", :color => "white"} 
+              %img.img-aquare{:src => "/assets/logo2.png", :height => "35", :width => "190", :color => "white"}
           %nav.navbar.navbar-static-top{:role => "navigation"}
             %a.sidebar-toggle{"data-toggle" => "offcanvas", :role => "button"}
               %span.sr-only Toggle navigation
-              / #sidebar
             .pull-right
               %ul.dropdown.user.user-menu
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                %img.img-circle{:src => "/assets/men.jpg", :height => "35", :width => "40"}
+                %img.img-circle{:src => "/assets/avatar5.png", :height => "38", :width => "40"}
                   %span.hidden-xs 
                   - if user_signed_in?
                     %font{:color => "white"}
                       = current_user.username
               %ul.dropdown-menu
-                / User image
                 %li.user-header
-                  %img.img-circle{:src => "/assets/men.jpg", :height => "55", :width => "90"}
+                  %p
+                    %img.img-circle{:align => "middle", :height => "65", :src => "/assets/avatar5.png", :width => "80"}
                     %b
                       = current_user.to_s
                 %li.user-footer
@@ -47,3 +47,6 @@
                     = link_to "Update Profile", edit_user_registration_path, class: "ui button"
                     .or
                     = link_to "Sign Out", destroy_user_session_path, class: "ui button", method: :delete, data: { Confirm: "Are you sure?" }
+.control-sidebar-bg
+  :javascript
+    $.widget.bridge('uibutton', $.ui.button);

@@ -14,7 +14,8 @@
               .form-group
                 = cv.input :payee
               .form-group
-                = cv.input :reference_no
+                = cv.input :reference_no, :value => Date.today.strftime("CV""%Y%m")
+                / = cv.input :ref
               .form-group
                 = cv.input :check_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
               .form-group
