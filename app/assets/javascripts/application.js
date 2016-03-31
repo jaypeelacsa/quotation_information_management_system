@@ -18,6 +18,7 @@
 //= require select2
 //= require select2-full
 //= require jquery-ui
+//= require app
 
 $(document).ready(function(){
   $('select').select2();
