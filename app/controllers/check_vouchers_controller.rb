@@ -15,7 +15,6 @@ class CheckVouchersController < ApplicationController
 
 	def create		
 		@check_voucher = CheckVoucher.new(check_voucher_params)
-
 		if @check_voucher.save
 			redirect_to check_vouchers_path
 		else
