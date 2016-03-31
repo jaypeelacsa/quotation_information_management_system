@@ -99,18 +99,38 @@
                 %center Total
               %th= @debit
               %th= @credit
-
-      / .row.invoice-info
-      /   .col-md-4.invoice-col
-      /     %dl
-      /       %dt Approved for payment:
-      /       %dd= @petty_voucher.approved_by
-      /   .col-md-4.invoice-col
-      /     %dl
-      /       %dt Paid by:
-      /       %dd= @petty_voucher.paid_by
-      /   .col-md-4.invoice-col
-      /     %dl
-      /       %dt Received Payment:
-      /       %dd= @petty_voucher.received_by
+      %br
+      .row.invoice-info
+        .col-md-3.invoice-col
+          %p
+            %b
+              Prepared by:
+          = @check_voucher.prepared_by
+          %p
+            %b
+              Date:
+        .col-md-3.invoice-col
+          %p
+            %b
+              Checked and Reviewed by:
+          = @check_voucher.certified_by
+          %p
+            %b
+              Date:
+        .col-md-3.invoice-col
+          %p
+            %b
+              Approved by:
+          = @check_voucher.approved_by
+          %p
+            %b
+              Date:
+        .col-md-3.invoice-col
+          %p
+            %b
+              Payment received by:
+          = @check_voucher.received_by
+          %p
+            %b
+              Date:
 
