@@ -52,6 +52,14 @@ class PettyVouchersController < ApplicationController
 		redirect_to petty_vouchers_path
 	end
 
+	def details
+		if ( current_user.role == 'Admin' )
+		@petty_voucher = PettyVoucher.find(params[:id])
+		@petty_particulars = PettyParticular.where(petty_voucher_id: @petty_voucher.id)
+		else
+			redirect_to employees_path
+		end
+	end
 
 	def petty_voucher_params
 			params.require(:petty_voucher).permit!

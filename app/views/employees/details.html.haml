@@ -1,59 +1,62 @@
 %body{:onload => "window.print();"}
   .wrapper
-    - @company_profiles.each do |company|
-      %h2.page-header
-        = company.company_name
-    / %center
-    /   List of All Employee
-    %dl
-      %dt Name
-      %dd
-        = @employee.to_s
+  - @company_profiles.each do |company|
+    %section.invoice
+      .row
+        .col-xs-12
+          %h2.page-header
+            = company.company_name
+            %small.pull-right 
+              = Time.now.strftime("%m/%d//%Y")
       %br
-      %dt Position
-      %dd
-        = @employee.position
-      %br
-      %dt Status
-      %dd
-        = @employee.status
-      %br
-      %dt Date Employed:
-      %dd= @employee.date_employed
-      %br
-      %dt Working Years:
-      %dd= @employee.total_year
-      %br
-      %dt Gender:
-      %dd= @employee.gender
-      %br
-      %dt Birthdate:
-      %dd= @employee.birthdate
-      %br
-      %dt Email:
-      %dd= @employee.email
-      %br
-      %dt Contact No:
-      %dd= @employee.contact_no
-      %br
-      %dt Address:
-      %dd= @employee.address
-      %br
-    %table.table.table-striped
-      %thead
-        %tr
-          %th No.
-          %th Title
-          %th Company Name
-          %th Address
-          %th Date Ended
-      %tbody
-        - @num = 1
-        - @work_experiences.each do |we|
-          %tr
-            %td= @num
-            %td= we.title
-            %td= we.company_name
-            %td= we.company_address
-            %td= we.date_ended
-            - @num += 1
+      %center
+        %h4 Employee Information
+        %br
+      .row.invoice-info
+        .col-md-6.invoice-col
+          %dl
+            %dt Name:
+            %dd= @employee.to_s
+            %dt Position:
+            %dd= @employee.position
+            %dt Status:
+            %dd= @employee.status
+            %dt Date Employed:
+            %dd= @employee.date_employed
+            %dt Working Years:
+            %dd= @employee.total_year
+        .col-md-6.invoice-col
+          %dl
+            %dt Gender:
+            %dd= @employee.gender
+            %dt Birthdate:
+            %dd= @employee.birthdate
+            %dt Email:
+            %dd= @employee.email
+            %dt Contact No:
+            %dd= @employee.contact_no
+            %dt Address:
+            %dd= @employee.address
+      .row
+        .col-xs-12.table-responsive
+          %center
+            %h4 Working Experiences List
+            %br
+          %table.table.table-striped
+            %thead
+              %tr
+                %th No.
+                %th Title
+                %th Company Name
+                %th Address
+                %th Date Ended
+            %tbody
+              - @num = 1
+              - @work_experiences.each do |we|
+                %tr
+                  %td= @num
+                  %td= we.title
+                  %td= we.company_name
+                  %td= we.company_address
+                  %td= we.date_ended
+                  - @num += 1

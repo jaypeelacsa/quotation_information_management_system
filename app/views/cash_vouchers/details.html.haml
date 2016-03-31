@@ -1,0 +1,70 @@
+%body{:onload => "window.print();"}
+  .wrapper
+    %section.invoice
+      .row
+        .col-xs-12
+          %h2.page-header
+            %center
+              CASH VOUCHER
+      %br
+      .row.invoice-info
+        .col-md-9.invoice-col
+          %p
+            %b
+              PAID TO:
+            = @cash_voucher.paid_to
+          %p
+            %b
+              ADDRESS:
+            = @cash_voucher.address
+
+        .col-md-3.invoice-col
+          %p
+            %b
+              No.
+            = @cash_voucher.reference_no
+          %p
+            %b
+              DATE
+            = @cash_voucher.cash_date
+      .row
+        .col-xs-12.table-responsive
+          %table.table.table-striped
+            %thead
+              %tr
+                %th PARTICULARS
+                %th AMOUNT
+            %tbody
+              - @cash_particulars.each do |pp|
+                %tr
+                  %td= pp.particular
+                  %td= pp.amount
+              %tr
+                %th
+                  %center TOTAL
+                %th 
+                  = @cash_particulars.sum(:amount)
+                %th
+      %br
+      .row
+        .col-xs-8.table-responsive
+          %table.table.table-striped
+            %thead
+              %tr
+                %th PREPARED BY:
+                %th CHECKED BY:
+                %th APPROVED BY:
+            %tbody
+              %tr
+                %td= @cash_voucher.prepared_by
+                %td= @cash_voucher.checked_by
+                %td= @cash_voucher.approved_by
+        .col-xs-4
+          %p
+            %b
+              RECIEVED FROM
+            = @cash_voucher.received_from
+          %p
+            %b
+              AMOUNT IN PESOS
+            = @cash_voucher.amount

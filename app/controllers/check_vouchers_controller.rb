@@ -44,7 +44,7 @@ class CheckVouchersController < ApplicationController
 		@check_voucher = CheckVoucher.find(params[ :id])
 
 		if @check_voucher.update_attributes(check_voucher_params)
-			redirect_to check_vouchers_path
+			redirect_to check_voucher_path(@check_voucher)
 		else
 			render "edit"
 		end
@@ -56,6 +56,16 @@ class CheckVouchersController < ApplicationController
 		redirect_to check_vouchers_path
 	end
 
+	def details
+		if ( current_user.role == 'Admin' )
+			@check_voucher = CheckVoucher.find(params[:id])
+			@check_particulars = CheckParticular.where(check_voucher_id: @check_voucher.id)
+			@check_accounts = CheckAccount.where(check_voucher_id: @check_voucher.id)
+			@company_profiles = CompanyProfile.all
+		else
+			redirect_to employees_path
+		end
+	end
 
 	def check_voucher_params
 			params.require(:check_voucher).permit!

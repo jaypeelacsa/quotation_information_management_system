@@ -119,7 +119,6 @@ class EmployeesController < ApplicationController
 			else
 				redirect_to employees_path
 			end
-			
 		end
 
 		def employee_params

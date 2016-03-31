@@ -46,7 +46,20 @@ class ProposalsController < ApplicationController
 		@feature_lists = FeatureList.where(proposal_id: @proposal.id)
 		@terms_condition = TermsCondition.new
 		@terms_conditions = TermsCondition.where(proposal_id: @proposal.id)
-		
+	end
+
+	def details
+		if ( current_user.role == 'Admin' )
+			@proposal = Proposal.find(params[:id])
+			@software_requirements = SoftwareRequirement.where(proposal_id: @proposal.id)
+			@software_browsers = SoftwareBrowser.where(proposal_id: @proposal.id)
+			@costings = Costing.where(proposal_id: @proposal.id)
+			@feature_lists = FeatureList.where(proposal_id: @proposal.id)
+			@terms_conditions = TermsCondition.where(proposal_id: @proposal.id)
+			@company_profiles = CompanyProfile.all
+		else
+			redirect_to employees_path
+		end
 	end
 
 	def edit
@@ -73,7 +86,6 @@ class ProposalsController < ApplicationController
 		@proposal.destroy
 		redirect_to proposals_path
 	end
-
 
 	def proposal_params
 			params.require(:proposal).permit!

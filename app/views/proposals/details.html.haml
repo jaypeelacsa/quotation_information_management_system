@@ -1,0 +1,211 @@
+%body{:onload => "window.print();"}
+  .wrapper
+  - @company_profiles.each do |company|
+    %section.invoice
+      .row
+        .col-xs-12
+          %h2.page-header
+            %center
+              = @proposal.title
+      %br
+      %br
+      .row
+        .col-md-12
+          %h4 Project Proposal
+          = Time.now.strftime("%m.%d.%Y")
+          %br
+          ____
+          %br
+          %br
+          %br
+          %br
+          %br
+          %br
+          %br
+      .row.invoice-info
+        .col-md-12
+          = company.company_name
+          %br
+      .row
+        .col-md-12.invoice-col
+          = company.address
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      %br
+      .row
+        .col-md-12
+          %h3 Overview
+          %p{:align => "justify"} 
+            = @proposal.overview
+      %br
+      .row
+        .col-md-12
+          %h3 Objective
+          %p{:align => "justify"} 
+            = @proposal.objective
+      %br
+      .row
+        .col-md-12
+          %h3 System Architecture
+          %center 
+            = image_tag @proposal.system_architecture.url(:thumb)
+      %br
+      .row
+        .col-md-12
+          %h3 Hardware
+          %p{:align => "justify"} 
+            = @proposal.hardware
+      %br
+      .row
+        .col-md-12
+          %h3 Software
+          %p{:align => "justify"} 
+            = @proposal.software
+      %br
+      .row
+        .col-md-12
+          %table.table.table-striped
+            %thead
+              %tr
+                %th Component
+                %th Approximated Cost
+            %tbody
+              - @software_requirements.each do |sr|
+                %tr
+                  %td= sr.component
+                  %td= sr.cost
+      %br
+      .row
+        .col-md-12
+          %h3 Hardware
+          %p{:align => "justify"} 
+            Client devices connecting to the system only needs a modern browser which is available to download for free (if not yet present in the client device). The recommended browsers are as follows by order of recommendation:
+          %br
+          %table.table.table-striped
+            %tbody
+              - @software_browsers.each do |sb|
+                %tr
+                  %td= sb.name
+          %br
+          %p{:align => "justify"} 
+            Note:Internet Explorer is discontinued as of 2014
+      %br
+      .row
+        .col-md-12
+          %h3 Modules/Features
+          %p{:align => "justify"} 
+            = @proposal.feature
+      %br
+      .row
+        .col-md-12
+          - @feature_lists.each do |fl|
+            - if fl.is_not_feature?
+              .item
+                .content
+                  %ul
+                    %li
+                      %b
+                        = fl.name
+                    = fl.description
+                    .content
+                      - fl.list_of_features.each do |fl|
+                        %ul
+                          %li
+                            %b
+                              = fl.name
+                          = fl.description
+      %br
+      .row
+        .col-md-12
+          %h3 Project Costing
+          %p{:align => "justify"} 
+            = @proposal.project_costing_text
+          %br
+          %table.table.table-striped
+            %thead
+              %tr
+                %th Description
+                %th Cost
+            %tbody
+              - @costings.each do |c|
+                %tr
+                  %td= c.description
+                  %td= c.cost
+              %th Total
+              %td= @costings.sum(:cost)
+      %br
+      .row
+        .col-md-12
+          %h3 Term And Condition
+          %br
+          .item
+            %ul
+              - @terms_conditions.each do |tc|
+                .content    
+                  %li
+                    %b
+                      = tc.name
+                  = tc.content         
+      %br
+      .row
+        .col-md-12
+          %h3 Signatories
+          %p{:align => "justify"} 
+            = @proposal.signatory 
+      %br
+      %br
+      %br
+      %br
+      %br
+      .row
+        .col-md-12
+          %h3 _________________________
+      .row.invoice-info
+        .col-md-12
+          = @proposal.employee.to_s
+      .row
+        .col-md-12.invoice-col
+          = @proposal.employee.position
+      .row
+        .col-md-12
+          = company.company_name
+      %br
+      %br
+      %br
+      %br
+      %br
+      .row
+        .col-md-12
+          %h3 _________________________
+      .row.invoice-info
+        .col-md-12
+          = @proposal.client.to_s
+      .row
+        .col-md-12.invoice-col
+          = @proposal.client.company_name
+

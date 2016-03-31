@@ -53,6 +53,15 @@ class CashVouchersController < ApplicationController
 		redirect_to cash_vouchers_path
 	end
 
+	def details
+		if ( current_user.role == 'Admin' )
+			@cash_voucher = CashVoucher.find(params[:id])
+			@cash_particulars = CashParticular.where(cash_voucher_id: @cash_voucher.id)
+		else
+			redirect_to employees_path
+		end
+	end
+
 	def cash_voucher_params
 			params.require(:cash_voucher).permit!
 	end

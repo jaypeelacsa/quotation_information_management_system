@@ -70,6 +70,16 @@ class ClientsController < ApplicationController
 		redirect_to clients_path
 	end
 
+	def details
+		if ( current_user.role == 'Admin' )
+			@client = Client.find(params[:id])
+			@company_profiles = CompanyProfile.all
+		else
+			redirect_to employees_path
+		end
+		
+	end
+
 
 	def client_params
 			params.require(:client).permit!

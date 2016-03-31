@@ -8,6 +8,7 @@
       - if ( current_user.role == 'Admin' )
         = link_to "UPDATE", edit_petty_voucher_path(@petty_voucher.id), class: "btn btn-flat btn-xs btn-success"
         = link_to "REMOVE", petty_voucher_path(@petty_voucher.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+        = link_to "PRINT",  petty_vouchers_details_path(@petty_voucher.id), class: "btn btn-flat btn-xs btn-primary"
   .ui.top.attached.tabular.menu
     %a.active.item{"data-tab" => "first"} Details
     %a.item{"data-tab" => "second"} Particulars

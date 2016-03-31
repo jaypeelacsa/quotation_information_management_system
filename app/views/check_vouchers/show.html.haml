@@ -8,6 +8,7 @@
       - if ( current_user.role == 'Admin' )
         = link_to "UPDATE", edit_check_voucher_path(@check_voucher.id), class: "btn btn-flat btn-xs btn-success"
         = link_to "REMOVE", check_voucher_path(@check_voucher.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+        = link_to "PRINT",   check_vouchers_details_path(@check_voucher.id), class: "btn btn-flat btn-xs btn-primary"
   .ui.top.attached.tabular.menu
     %a.active.item{"data-tab" => "first"} Check Voucher
     %a.item{"data-tab" => "second"} Check Particular
@@ -78,11 +79,11 @@
               %td
                 = @check_voucher.approved_by
   .ui.bottom.attached.tab.segment{"data-tab" => "second"}
-    %h1 Check Particular
     %table.ui.selectable.celled.table
       .box.box-success
         - if ( current_user.role == 'Admin' )
-          = render partial:"check_vouchers/check_particulars/new"
+          - if (@check_particulars.count == 0)
+            = render partial:"check_vouchers/check_particulars/new"
         %thead
           %tr
             %th Particular
@@ -100,13 +101,7 @@
                 %td
                   = link_to "UPDATE", edit_check_voucher_check_particular_path(cp.check_voucher, cp), class: "btn btn-flat btn-xs btn-success"
                   = link_to "REMOVE", [cp.check_voucher, cp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-          %tr
-            %th Total
-            %th= @check_particulars.sum(:amount) 
-            %th
-            %th
   .ui.bottom.attached.tab.segment{"data-tab" => "third"}
-    %h1 Check Accounts
     %table.ui.selectable.celled.table
       .box.box-success
         - if ( current_user.role == 'Admin' )

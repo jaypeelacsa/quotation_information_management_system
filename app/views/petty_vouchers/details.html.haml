@@ -1,0 +1,57 @@
+%body{:onload => "window.print();"}
+  .wrapper
+    %section.invoice
+      .row
+        .col-xs-12
+          %h2.page-header
+            %center
+              PETTY CASH VOUCHER
+            %small.pull-right 
+              %b
+                No.
+              = @petty_voucher.reference_no
+      %br
+      .row.invoice-info
+        .col-md-10.invoice-col
+          %p
+            %b
+              TO:
+            = @petty_voucher.payee
+        .col-md-2.invoice-col
+          %p
+            %b
+              DATE
+            = @petty_voucher.petty_date
+      .row
+        .col-xs-12.table-responsive
+          %table.table.table-striped
+            %thead
+              %tr
+                %th PARTICULARS
+                %th AMOUNT
+            %tbody
+              - @petty_particulars.each do |pp|
+                %tr
+                  %td= pp.particular
+                  %td= pp.amount
+              %tr
+                %th
+                  %center TOTAL
+                %th 
+                  = @petty_particulars.sum(:amount)
+                %th
+
+      .row.invoice-info
+        .col-md-4.invoice-col
+          %dl
+            %dt Approved for payment:
+            %dd= @petty_voucher.approved_by
+        .col-md-4.invoice-col
+          %dl
+            %dt Paid by:
+            %dd= @petty_voucher.paid_by
+        .col-md-4.invoice-col
+          %dl
+            %dt Received Payment:
+            %dd= @petty_voucher.received_by
+

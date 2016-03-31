@@ -19,7 +19,7 @@ end
 		resources :work_experiences, module: 'employees'
 	end
   
-
+  get '/petty_vouchers/:id/details', :to => 'petty_vouchers#details', as: "petty_vouchers_details"
 	resources :petty_vouchers do
 		resources :petty_particulars, module: 'petty_vouchers'
 	end
@@ -27,7 +27,7 @@ end
 	resources :billings do
 		resources :billing_particulars, module: 'billings'
 	end
-	
+	get '/cash_vouchers/:id/details', :to => 'cash_vouchers#details', as: "cash_vouchers_details"
 	resources :cash_vouchers do
 		resources :cash_particulars, module: 'cash_vouchers'
 	end
@@ -38,9 +38,11 @@ end
 
 	resources :service_products
   resources :company_profiles
+  get '/clients/:id/details', :to => 'clients#details', as: "clients_details"
   resources :clients
   resources :accounting_codes
-
+  
+  get '/proposals/:id/details', :to => 'proposals#details', as: "proposals_details"
   resources :proposals do
   	resources :software_requirements, module: 'proposals'
   	resources :software_browsers, module: 'proposals'
@@ -49,7 +51,7 @@ end
   	resources :terms_conditions, module: 'proposals'
  	end
 
-
+  get '/check_vouchers/:id/details', :to => 'check_vouchers#details', as: "check_vouchers_details"
   resources :check_vouchers do
   	resources :check_particulars, module: 'check_vouchers'
   	resources :check_accounts, module: 'check_vouchers'

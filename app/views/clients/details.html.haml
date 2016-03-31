@@ -1,0 +1,39 @@
+%body{:onload => "window.print();"}
+  .wrapper
+  - @company_profiles.each do |company|
+    %section.invoice
+      .row
+        .col-xs-12
+          %h2.page-header
+            = company.company_name
+            %small.pull-right 
+              = Time.now.strftime("%m/%d//%Y")
+      %br
+      %h4 Client Information
+      .row.invoice-info
+        .col-md-12.invoice-col
+          %dl
+            %dt Name:
+            %dd= @client.client_name
+            %dt Address:
+            %dd= @client.address
+            %dt Email:
+            %dd= @client.email_address
+            %dt Telephone:
+            %dd= @client.telephone
+      %br
+      %h4 Company Profile
+      .row.invoice-info
+        .col-md-12.invoice-col
+          %dl
+            %dt Name:
+            %dd= @client.company_name
+            %dt Website:
+            %dd= @client.website
+            %dt TIN:
+            %dd= @client.tin
+            %dt Address:
+            %dd= @client.company_address
+            %dt Status:
+            %dd= @client.status
+
