@@ -3,7 +3,7 @@
     %section.invoice
       .row
         .col-xs-12
-          %h2.page-header
+          %h2
             %center
               PETTY CASH VOUCHER
             %small.pull-right 
@@ -22,9 +22,10 @@
             %b
               DATE
             = @petty_voucher.petty_date
+      %br
       .row
         .col-xs-12.table-responsive
-          %table.table.table-striped
+          %table.table.table-bordered
             %thead
               %tr
                 %th PARTICULARS
@@ -39,7 +40,6 @@
                   %center TOTAL
                 %th 
                   = @petty_particulars.sum(:amount)
-                %th
 
       .row.invoice-info
         .col-md-4.invoice-col

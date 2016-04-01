@@ -18,8 +18,8 @@
         .box-body
           .row
             .col-md-3
-              - if ( current_user.role == 'Admin' )
-                = link_to "REPORTS", employees_print_path, class: "btn btn-block btn-primary"
+              / - if ( current_user.role == 'Admin' )
+              /   = link_to "REPORTS", employees_print_path, class: "btn btn-block btn-primary"
             .col-md-6
             .col-md-3
               - if ( current_user.role == 'Admin' )

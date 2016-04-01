@@ -2,143 +2,140 @@
   %h1
     Check Voucher
     %small Information
-%section.content
-  .row
-    .col-md-12
+    .pull-right
       - if ( current_user.role == 'Admin' )
         = link_to "UPDATE", edit_check_voucher_path(@check_voucher.id), class: "btn btn-flat btn-xs btn-success"
         = link_to "REMOVE", check_voucher_path(@check_voucher.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-        = link_to "PRINT",   check_vouchers_details_path(@check_voucher.id), class: "btn btn-flat btn-xs btn-primary"
-  .ui.top.attached.tabular.menu
-    %a.active.item{"data-tab" => "first"} Check Voucher
-    %a.item{"data-tab" => "second"} Check Particular
-    %a.item{"data-tab" => "third"} Check Account
-  .ui.bottom.attached.active.tab.segment{"data-tab" => "first"}
-    .box.box-success
-      .box-body
-        %table.ui.selectable.celled.table
-          %tbody
-            %tr
-              %td
-                %b Reference No:
-              %td
-                = @check_voucher.to_s
-            %tr
-              %td
-                %b Payee:
-              %td
-                = @check_voucher.payee
-            %tr
-              %td
-                %b Date:
-              %td
-                = @check_voucher.check_date
-            %tr
-              %td
-                %b Bank Name:
-              %td
-                = @check_voucher.bank
-            %tr
-              %td
-                %b Check No.:
-              %td
-                = @check_voucher.check_no
-            %tr
-              %td
-                %b Si No:
-              %td
-                = @check_voucher.si_no
-            %tr
-              %td
-                %b Or No.:
-              %td
-                = @check_voucher.or_no
-            %tr
-              %td
-                %b APV no.:
-              %td
-                = @check_voucher.apv_no
-            %tr
-              %td
-                %b Received by:
-              %td
-                = @check_voucher.received_by
-            %tr
-              %td
-                %b Prepaired By:
-              %td
-                = @check_voucher.prepared_by
-            %tr
-              %td
-                %b Certified By:
-              %td
-                = @check_voucher.certified_by
-            %tr
-              %td
-                %b Approved By:
-              %td
-                = @check_voucher.approved_by
-  .ui.bottom.attached.tab.segment{"data-tab" => "second"}
-    %table.ui.selectable.celled.table
-      .box.box-success
-        - if ( current_user.role == 'Admin' )
-          - if (@check_particulars.count == 0)
-            = render partial:"check_vouchers/check_particulars/new"
-        %thead
-          %tr
-            %th Particular
-            %th Amount
-            %th Amount in word(in peso)
+        = link_to "PRINT",   check_vouchers_details_path(@check_voucher.id), class: "btn btn-flat btn-xs btn-primary", target: "blank"
+%section.content
+  .row
+    .col-md-12
+      .nav-tabs-custom
+        %ul.nav.nav-tabs
+          %li.active
+            %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#details"} Details
+          %li
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#particular"} Check Particular
+          %li
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#account"} Check Account
+        .tab-content
+          #details.tab-pane.active
+            %table.ui.selectable.celled.table
+              %tbody
+                %tr
+                  %td
+                    %b Reference No:
+                  %td
+                    = @check_voucher.to_s
+                %tr
+                  %td
+                    %b Payee:
+                  %td
+                    = @check_voucher.payee
+                %tr
+                  %td
+                    %b Date:
+                  %td
+                    = @check_voucher.check_date
+                %tr
+                  %td
+                    %b Bank Name:
+                  %td
+                    = @check_voucher.bank
+                %tr
+                  %td
+                    %b Check No.:
+                  %td
+                    = @check_voucher.check_no
+                %tr
+                  %td
+                    %b Si No:
+                  %td
+                    = @check_voucher.si_no
+                %tr
+                  %td
+                    %b Or No.:
+                  %td
+                    = @check_voucher.or_no
+                %tr
+                  %td
+                    %b APV no.:
+                  %td
+                    = @check_voucher.apv_no
+                %tr
+                  %td
+                    %b Received by:
+                  %td
+                    = @check_voucher.received_by
+                %tr
+                  %td
+                    %b Prepaired By:
+                  %td
+                    = @check_voucher.prepared_by
+                %tr
+                  %td
+                    %b Certified By:
+                  %td
+                    = @check_voucher.certified_by
+                %tr
+                  %td
+                    %b Approved By:
+                  %td
+                    = @check_voucher.approved_by
+          #particular.tab-pane
             - if ( current_user.role == 'Admin' )
-              %th Action
-        %tbody
-          - @check_particulars.each do |cp|
-            %tr
-              %td= cp.particular
-              %td= cp.amount
-              %td= cp.amount_in_word
-              - if ( current_user.role == 'Admin' )
-                %td
-                  = link_to "UPDATE", edit_check_voucher_check_particular_path(cp.check_voucher, cp), class: "btn btn-flat btn-xs btn-success"
-                  = link_to "REMOVE", [cp.check_voucher, cp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-  .ui.bottom.attached.tab.segment{"data-tab" => "third"}
-    %table.ui.selectable.celled.table
-      .box.box-success
-        - if ( current_user.role == 'Admin' )
-          = render partial:"check_vouchers/check_accounts/new"
-        %thead
-          %tr
-            %th Account Title
-            %th Accounting Code
-            %th Debit
-            %th Credit
+              - if (@check_particulars.count == 0)
+                = render partial:"check_vouchers/check_particulars/new"
+            %table.ui.selectable.celled.table
+              %thead
+                %tr
+                  %th Particular
+                  %th Amount
+                  %th Amount in word(in peso)
+                  - if ( current_user.role == 'Admin' )
+                    %th Action
+              %tbody
+                - @check_particulars.each do |cp|
+                  %tr
+                    %td= cp.particular
+                    %td= cp.amount
+                    %td= cp.amount_in_word
+                    - if ( current_user.role == 'Admin' )
+                      %td
+                        = link_to "UPDATE", edit_check_voucher_check_particular_path(cp.check_voucher, cp), class: "btn btn-flat btn-xs btn-success"
+                        = link_to "REMOVE", [cp.check_voucher, cp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+          #account.tab-pane
             - if ( current_user.role == 'Admin' )
-              %th Action
-        %tbody
-          - @debit = 0
-          - @credit = 0
-          - @check_accounts.each do |ac|
-            %tr
-              %td= ac.accounting_code.name
-              %td= ac.accounting_code.code
-              - if ac.trans_type == 'Debit'
-                %td= ac.amount
-                %td
-                - @debit += ac.amount
-              - else
-                %td
-                %td= ac.amount
-                - @credit += ac.amount
-              - if ( current_user.role == 'Admin' ) 
-                %td
-                  = link_to "UPDATE", edit_check_voucher_check_account_path(ac.check_voucher, ac), class: "btn btn-flat btn-xs btn-success"
-                  = link_to "REMOVE", [ac.check_voucher, ac],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-          %th{:colspan => "2"}
-            %center Total
-          %th= @debit
-          %th= @credit
-:javascript
-  $('.menu .item')
-    .tab()
-  ;
-
+              = render partial:"check_vouchers/check_accounts/new"
+            %table.ui.selectable.celled.table
+              %thead
+                %tr
+                  %th Account Title
+                  %th Accounting Code
+                  %th Debit
+                  %th Credit
+                  - if ( current_user.role == 'Admin' )
+                    %th Action
+              %tbody
+                - @debit = 0
+                - @credit = 0
+                - @check_accounts.each do |ac|
+                  %tr
+                    %td= ac.accounting_code.name
+                    %td= ac.accounting_code.code
+                    - if ac.trans_type == 'Debit'
+                      %td= ac.amount
+                      %td
+                      - @debit += ac.amount
+                    - else
+                      %td
+                      %td= ac.amount
+                      - @credit += ac.amount
+                    - if ( current_user.role == 'Admin' ) 
+                      %td
+                        = link_to "UPDATE", edit_check_voucher_check_account_path(ac.check_voucher, ac), class: "btn btn-flat btn-xs btn-success"
+                        = link_to "REMOVE", [ac.check_voucher, ac],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+                %th{:colspan => "2"}
+                  %center Total
+                %th= @debit
+                %th= @credit

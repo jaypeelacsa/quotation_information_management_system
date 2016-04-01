@@ -2,19 +2,24 @@
   %h1
     Employee
     %small Information
-%section.content
-  .row
-    .col-md-12
+    .pull-right
       - if ( current_user.role == 'Admin' )
         = link_to "UPDATE", edit_employee_path(@employee.id), class: "btn btn-flat btn-xs btn-success"
         = link_to "REMOVE", employee_path(@employee.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-        = link_to "PRINT", employees_details_path(@employee.id), class: "btn btn-flat btn-xs btn-primary"
-      .ui.top.attached.tabular.menu
-        %a.active.item{"data-tab" => "first"} Details
-        %a.item{"data-tab" => "second"} Work Experience
-      .ui.bottom.attached.active.tab.segment{"data-tab" => "first"}
-        .box.box-success
-          .box-body
+        = link_to "PRINT", employees_details_path(@employee.id), class: "btn btn-flat btn-xs btn-primary", target: "blank"
+%section.content
+  .row
+    .col-md-12
+      .nav-tabs-custom
+        %ul.nav.nav-tabs
+          %li.active
+            %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#details"} Details
+          %li
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#work"} Work Experience
+          %li
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#record"} Project Record
+        .tab-content
+          #details.tab-pane.active
             %table.ui.selectable.celled.table
               %tbody
                 %tr
@@ -23,16 +28,8 @@
                   %td= @employee.employee_no
                 %tr
                   %td
-                    %b Firstname:
-                  %td= @employee.firstname
-                %tr
-                  %td
-                    %b Lastname:
-                  %td= @employee.lastname
-                %tr
-                  %td
-                    %b Middlename:
-                  %td= @employee.middlename
+                    %b Name:
+                  %td= @employee.to_s
                 %tr
                   %td
                     %b Position:
@@ -69,9 +66,7 @@
                   %td
                     %b Address:
                   %td= @employee.address
-      .ui.bottom.attached.tab.segment{"data-tab" => "second"}
-        .box.box-success
-          .box-body
+          #work.tab-pane
             - if ( current_user.role == 'Admin' )
               = render partial:"employees/work_experiences/new"
             %table.ui.selectable.celled.table
@@ -93,5 +88,4 @@
                       %td
                         = link_to "UPDATE", edit_employee_work_experience_path(we.employee, we), class: "btn btn-flat btn-xs btn-success"
                         = link_to "REMOVE", [we.employee, we],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-:javascript
-  $('.menu .item').tab();
+          #record.tab-pane
