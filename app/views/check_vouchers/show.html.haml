@@ -20,14 +20,14 @@
           %tbody
             %tr
               %td
+                %b Reference No:
+              %td
+                = @check_voucher.to_s
+            %tr
+              %td
                 %b Payee:
               %td
                 = @check_voucher.payee
-            %tr
-              %td
-                %b Reference No:
-              %td
-                = @check_voucher.reference_no
             %tr
               %td
                 %b Date:

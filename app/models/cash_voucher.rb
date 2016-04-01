@@ -1,6 +1,6 @@
 class CashVoucher < ActiveRecord::Base
 	
-	validates :reference_no, presence: true
+
   validates :cash_date, presence: true
   validates :paid_to, presence: true
   validates :address, presence: true

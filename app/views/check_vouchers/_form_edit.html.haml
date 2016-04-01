@@ -14,22 +14,6 @@
               .form-group
                 = cv.input :payee
               .form-group
-                - if (CheckVoucher.count==0)
-                  = cv.hidden_field :counter, :value => 1
-                  - @format = Date.today.strftime("CV""%Y%m")
-                  = cv.hidden_field :reference_no, :value => @format
-                - else
-                  - @checker = CheckVoucher.last.reference_no
-                  - @ngayon = Date.today.strftime("CV""%Y%m")
-                  - if @checker==@ngayon
-                    = cv.hidden_field :counter, :value => CheckVoucher.last.counter + 1
-                    - @format = Date.today.strftime("CV""%Y%m")
-                    = cv.hidden_field :reference_no, :value => @format
-                  -else
-                    = cv.hidden_field :counter, :value => 1
-                    - @format = Date.today.strftime("CV""%Y%m")
-                    = cv.hidden_field :reference_no, :value => @format
-              .form-group
                 = cv.input :check_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
               .form-group
                 = cv.input :si_no
