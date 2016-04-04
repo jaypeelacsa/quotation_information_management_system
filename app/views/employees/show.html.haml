@@ -20,7 +20,7 @@
           %li
             %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#work"} Work Experience
           %li
-            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#record"} Project Record
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#record"} Order Record List
         .tab-content
           #details.tab-pane.active
             %table.ui.selectable.celled.table
@@ -92,3 +92,20 @@
                         = link_to "UPDATE", edit_employee_work_experience_path(we.employee, we), class: "btn btn-flat btn-xs btn-success"
                         = link_to "REMOVE", [we.employee, we],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
           #record.tab-pane
+            %table.ui.selectable.celled.table
+              %thead
+                %tr
+                  %th No.
+                  %th Client Name
+                  %th Client Company Name
+                  %th Actions
+              %tbody
+                - @num = 1
+                - @projects.each do |o|
+                  %tr
+                    %td= @num
+                    %td= o.client.to_s
+                    %td= o.client.company_name
+                    %td
+                      = link_to "Details", order_path(o.id), class: "btn btn-flat btn-xs btn-default"    
+                    - @num += 1

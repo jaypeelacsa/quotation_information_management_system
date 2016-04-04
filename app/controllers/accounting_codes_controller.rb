@@ -2,6 +2,11 @@ class AccountingCodesController < ApplicationController
 	
 	def index
 		@accounting_codes = AccountingCode.list_of_accounting_codes
+
+		if params[:code].present?
+				@code = params[:code]
+				@accounting_codes = @accounting_codes.where("code LIKE :code",code: "%#{@code}").list_of_accounting_codes
+			end
 	end
 
 	def show

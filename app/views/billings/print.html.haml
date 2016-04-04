@@ -1,0 +1,31 @@
+%section.content-header
+  %h1
+    Employee
+    %small Reports
+%section.content
+  .row
+    .col-md-3
+      .box.box-default.box-solid
+        .box-header
+          %h3.box-title Filter Tool
+        .box-body
+          = form_tag send("billings_print_all_path"),method: "GET" do
+            .row
+              .col-md-12
+                .ui.icon.input
+                  %input{:name => "start_date", :placeholder => "Billed From", class: "datepick"}
+                  %i.inverted.circular.search.link.icon
+            %br
+            .row
+              .col-md-12
+                .ui.icon.input
+                  %input{:name => "end_date", :placeholder => "Billed To", class: "datepick"}
+                  %i.inverted.circular.search.link.icon
+
+
+            %br
+            .pull-right
+              .ui.buttons
+                %button.ui.positive.button Search
+                .or
+                = link_to "Clear", billings_print_path, class: "ui button"

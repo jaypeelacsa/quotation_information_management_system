@@ -17,6 +17,7 @@ class Employee < ActiveRecord::Base
   accepts_nested_attributes_for :work_experiences, reject_if: :all_blank, allow_destroy: true
 
   has_many :orders
+  has_many :order_particulars
 	def to_s
   	"#{firstname} #{middlename} #{lastname}"
   end

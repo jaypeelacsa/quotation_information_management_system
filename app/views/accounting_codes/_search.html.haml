@@ -1,0 +1,12 @@
+= form_tag send("accounting_codes_path"),method: "GET" do
+	.row
+		.col-md-12
+			.ui.icon.input
+				%input{:name => "code", :placeholder => "Enter Code", :type => "text"}
+				%i.inverted.circular.search.link.icon
+	%br
+	.pull-right
+		.ui.buttons
+			%button.ui.positive.button Search
+			.or
+			= link_to "Clear", accounting_codes_path, class: "ui button"

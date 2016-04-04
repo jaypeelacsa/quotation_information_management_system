@@ -15,6 +15,18 @@ end
   get 'logout' => 'sessions#destroy'
   root to: "pages#index"
 
+  get '/service_products/print', :to => 'service_products#print'
+  get '/service_products/print_all', :to => 'service_products#print_all'
+
+  get '/clients/print', :to => 'clients#print'
+  get '/clients/print_all', :to => 'clients#print_all'
+
+  get '/billings/print', :to => 'billings#print'
+  get '/billings/print_all', :to => 'billings#print_all'
+
+  get '/company_expenses/print', :to => 'company_expenses#print'
+  get '/company_expenses/print_all', :to => 'company_expenses#print_all'
+
   get '/employees/print', :to => 'employees#print'
   get '/employees/print_all', :to => 'employees#print_all'
   get '/employees/:id/details', :to => 'employees#details', as: "employees_details"

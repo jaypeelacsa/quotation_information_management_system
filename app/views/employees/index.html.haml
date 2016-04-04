@@ -17,8 +17,11 @@
           %h3.box-title Employee List
         .box-body
           - if ( current_user.role == 'Admin' )
+            .pull-left
+              = link_to "REPORTS",employees_print_path, class: "btn btn-block btn-primary", target: "blank"
             .pull-right
               = link_to "ADD NEW EMPLOYEE", new_employee_path, class: "btn btn-block btn-primary"
+          %br
           %table.ui.selectable.celled.table
             %thead
               %tr

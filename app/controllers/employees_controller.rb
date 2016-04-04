@@ -51,6 +51,7 @@ class EmployeesController < ApplicationController
 			@employee = Employee.find(params[:id])
 			@work_experience = WorkExperience.new
 			@work_experiences = WorkExperience.where(employee_id: @employee.id)
+			@projects = Order.where(employee_id: @employee.id)
 		end
 
 		def edit
@@ -84,26 +85,30 @@ class EmployeesController < ApplicationController
 			if ( current_user.role == 'Admin' )
 				@employees= Employee.all
 				@company_profiles = CompanyProfile.all
-
+				@header = "List OF All Employee"
 				if params[:start_date].present? && params[:end_date].present?
 					@start_date = params[:start_date]
 					@end_date = params[:end_date]
 					@employees = @employees.where(date_employed: (@start_date.to_date..@end_date.to_date))
+					@header = "List Of All Employee Employeed From "+@start_date+" To "+@end_date
 				end
 
 				if params[:pos].present?
 					@pos = params[:pos]
 					@employees = @employees.where("lower(position) LIKE :pos",pos: "%#{@pos}")
+					@header = "List Of All "+@pos+" Employee"
 				end
 
 				if params[:gender].present?
 					@gender = params[:gender]
 					@employees = @employees.where("gender = :gender",gender: params[:gender])
+					@header = "List Of All "+@gender+" Employee"
 				end
 
 				if params[:status].present?
 					@status = params[:status]
 					@employees = @employees.where("status = :status",status: params[:status])
+					@header = "List Of All "+@status+" Employee"
 				end
 			else
 				redirect_to employees_path
