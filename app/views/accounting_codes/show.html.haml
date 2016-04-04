@@ -1,30 +1,38 @@
-%br
-.pull-left
-  = link_to "Back", :back, class: "btn btn-flat btn-success"
-%table.ui.selectable.celled.table
-  %thead
-    %tr
-      %th CV Reference By Year Month
-      %th Check Voucher ID
-      %th Debit
-      %th Credit
-  %tbody
-    - @debit = 0
-    - @credit = 0
-    - @check_accounts.each do |ac|
+%section.content-header
+  %h1
+    Accounting Code
+    %small Information
+    %br
+      .pull-left
+        = link_to "BACK", :back, class: "btn btn-flat btn-xs btn-success"
+      .pull-right
+        - if ( current_user.role == 'Admin' )
+          = link_to "UPDATE", edit_accounting_code_path(@accounting_code.id), class: "btn btn-flat btn-xs btn-success"
+          = link_to "REMOVE", accounting_code_path(@accounting_code.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+  %table.ui.selectable.celled.table
+    %thead
       %tr
-        %td= ac.check_voucher.reference_no
-        %td= ac.check_voucher_id
-        - if ac.trans_type == 'Debit'
-          %td= ac.amount
-          %td
-          - @debit += ac.amount
-        - else
-          %td
-          %td= ac.amount
-          - @credit += ac.amount
-    
-    %th Total
-    %th
-    %th= @debit
-    %th= @credit
+        %th CV Reference By Year Month
+        %th Check Voucher ID
+        %th Debit
+        %th Credit
+    %tbody
+      - @debit = 0
+      - @credit = 0
+      - @check_accounts.each do |ac|
+        %tr
+          %td= ac.check_voucher.reference_no
+          %td= ac.check_voucher_id
+          - if ac.trans_type == 'Debit'
+            %td= ac.amount
+            %td
+            - @debit += ac.amount
+          - else
+            %td
+            %td= ac.amount
+            - @credit += ac.amount
+      
+      %th Total
+      %th
+      %th= @debit
+      %th= @credit

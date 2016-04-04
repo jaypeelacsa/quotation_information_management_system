@@ -2,11 +2,13 @@
   %h1
     Services and Products
     %small Information
-    .pull-right
-      - if ( current_user.role == 'Admin' )
-        = link_to "Back", :back, class: "btn btn-flat btn-success"
-        = link_to "UPDATE", edit_service_product_path(@service_product.id), class: "btn btn-flat btn-xs btn-success"
-        = link_to "REMOVE", service_product_path(@service_product.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+    %br
+      .pull-left
+        = link_to "BACK", :back, class: "btn btn-flat btn-xs btn-success"
+      .pull-right
+        - if ( current_user.role == 'Admin' )
+          = link_to "UPDATE", edit_service_product_path(@service_product.id), class: "btn btn-flat btn-xs btn-success"
+          = link_to "REMOVE", service_product_path(@service_product.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
 %section.content
   .row
     .col-md-12     

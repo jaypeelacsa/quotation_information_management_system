@@ -10,11 +10,8 @@
               = o.association :employee, as: :select, collection: Employee.all
             .form-group
               = o.association :client, as: :select, collection: Client.all
-
           .box-footer
-            .row
-              .col-md-10
-              .col-md-2
-                %button.btn.btn-primary
-                  %i.save.icon>
-                  SAVE
+            .pull-right
+              %button.btn.btn-primary
+                %i.save.icon>
+                SAVE

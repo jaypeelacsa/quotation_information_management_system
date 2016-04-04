@@ -2,12 +2,14 @@
   %h1
     Check Voucher
     %small Information
-    .pull-right
-      - if ( current_user.role == 'Admin' )
-        = link_to "Back", :back, class: "btn btn-flat btn-success"
-        = link_to "UPDATE", edit_check_voucher_path(@check_voucher.id), class: "btn btn-flat btn-xs btn-success"
-        = link_to "REMOVE", check_voucher_path(@check_voucher.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-        = link_to "PRINT",   check_vouchers_details_path(@check_voucher.id), class: "btn btn-flat btn-xs btn-primary", target: "blank"
+    %br
+      .pull-left
+        = link_to "Back", :back, class: "btn btn-flat btn-xs btn-success"
+      .pull-right
+        - if ( current_user.role == 'Admin' )
+          = link_to "UPDATE", edit_check_voucher_path(@check_voucher.id), class: "btn btn-flat btn-xs btn-success"
+          = link_to "REMOVE", check_voucher_path(@check_voucher.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+          = link_to "PRINT",   check_vouchers_details_path(@check_voucher.id), class: "btn btn-flat btn-xs btn-primary", target: "blank"
 %section.content
   .row
     .col-md-12

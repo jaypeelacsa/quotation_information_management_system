@@ -2,6 +2,9 @@
   %h1
     Check Voucher
     %small Information
+    %br
+      .pull-left
+        = link_to "BACK", :back, class: "btn btn-flat btn-success"
 %section.content
   = simple_form_for @check_voucher, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |cv|
     %form{:role => "form"}
@@ -50,9 +53,8 @@
               .form-group
                 = cv.input :approved_by
             .box-footer
-              .row
-                .col-md-10
-                .col-md-2
-                  %button.btn.btn-primary
-                    %i.save.icon>
-                    SAVE
+              .pull-right
+                %button.btn.btn-primary
+                  %i.save.icon>
+                  SAVE
+              
