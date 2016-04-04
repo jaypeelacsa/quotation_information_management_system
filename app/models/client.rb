@@ -11,7 +11,6 @@ class Client < ActiveRecord::Base
 	validates :company_address, presence: true
 
 	STATUS=["active","inactive"]
-
 	has_many :billings
 
 	has_many :orders

@@ -13,8 +13,8 @@
           .row
             .col-md-9
             .col-md-3
-          - if ( current_user.role == 'Admin' )
-            = link_to "Add New Accounting Code", new_accounting_code_path, class: "btn btn-block btn-primary"
+              - if ( current_user.role == 'Admin' )
+                = link_to "Add New Accounting Code", new_accounting_code_path, class: "btn btn-block btn-primary"
           %table.ui.selectable.celled.table
             %thead
               %tr

@@ -22,4 +22,5 @@ class CheckVoucher < ActiveRecord::Base
 	def to_s
   	"#{reference_no}-#{counter}"
   end
+
 end

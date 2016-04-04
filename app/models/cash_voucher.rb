@@ -10,6 +10,7 @@ class CashVoucher < ActiveRecord::Base
   validates :checked_by, presence: true
 	validates :approved_by, presence: true
 
+
 	has_many :cash_particulars
   accepts_nested_attributes_for :cash_particulars, reject_if: :all_blank, allow_destroy: true
 end

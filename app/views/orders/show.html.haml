@@ -2,19 +2,23 @@
   %h1
     Order
     %small Information
-%section.content
-  .row
-    .col-md-12
+    .pull-right
       - if ( current_user.role == 'Admin' )
         = link_to "UPDATE", edit_order_path(@order.id), class: "btn btn-flat btn-xs btn-success"
         = link_to "REMOVE", order_path(@order.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-      .ui.top.attached.tabular.menu
-        %a.active.item{"data-tab" => "first"} Details
-        %a.item{"data-tab" => "second"} List
-        %a.item{"data-tab" => "third"} Payment
-      .ui.bottom.attached.active.tab.segment{"data-tab" => "first"}
-        .box.box-success
-          .box-body
+%section.content
+  .row
+    .col-md-12
+      .nav-tabs-custom
+        %ul.nav.nav-tabs
+          %li.active
+            %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#one"} Details
+          %li
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#two"} List
+          %li
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#three"} Payment
+        .tab-content
+          #one.tab-pane.active
             %table.ui.selectable.celled.table
               %tbody
                 %tr
@@ -37,9 +41,7 @@
                   %td
                     %b Contact No:
                   %td= @order.client.telephone
-      .ui.bottom.attached.tab.segment{"data-tab" => "second"}
-        .box.box-success
-          .box-body
+          #two.tab-pane
             - if ( current_user.role == 'Admin' )
               = render partial:"orders/order_particulars/new"
             %table.ui.selectable.celled.table
@@ -61,10 +63,7 @@
                         = link_to "APPROVED", edit_order_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-primary"
                         = link_to "UPDATE", edit_order_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-success"
                         = link_to "REMOVE", [op.order, op],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-
-      .ui.bottom.attached.tab.segment{"data-tab" => "third"}
-        .box.box-success
-          .box-body
+          #three.tab-pane
 
 :javascript
   $('.menu .item').tab();

@@ -1,54 +1,55 @@
-%section.content-header
-  %h1
-    Company
-    %small Profile
-%section.content
-  - @company_profiles.each do |company|
-    .row
-      .col-md-12
+- @company_profiles.each do |company|
+  %section.content-header
+    %h1
+      Company
+      %small Profile
+      .pull-right
         - if ( current_user.role == 'Admin' )
           - if (CompanyProfile.count == 0)
             = link_to "Add Company Information", new_company_profile_path, class: "btn btn-flat btn-xs btn-primary"
           - else
             = link_to "Update Company Information", edit_company_profile_path(company.id), class: "btn btn-flat btn-xs btn-success"
-    .ui.top.attached.tabular.menu
-      %a.active.item{"data-tab" => "first"} Details
-      %a.item{"data-tab" => "second"} Mission and Vision
-    .ui.bottom.attached.active.tab.segment{"data-tab" => "first"}
-      .row
-        .col-md-5
-          %dl
-            %dt Company Name
-            %dd
-              = company.company_name
-            %br/
-            %dt Website
-            %dd
-              = company.website
-            %br/
-            %dt Address
-            %dd
-              = company.address
-            %br/
-            %dt Telephone Number
-            %dd
-              = company.telephone
-            %br/
-            %dt TIN Number
-            %dd
-              = company.tin
-        .col-md-7
-        = image_tag company.logo.url(:medium)
-    .ui.bottom.attached.tab.segment{"data-tab" => "second"}
-      %dl
-        %dt Mission
-        %dd
-          = company.mission
-        %br/
-        %dt Vision
-        %dd
-          = company.vission
-:javascript
-  $('.menu .item')
-  .tab()
-  ;
+  %section.content
+    .row
+      .col-md-12
+        .nav-tabs-custom
+          %ul.nav.nav-tabs
+            %li.active
+              %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#one"} Details
+            %li
+              %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#two"} Mission and Vision
+          .tab-content
+            #one.tab-pane.active
+              .row
+                .col-md-5
+                  %dl
+                    %dt Company Name
+                    %dd
+                      = company.company_name
+                    %br/
+                    %dt Website
+                    %dd
+                      = company.website
+                    %br/
+                    %dt Address
+                    %dd
+                      = company.address
+                    %br/
+                    %dt Telephone Number
+                    %dd
+                      = company.telephone
+                    %br/
+                    %dt TIN Number
+                    %dd
+                      = company.tin
+                .col-md-7
+                = image_tag company.logo.url(:medium)
+            #two.tab-pane
+              %dl
+                %dt Mission
+                %dd
+                  = company.mission
+                %br/
+                %dt Vision
+                %dd
+                  = company.vission

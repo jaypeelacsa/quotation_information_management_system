@@ -2,6 +2,17 @@ class CheckVouchersController < ApplicationController
 	
 	def index
 		@check_vouchers = CheckVoucher.all
+
+		if params[:name].present?
+				@name = params[:name]
+				@check_vouchers = @check_vouchers.where("lower(payee) LIKE :name",name: "%#{@name}")
+			end
+
+		if params[:start_date].present? && params[:end_date].present?
+			@start_date = params[:start_date]
+			@end_date = params[:end_date]
+			@check_vouchers = @check_vouchers.where(check_date: (@start_date.to_date..@end_date.to_date))
+		end
 	end
 
 	def new
