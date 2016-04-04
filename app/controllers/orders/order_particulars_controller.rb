@@ -11,7 +11,7 @@ module Orders
 				@order_particular = OrderParticular.new(order_particular_params)
 				@order_particular.order = @order
 				if @order_particular.save
-					
+					redirect_to order_path(@order)
 				else
 					render "new"
 				end
