@@ -1,5 +1,15 @@
 class Proposal < ActiveRecord::Base
-	
+
+  validates :title, presence: true
+  validates :proposal_date, presence: true
+  validates :overview, presence: true
+  validates :objective, presence: true  
+  validates :hardware, presence: true  
+  validates :software, presence: true 
+  validates :feature, presence: true
+  validates :project_costing_text, presence: true  
+  validates :signatory, presence: true  
+  	
 	belongs_to :employee
 	belongs_to :client
 

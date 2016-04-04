@@ -44,6 +44,7 @@ class ClientsController < ApplicationController
 	def show
 		@client = Client.find(params[:id])
 		@order_particulars = OrderParticular.where(client_id: @client.id)
+		@proj = Order.where(client_id: @client.id)
 	end
 
 	def edit

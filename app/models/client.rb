@@ -13,10 +13,11 @@ class Client < ActiveRecord::Base
 	validates :company_address, presence: true
 
 	STATUS=["active","inactive"]
+	
 	has_many :billings
 	has_many :orders
 	has_many :order_particulars
-	has_many :service_products
+	# has_many :service_products
 	has_many :proposals
 
 	def to_s
