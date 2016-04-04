@@ -26,7 +26,7 @@ end
 	resources :petty_vouchers do
 		resources :petty_particulars, module: 'petty_vouchers'
 	end
-
+  get '/billings/:id/details', :to => 'billings#details', as: "billings_details"
 	resources :billings do
 		resources :billing_particulars, module: 'billings'
 	end

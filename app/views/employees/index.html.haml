@@ -5,7 +5,7 @@
 %section.content
   .row
     .col-md-3
-      .box.box-default
+      .box.box-default.box-solid
         .box-header
           %h3.box-title Search Tool
         .box-body
@@ -16,15 +16,11 @@
         .box-header
           %h3.box-title Employee List
         .box-body
-          .row
-            .col-md-3
-              - if ( current_user.role == 'Admin' )
-                = link_to "Back", :back, class: "btn btn-flat btn-success"
-                = link_to "REPORTS", employees_print_path, class: "btn btn-block btn-primary"
-            .col-md-6
-            .col-md-3
-              - if ( current_user.role == 'Admin' )
-                = link_to "ADD NEW EMPLOYEE", new_employee_path, class: "btn btn-block btn-primary"
+          - if ( current_user.role == 'Admin' )
+            .pull-left
+              = link_to "Back", :back, class: "btn btn-flat btn-success"
+            .pull-right
+              = link_to "ADD NEW EMPLOYEE", new_employee_path, class: "btn btn-block btn-primary"
           %table.ui.selectable.celled.table
             %thead
               %tr

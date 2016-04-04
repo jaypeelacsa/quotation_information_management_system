@@ -2,19 +2,23 @@
   %h1
     Statement Of Account
     %small Information
+    .pull-right
+      - if ( current_user.role == 'Admin' )
+        = link_to "Back", :back, class: "btn btn-flat btn-success"
+        = link_to "UPDATE", edit_billing_path(@billing.id), class: "btn btn-flat btn-xs btn-success"
+        = link_to "REMOVE", billing_path(@billing.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+        = link_to "PRINT",   billings_details_path(@billing.id), class: "btn btn-flat btn-xs btn-primary", target: "blank"
 %section.content
   .row
     .col-md-12
-      - if ( current_user.role == 'Admin' )
-        = link_to "UPDATE", edit_billing_path(@billing.id), class: "btn btn-flat btn-xs btn-success"
-        = link_to "REMOVE", billing_path(@billing.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-        = link_to "Back", :back, class: "btn btn-flat btn-xs btn-primary"
-      .ui.top.attached.tabular.menu
-        %a.active.item{"data-tab" => "first"} Details
-        %a.item{"data-tab" => "second"} Particulars
-      .ui.bottom.attached.active.tab.segment{"data-tab" => "first"}
-        .box.box-success
-          .box-body
+      .nav-tabs-custom
+        %ul.nav.nav-tabs
+          %li.active
+            %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#one"} Details
+          %li
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#two"} Particulars
+        .tab-content
+          #one.tab-pane.active
             %table.ui.selectable.celled.table
               %tbody
                 %tr
@@ -37,10 +41,7 @@
                   %td
                     %b Certified By:
                   %td= @billing.certified_by
-
-      .ui.bottom.attached.tab.segment{"data-tab" => "second"}
-        .box.box-success
-          .box-body
+          #two.tab-pane
             - if ( current_user.role == 'Admin' )
               = render partial:"billings/billing_particulars/new"
             %table.ui.selectable.celled.table
@@ -66,6 +67,3 @@
                   %th 
                   %th
                     = @billing_particulars.sum(:amount)
-                  %th
-:javascript
-  $('.menu .item').tab();

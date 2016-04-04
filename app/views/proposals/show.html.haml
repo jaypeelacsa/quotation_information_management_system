@@ -2,24 +2,31 @@
   %h1
     Proposal
     %small Information
-%section.content
-  .row
-    .col-md-12
+    .pull-right
       - if ( current_user.role == 'Admin' )
         = link_to "Back", :back, class: "btn btn-flat btn-success"
         = link_to "UPDATE", edit_proposal_path(@proposal.id), class: "btn btn-flat btn-xs btn-success"
         = link_to "REMOVE", proposal_path(@proposal.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-        = link_to "PRINT", proposals_details_path(@proposal.id), class: "btn btn-flat btn-xs btn-primary"
-      .ui.top.attached.tabular.menu
-        %a.active.item{"data-tab" => "first"} Details
-        %a.item{"data-tab" => "second"} Software Requirements
-        %a.item{"data-tab" => "third"} Software Browser Requirements
-        %a.item{"data-tab" => "fourth"} Project Costing
-        %a.item{"data-tab" => "fifth"} Feature List
-        %a.item{"data-tab" => "sixth"} Terms And Conditions        
-      .ui.bottom.attached.active.tab.segment{"data-tab" => "first"}
-        .box.box-success
-          .box-body
+        = link_to "PRINT", proposals_details_path(@proposal.id), class: "btn btn-flat btn-xs btn-primary", target: "blank"
+%section.content
+  .row
+    .col-md-12
+      .nav-tabs-custom
+        %ul.nav.nav-tabs
+          %li.active
+            %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#one"} Details
+          %li
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#two"} Software Requirements
+          %li
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#three"} Software Browser Requirements
+          %li
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#four"} Project Costing
+          %li
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#five"} Feature List
+          %li
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#six"} Terms And Conditions 
+        .tab-content
+          #one.tab-pane.active
             %table.ui.selectable.celled.table
               %tbody
                 %tr
@@ -70,75 +77,67 @@
                   %td
                     %b Recieved by:
                   %td= @proposal.client.to_s
-      .ui.bottom.attached.tab.segment{"data-tab" => "second"}
-        %h1 Software Requirements
-        %table.ui.selectable.celled.table
-          .box.box-success
-          - if ( current_user.role == 'Admin' )
-            = render partial:"proposals/software_requirements/new"
-          %thead
-            %tr
-              %th Components
-              %th Amount
+          #two.tab-pane
+            %table.ui.selectable.celled.table
               - if ( current_user.role == 'Admin' )
-                %th Action
-          %tbody
-            - @software_requirements.each do |sr|
-              %tr
-                %td= sr.component
-                %td= sr.cost
-                - if ( current_user.role == 'Admin' )
-                  %td
-                    / = link_to "UPDATE", edit_proposal_software_requirement_path(sr.proposal, sr), class: "btn btn-flat btn-xs btn-success"
-                    = link_to "REMOVE", [sr.proposal, sr],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-            %th Total
-            %td= @software_requirements.sum(:cost) 
-      .ui.bottom.attached.tab.segment{"data-tab" => "third"}
-        %h1 Software Browsers
-        %table.ui.selectable.celled.table
-          .box.box-success
-          - if ( current_user.role == 'Admin' )
-            = render partial:"proposals/software_browsers/new"
-          %thead
-            %tr
-              %th Browsers
+                = render partial:"proposals/software_requirements/new"
+              %thead
+                %tr
+                  %th Components
+                  %th Amount
+                  - if ( current_user.role == 'Admin' )
+                    %th Action
+              %tbody
+                - @software_requirements.each do |sr|
+                  %tr
+                    %td= sr.component
+                    %td= sr.cost
+                    - if ( current_user.role == 'Admin' )
+                      %td
+                        / = link_to "UPDATE", edit_proposal_software_requirement_path(sr.proposal, sr), class: "btn btn-flat btn-xs btn-success"
+                        = link_to "REMOVE", [sr.proposal, sr],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+                %th Total
+                %td= @software_requirements.sum(:cost) 
+          #three.tab-pane
+            %table.ui.selectable.celled.table
               - if ( current_user.role == 'Admin' )
-                %th Action
-          %tbody
-            - @software_browsers.each do |sb|
-              %tr
-                %td= sb.name
-                - if ( current_user.role == 'Admin' )
-                  %td
-                    / = link_to "UPDATE", edit_proposal_software_browser_path(sb.proposal, sb), class: "btn btn-flat btn-xs btn-success"
-                    = link_to "REMOVE", [sb.proposal, sb],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-      .ui.bottom.attached.tab.segment{"data-tab" => "fourth"}
-        %h1 Costing
-        %table.ui.selectable.celled.table
-          .box.box-success
-          - if ( current_user.role == 'Admin' )
-            = render partial:"proposals/costings/new"
-          %thead
-            %tr
-              %th Description
-              %th Cost
+                = render partial:"proposals/software_browsers/new"
+              %thead
+                %tr
+                  %th Browsers
+                  - if ( current_user.role == 'Admin' )
+                    %th Action
+              %tbody
+                - @software_browsers.each do |sb|
+                  %tr
+                    %td= sb.name
+                    - if ( current_user.role == 'Admin' )
+                      %td
+                        / = link_to "UPDATE", edit_proposal_software_browser_path(sb.proposal, sb), class: "btn btn-flat btn-xs btn-success"
+                        = link_to "REMOVE", [sb.proposal, sb],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+          #four.tab-pane
+            %table.ui.selectable.celled.table
               - if ( current_user.role == 'Admin' )
-                %th Action
-          %tbody
-            - @costings.each do |c|
-              %tr
-                %td= c.description
-                %td= c.cost
-                - if ( current_user.role == 'Admin' )
-                  %td
-                    / = link_to "UPDATE", edit_proposal_costing_path(c.proposal, c), class: "btn btn-flat btn-xs btn-success"
-                    = link_to "REMOVE", [c.proposal, c],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-            %th Total
-            %td= @costings.sum(:cost) 
+                = render partial:"proposals/costings/new"
+              %thead
+                %tr
+                  %th Description
+                  %th Cost
+                  - if ( current_user.role == 'Admin' )
+                    %th Action
+              %tbody
+                - @costings.each do |c|
+                  %tr
+                    %td= c.description
+                    %td= c.cost
+                    - if ( current_user.role == 'Admin' )
+                      %td
+                        / = link_to "UPDATE", edit_proposal_costing_path(c.proposal, c), class: "btn btn-flat btn-xs btn-success"
+                        = link_to "REMOVE", [c.proposal, c],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+                %th Total
+                %td= @costings.sum(:cost) 
         
-      .ui.bottom.attached.tab.segment{"data-tab" => "fifth"}
-        .box.box-success
-          .box-body
+          #five.tab-pane
             - if ( current_user.role == 'Admin' )
               = render partial:"proposals/feature_lists/new"
             .ui.middle.aligned.divided.list
@@ -163,13 +162,7 @@
                                 %b
                                   = fl.name
                               = fl.description
-
-
-
-
-      .ui.bottom.attached.tab.segment{"data-tab" => "sixth"}
-        .box.box-success
-          .box-body
+          #six.tab-pane
             - if ( current_user.role == 'Admin' )
               = render partial:"proposals/terms_conditions/new"
             %table.ui.selectable.celled.table
@@ -187,8 +180,3 @@
                       %td
                         / = link_to "UPDATE", edit_proposal_terms_condition_path(tc.proposal, tc), class: "btn btn-flat btn-xs btn-success"
                         = link_to "REMOVE", [tc.proposal, tc],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"                
-                                           
-:javascript
-  $('.menu .item').tab();
-
-  $('.ui.accordion').accordion();

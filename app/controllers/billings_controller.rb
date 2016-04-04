@@ -57,6 +57,16 @@ class BillingsController < ApplicationController
 			redirect_to  billings_path
 		end
 
+	def details
+		if ( current_user.role == 'Admin' )
+			@billing = Billing.find(params[:id])
+			@billing_particulars = BillingParticular.where(billing_id: @billing.id)
+			@company_profiles = CompanyProfile.all
+		else
+			redirect_to employees_path
+		end
+	end
+
 		def billing_params
 			params.require(:billing).permit!
 		end

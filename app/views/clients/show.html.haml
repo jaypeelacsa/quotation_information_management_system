@@ -9,7 +9,7 @@
         = link_to "Back", :back, class: "btn btn-flat btn-success"
         = link_to "UPDATE", edit_client_path(@client.id), class: "btn btn-flat btn-xs btn-success"
         = link_to "REMOVE", client_path(@client.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-        = link_to "PRINT", clients_details_path(@client.id), class: "btn btn-flat btn-xs btn-primary"
+        = link_to "PRINT", clients_details_path(@client.id), class: "btn btn-flat btn-xs btn-primary", target: "blank"
       .ui.top.attached.tabular.menu
         %a.active.item{"data-tab" => "first"} Details
         %a.item{"data-tab" => "second"} Company Profile

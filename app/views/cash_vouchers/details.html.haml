@@ -3,7 +3,7 @@
     %section.invoice
       .row
         .col-xs-12
-          %h2.page-header
+          %h2
             %center
               CASH VOUCHER
       %br
@@ -27,9 +27,10 @@
             %b
               DATE
             = @cash_voucher.cash_date
+      %br
       .row
         .col-xs-12.table-responsive
-          %table.table.table-striped
+          %table.table.table-bordered
             %thead
               %tr
                 %th PARTICULARS
@@ -44,11 +45,10 @@
                   %center TOTAL
                 %th 
                   = @cash_particulars.sum(:amount)
-                %th
       %br
       .row
         .col-xs-8.table-responsive
-          %table.table.table-striped
+          %table.table.table-bordered
             %thead
               %tr
                 %th PREPARED BY:

@@ -2,71 +2,70 @@
   %h1
     Petty Cash Voucher
     %small Information
-%section.content
-  .row
-    .col-md-12
+    .pull-right
       - if ( current_user.role == 'Admin' )
         = link_to "Back", :back, class: "btn btn-flat btn-success"
         = link_to "UPDATE", edit_petty_voucher_path(@petty_voucher.id), class: "btn btn-flat btn-xs btn-success"
         = link_to "REMOVE", petty_voucher_path(@petty_voucher.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-        = link_to "PRINT",  petty_vouchers_details_path(@petty_voucher.id), class: "btn btn-flat btn-xs btn-primary"
-  .ui.top.attached.tabular.menu
-    %a.active.item{"data-tab" => "first"} Details
-    %a.item{"data-tab" => "second"} Particulars
-  .ui.bottom.attached.active.tab.segment{"data-tab" => "first"}
-    .box.box-success
-      .box-body
-        %table.ui.selectable.celled.table
-          %tbody
-            %tr
-              %td
-                %b Reference No:
-              %td= @petty_voucher.reference_no
-            %tr
-              %td
-                %b Date:
-              %td= @petty_voucher.petty_date
-            %tr
-              %td
-                %b Payee:
-              %td= @petty_voucher.payee
-            %tr
-              %td
-                %b Approved By:
-              %td= @petty_voucher.approved_by
-            %tr
-              %td
-                %b Paid By:
-              %td= @petty_voucher.paid_by
-            %tr
-              %td
-                %b Received By:
-              %td= @petty_voucher.received_by
-  .ui.bottom.attached.tab.segment{"data-tab" => "second"}
-    .box.box-success
-      .box-body
-        - if ( current_user.role == 'Admin' )
-          = render partial:"petty_vouchers/petty_particulars/new"
-        %table.ui.selectable.celled.table
-          %thead
-            %th Particulars
-            %th Amount
-            - if ( current_user.role == 'Admin' )
-              %th Actions
-          %tbody
-            - @petty_particulars.each do |pp|
-              %tr
-                %td= pp.particular
-                %td= pp.amount
-                - if ( current_user.role == 'Admin' )
+        = link_to "PRINT",  petty_vouchers_details_path(@petty_voucher.id), class: "btn btn-flat btn-xs btn-primary", target: "blank"
+%section.content
+  .row
+    .col-md-12
+      .nav-tabs-custom
+        %ul.nav.nav-tabs
+          %li.active
+            %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#details"} Details
+          %li
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#particular"} Petty Cash Particular
+        .tab-content
+          #details.tab-pane.active
+            %table.ui.selectable.celled.table
+              %tbody
+                %tr
                   %td
-                    = link_to "EDIT", edit_petty_voucher_petty_particular_path(pp.petty_voucher, pp), class: "btn btn-flat btn-xs btn-success"
-                    = link_to "DELETE", [pp.petty_voucher, pp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-            %tr
-              %th
-                %center TOTAL
-              %th 
-                = @petty_particulars.sum(:amount)
-              %th
-:javascript
-  $('.menu .item').tab();
+                    %b Reference No:
+                  %td= @petty_voucher.reference_no
+                %tr
+                  %td
+                    %b Date:
+                  %td= @petty_voucher.petty_date
+                %tr
+                  %td
+                    %b Payee:
+                  %td= @petty_voucher.payee
+                %tr
+                  %td
+                    %b Approved By:
+                  %td= @petty_voucher.approved_by
+                %tr
+                  %td
+                    %b Paid By:
+                  %td= @petty_voucher.paid_by
+                %tr
+                  %td
+                    %b Received By:
+                  %td= @petty_voucher.received_by
+          #particular.tab-pane
+            - if ( current_user.role == 'Admin' )
+              = render partial:"petty_vouchers/petty_particulars/new"
+            %table.ui.selectable.celled.table
+              %thead
+                %th Particulars
+                %th Amount
+                - if ( current_user.role == 'Admin' )
+                  %th Actions
+              %tbody
+                - @petty_particulars.each do |pp|
+                  %tr
+                    %td= pp.particular
+                    %td= pp.amount
+                    - if ( current_user.role == 'Admin' )
+                      %td
+                        = link_to "EDIT", edit_petty_voucher_petty_particular_path(pp.petty_voucher, pp), class: "btn btn-flat btn-xs btn-success"
+                        = link_to "DELETE", [pp.petty_voucher, pp],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+                %tr
+                  %th
+                    %center TOTAL
+                  %th 
+                    = @petty_particulars.sum(:amount)
+                  %th

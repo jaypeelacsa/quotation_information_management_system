@@ -4,7 +4,7 @@
     %section.invoice
       .row
         .col-xs-12
-          %h2.page-header
+          %h2
             = company.company_name
             %small.pull-right 
               = Time.now.strftime("%m/%d//%Y")
@@ -42,7 +42,7 @@
           %center
             %h4 Working Experiences List
             %br
-          %table.table.table-striped
+          %table.table.table-bordered
             %thead
               %tr
                 %th No.

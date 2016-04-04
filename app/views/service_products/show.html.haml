@@ -2,35 +2,33 @@
   %h1
     Services and Products
     %small Information
-%section.content
-  .row
-    .col-md-12
+    .pull-right
       - if ( current_user.role == 'Admin' )
         = link_to "Back", :back, class: "btn btn-flat btn-success"
         = link_to "UPDATE", edit_service_product_path(@service_product.id), class: "btn btn-flat btn-xs btn-success"
         = link_to "REMOVE", service_product_path(@service_product.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-      
-      .box.box-success
-        .box-body
-          %table.ui.selectable.celled.table
-            %tbody
-              %tr
-                %td
-                  %b Type:
-                %td= @service_product.type
-              %tr
-                %td
-                  %b Name:
-                %td= @service_product.name
-              %tr
-                %td
-                  %b Price:
-                %td= @service_product.price
-              %tr
-                %td
-                  %b Code:
-                %td= @service_product.code
-              %tr
-                %td
-                  %b Description:
-                %td= @service_product.description
+%section.content
+  .row
+    .col-md-12     
+      %table.ui.selectable.celled.table
+        %tbody
+          %tr
+            %td
+              %b Type:
+            %td= @service_product.type
+          %tr
+            %td
+              %b Name:
+            %td= @service_product.name
+          %tr
+            %td
+              %b Price:
+            %td= @service_product.price
+          %tr
+            %td
+              %b Code:
+            %td= @service_product.code
+          %tr
+            %td
+              %b Description:
+            %td= @service_product.description

@@ -18,6 +18,20 @@ class ApplicationController < ActionController::Base
     def layout_by_resource
       if devise_controller?
         "loginpage"
+      elsif params[:controller] == "employees" && ["details"].include?(params[:action])
+        "printing"
+      elsif params[:controller] == "petty_vouchers" && ["details"].include?(params[:action])
+        "printing"
+      elsif params[:controller] == "check_vouchers" && ["details"].include?(params[:action])
+        "printing"
+      elsif params[:controller] == "cash_vouchers" && ["details"].include?(params[:action])
+        "printing"
+      elsif params[:controller] == "proposals" && ["details"].include?(params[:action])
+        "printing"
+      elsif params[:controller] == "clients" && ["details"].include?(params[:action])
+        "printing"
+      elsif params[:controller] == "billings" && ["details"].include?(params[:action])
+        "printing"
       else
         "application"
       end

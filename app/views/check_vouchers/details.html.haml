@@ -16,7 +16,7 @@
         %br
         .row.invoice-info
           .col-md-6.invoice-col
-            %table.table.table-striped
+            %table.table.table-bordered
               %thead
                 %tr
                   %th PAYEE
@@ -28,7 +28,7 @@
             %p
               %b
                 CV No.
-              = @check_voucher.reference_no
+              = @check_voucher.to_s
             %p
               %b
                 Date:
@@ -57,7 +57,7 @@
 
       .row
         .col-xs-12.table-responsive
-          %table.table.table-striped
+          %table.table.table-bordered
             %thead
               %tr
                 %th PARTICULARS
@@ -73,7 +73,7 @@
       %br
       .row
         .col-xs-12.table-responsive
-          %table.table.table-striped
+          %table.table.table-bordered
             %thead
               %tr
                 %th Account Title

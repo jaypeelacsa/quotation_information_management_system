@@ -15,7 +15,7 @@
 		.col-md-12
 			= select_tag :status, options_for_select(Client::STATUS, @status), class: "form-control select-select2", prompt: "Select Status"
 	%br
-	%center
+	.pull-right
 		.ui.buttons
 			%button.ui.positive.button Search
 			.or

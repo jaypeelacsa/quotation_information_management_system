@@ -4,7 +4,14 @@
     %small Control Panel
 %section.content
   .row
-    .col-md-12  
+    .col-md-3
+      .box.box-default.box-solid
+        .box-header
+          %h3.box-title Search Tool
+        .box-body
+          = render partial: "search"
+
+    .col-md-9 
       .box.box-default.box-solid
         .box-header
           %h3.box-title Petty Cash Voucher List
