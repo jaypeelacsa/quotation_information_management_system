@@ -7,6 +7,7 @@
         = link_to "Back", :back, class: "btn btn-flat btn-success"
         = link_to "UPDATE", edit_order_path(@order.id), class: "btn btn-flat btn-xs btn-success"
         = link_to "REMOVE", order_path(@order.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+
 %section.content
   .row
     .col-md-12
@@ -15,9 +16,7 @@
           %li.active
             %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#one"} Details
           %li
-            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#two"} List
-          %li
-            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#three"} Payment
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#two"} Order List
         .tab-content
           #one.tab-pane.active
             %table.ui.selectable.celled.table
@@ -48,7 +47,9 @@
             %table.ui.selectable.celled.table
               %thead
                 %th Service/Product Name
+                %th Price
                 %th Quantity
+                %th Total Price
                 %th Status
                 - if ( current_user.role == 'Admin' )
                   %th Actions
@@ -56,16 +57,26 @@
                 - @order_particulars.each do |op|
                   %tr
                     %td= op.service_product.name
+                    %td= op.service_product.price
                     %td= op.quantity
-                    %td 
-                      %span.label.label-warning= op.status
+                    - @total = op.service_product.price * op.quantity 
+                    %td= @total
+                    %td
+                      - if op.status == "pending" 
+                        %span.label.label-warning= op.status
+                      - elsif op.status == "approved"
+                        %span.label.label-info= op.status
+                      - else
+                        %span.label.label-danger= op.status
                     %td
                       - if ( current_user.role == 'Admin' )
-                        = link_to 'Approve', approve_order_particular_path(op..id), class: "btn btn-flat btn-xs btn-success"
+                        - if op.status == "pending"
+                          = link_to 'APPROVED', order_approve_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-info"
+                        - elsif op.status == "approved"
+                          = link_to 'FINISH', order_approve_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-info"
                         = link_to "UPDATE", edit_order_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-success"
                         = link_to "REMOVE", [op.order, op],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
 
-          #three.tab-pane
 
 :javascript
   $('.menu .item').tab();

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  get '/order/:id/order_particular/:id/approved', to: 'order_particulars#approved', as: :approve_order_particular
-  
+
+
+
   devise_for :users, :skip => [:registrations]                                          
     as :user do
   get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
@@ -37,6 +38,7 @@ end
 
 	resources :orders do
 		resources :order_particulars, module: 'orders'
+    get "/orders/:order_id/orders/:id/order_particular/:id/approve", to: "orders/order_particulars#approve", as: :approve_order_particular
 	end
 
 	resources :service_products

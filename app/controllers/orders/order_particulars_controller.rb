@@ -11,21 +11,21 @@ module Orders
 				@order_particular = OrderParticular.new(order_particular_params)
 				@order_particular.order = @order
 				if @order_particular.save
-					redirect_to order_path(@order)
+					
 				else
 					render "new"
 				end
 			end
 			
-			def approved
+			def approve
 				@order_particular = OrderParticular.find(params[:id])
 				if @order_particular.status == "pending"
 					@order_particular.update!(status: "approved")
-				# elsif @order_particular.status == "approved"
-					# @order_particular.update!(status: "finished")
+				elsif @order_particular.status == "approved"
+					@order_particular.update!(status: "finish")
 				end
+				redirect_to order_path(@order)
 			end
-				redirect_to order_particular_path(@order_particular)
 
 			def edit
 				if ( current_user.role == 'Admin' )
