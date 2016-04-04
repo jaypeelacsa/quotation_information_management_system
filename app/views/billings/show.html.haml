@@ -2,12 +2,15 @@
   %h1
     Statement Of Account
     %small Information
+    %br
+    .pull-left
+      = link_to "BACK", :back, class: "btn btn-flat btn-xs btn-success"
     .pull-right
       - if ( current_user.role == 'Admin' )
-        = link_to "Back", :back, class: "btn btn-flat btn-success"
         = link_to "UPDATE", edit_billing_path(@billing.id), class: "btn btn-flat btn-xs btn-success"
         = link_to "REMOVE", billing_path(@billing.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
         = link_to "PRINT",   billings_details_path(@billing.id), class: "btn btn-flat btn-xs btn-primary", target: "blank"
+      
 %section.content
   .row
     .col-md-12

@@ -16,8 +16,8 @@
           %h3.box-title Cash Voucher List
         .box-body
           - if ( current_user.role == 'Admin' )
-            = link_to "NEW CASH VOUCHER", new_cash_voucher_path, class: "btn btn-block btn-primary"
-            = link_to "Back", :back, class: "btn btn-flat btn-success"
+            .pull-right
+              = link_to "NEW CASH VOUCHER", new_cash_voucher_path, class: "btn btn-block btn-primary"
           %table.ui.selectable.celled.table
             %thead
               %tr

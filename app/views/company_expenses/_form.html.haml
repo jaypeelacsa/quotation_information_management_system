@@ -1,5 +1,8 @@
 %section.content-header
   %h1 Information To Add:
+  %br
+    .pull-left
+      = link_to "BACK", :back, class: "btn btn-flat btn-success"
 %section.content
   .well
     .box.box-success
@@ -15,6 +18,8 @@
             .form-group
               = ce.input :amount
           .box-footer
-            %button.btn.btn-success
-              %i.save.icon>
-              SAVE
+            .pull-right
+              %button.btn.btn-primary
+                %i.save.icon>
+                SAVE
+            

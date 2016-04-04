@@ -17,8 +17,6 @@
           %h3.box-title Employee List
         .box-body
           - if ( current_user.role == 'Admin' )
-            .pull-left
-              = link_to "Back", :back, class: "btn btn-flat btn-success"
             .pull-right
               = link_to "ADD NEW EMPLOYEE", new_employee_path, class: "btn btn-block btn-primary"
           %table.ui.selectable.celled.table

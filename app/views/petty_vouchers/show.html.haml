@@ -2,12 +2,14 @@
   %h1
     Petty Cash Voucher
     %small Information
-    .pull-right
-      - if ( current_user.role == 'Admin' )
-        = link_to "Back", :back, class: "btn btn-flat btn-success"
-        = link_to "UPDATE", edit_petty_voucher_path(@petty_voucher.id), class: "btn btn-flat btn-xs btn-success"
-        = link_to "REMOVE", petty_voucher_path(@petty_voucher.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-        = link_to "PRINT",  petty_vouchers_details_path(@petty_voucher.id), class: "btn btn-flat btn-xs btn-primary", target: "blank"
+    %br
+      .pull-left
+        = link_to "BACK", :back, class: "btn btn-flat btn-xs btn-success"
+      .pull-right
+        - if ( current_user.role == 'Admin' )
+          = link_to "UPDATE", edit_petty_voucher_path(@petty_voucher.id), class: "btn btn-flat btn-xs btn-success"
+          = link_to "REMOVE", petty_voucher_path(@petty_voucher.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+          = link_to "PRINT",  petty_vouchers_details_path(@petty_voucher.id), class: "btn btn-flat btn-xs btn-primary", target: "blank"
 %section.content
   .row
     .col-md-12

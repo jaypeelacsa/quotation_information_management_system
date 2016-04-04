@@ -15,12 +15,9 @@
         .box-header
           %h3.box-title Check Voucher List
         .box-body
-          .row
-            .col-md-9
-            .col-md-3
-              - if ( current_user.role == 'Admin' )
-                = link_to "Back", :back, class: "btn btn-flat btn-success"
-                = link_to "Add New Check Voucher", new_check_voucher_path, class: "btn btn-block btn-primary"
+          - if ( current_user.role == 'Admin' )
+            .pull-right
+              = link_to "Add New Check Voucher", new_check_voucher_path, class: "btn btn-block btn-primary"
                 
           %table.ui.selectable.celled.table
             %thead

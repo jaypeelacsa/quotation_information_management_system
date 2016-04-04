@@ -2,12 +2,13 @@
   %h1
     Order
     %small Information
-    .pull-right
-      - if ( current_user.role == 'Admin' )
-        = link_to "Back", :back, class: "btn btn-flat btn-success"
-        = link_to "UPDATE", edit_order_path(@order.id), class: "btn btn-flat btn-xs btn-success"
-        = link_to "REMOVE", order_path(@order.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-
+    %br
+      .pull-left
+        = link_to "BACK", :back, class: "btn btn-flat btn-xs btn-success"
+      .pull-right
+        - if ( current_user.role == 'Admin' )
+          = link_to "UPDATE", edit_order_path(@order.id), class: "btn btn-flat btn-xs btn-success"
+          = link_to "REMOVE", order_path(@order.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
 %section.content
   .row
     .col-md-12
