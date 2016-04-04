@@ -6,6 +6,7 @@
   .row
     .col-md-12
       - if ( current_user.role == 'Admin' )
+        = link_to "Back", :back, class: "btn btn-flat btn-success"
         = link_to "UPDATE", edit_order_path(@order.id), class: "btn btn-flat btn-xs btn-success"
         = link_to "REMOVE", order_path(@order.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
       .ui.top.attached.tabular.menu
@@ -56,12 +57,12 @@
                     %td= op.quantity
                     %td 
                       %span.label.label-warning= op.status
-                    - if ( current_user.role == 'Admin' )
-                      %td
-                        = link_to "APPROVED", edit_order_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-primary"
+                    %td
+                      - if ( current_user.role == 'Admin' )
+                        = link_to 'Approve', approve_order_particular_path(op..id), class: "btn btn-flat btn-xs btn-success"
                         = link_to "UPDATE", edit_order_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-success"
                         = link_to "REMOVE", [op.order, op],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-
+                        
       .ui.bottom.attached.tab.segment{"data-tab" => "third"}
         .box.box-success
           .box-body

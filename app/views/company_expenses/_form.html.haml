@@ -1,0 +1,20 @@
+%section.content-header
+  %h1 Information To Add:
+%section.content
+  .well
+    .box.box-success
+      = simple_form_for @company_expense, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |ce|
+        %form{:role => "form"}
+          .box-body
+            .form-group
+              = ce.input :name
+            .form-group
+              = ce.input :remarks
+            .field
+              = ce.date_select :exdate, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
+            .form-group
+              = ce.input :amount
+          .box-footer
+            %button.btn.btn-success
+              %i.save.icon>
+              SAVE

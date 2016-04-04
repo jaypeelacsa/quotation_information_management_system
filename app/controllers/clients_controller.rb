@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
 	
 	def index
-		@clients = Client.all
+		@clients = Client.list_of_clients
 
 
 		if params[:client_name].present?
@@ -43,6 +43,7 @@ class ClientsController < ApplicationController
 
 	def show
 		@client = Client.find(params[:id])
+		@order_particulars = OrderParticular.where(client_id: @client.id)
 	end
 
 	def edit
@@ -79,6 +80,7 @@ class ClientsController < ApplicationController
 		end
 		
 	end
+
 
 
 	def client_params

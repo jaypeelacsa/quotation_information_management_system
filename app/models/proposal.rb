@@ -18,4 +18,6 @@ class Proposal < ActiveRecord::Base
   has_attached_file :system_architecture, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :system_architecture, content_type: /\Aimage\/.*\Z/
 
+  scope :list_of_proposals, -> { order(created_at: :desc) }
+
 end

@@ -19,6 +19,7 @@
             .col-md-8
             .col-md-4
               - if ( current_user.role == 'Admin' )
+                = link_to "Back", :back, class: "btn btn-flat btn-success"
                 = link_to "ADD NEW SERVICE/PRODUCT", new_service_product_path, class: "btn btn-block btn-primary"
           %table.ui.selectable.celled.table
             %thead

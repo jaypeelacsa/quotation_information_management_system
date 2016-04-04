@@ -9,11 +9,9 @@
         .box-header
           %h3.box-title Cash Voucher List
         .box-body
-          .row
-            .col-md-8
-            .col-md-4
-              - if ( current_user.role == 'Admin' )
-                = link_to "NEW CASH VOUCHER", new_cash_voucher_path, class: "btn btn-block btn-primary"
+          - if ( current_user.role == 'Admin' )
+            = link_to "NEW CASH VOUCHER", new_cash_voucher_path, class: "btn btn-block btn-primary"
+            = link_to "Back", :back, class: "btn btn-flat btn-success"
           %table.ui.selectable.celled.table
             %thead
               %tr

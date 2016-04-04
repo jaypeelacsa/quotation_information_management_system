@@ -1,7 +1,7 @@
 class ServiceProductsController < ApplicationController
 	
 	def index
-		@service_products = ServiceProduct.all
+		@service_products = ServiceProduct.list_of_service_products
 
 		if params[:name].present?
 			@name = params[:name]

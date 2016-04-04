@@ -1,0 +1,39 @@
+%section.content-header
+  %h1
+    Company
+    %small Expenses
+%section.content
+  - @company_expenses.each do |ce|
+    .row
+      .col-md-12
+        - if ( current_user.role == 'Admin' )
+          = link_to "Back", :back, class: "btn btn-flat btn-success"
+          = link_to "Add Expenses", new_company_expense_path, class: "btn btn-flat btn-xs btn-primary"
+          = link_to "Edit Expense", edit_company_expense_path(ce.id), class: "btn btn-flat btn-xs btn-success"
+    .ui.top.attached.tabular.menu
+      %table.ui.selectable.celled.table
+        %thead
+          %tr
+            %th Name
+            %th Remark
+            %th Date
+            %th Amount
+        %tbody
+          - @company_expenses.each do |ce|
+            %tr
+              %td= ce.name
+              %td= ce.remarks
+              %td= ce.exdate
+              %td= ce.amount
+          %tr
+            %th
+              %center TOTAL
+              %td
+              %td
+                = @company_expenses.sum(:amount)
+                
+  
+:javascript
+  $('.menu .item')
+  .tab()
+  ;

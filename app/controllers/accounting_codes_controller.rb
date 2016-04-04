@@ -1,7 +1,16 @@
 class AccountingCodesController < ApplicationController
 	
 	def index
-		@accounting_codes = AccountingCode.all
+		@accounting_codes = AccountingCode.list_of_accounting_codes
+	end
+
+	def show
+			@accounting_code = AccountingCode.find(params[ :id])
+			@check_accounts = CheckAccount.where(accounting_code_id: @accounting_code.id)
+			@check_vouchers = CheckVoucher.where(accounting_code_id: @accounting_code.id)
+			# @check_vouchers = CheckVoucher.where(accounting_code_id: @accounting_code.id)
+			# @check_vouchers = CheckVoucher.where(check_account_id: @check_account.id) == (accounting_code_id: @accounting_code.id)
+			# @check_account = CheckAccount.where(check_voucher_id: @check_voucher.id)
 	end
 
 	def new

@@ -21,6 +21,7 @@
             .col-md-3
               - if ( current_user.role == 'Admin' )
                 = link_to "NEW BILLING", new_billing_path, class: "btn btn-block btn-primary"
+                = link_to "Back", :back, class: "btn btn-flat btn-success"
           %table.ui.selectable.celled.table
             %thead
               %tr

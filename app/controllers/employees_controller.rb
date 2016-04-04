@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
 		def index
-			@employees= Employee.all
+			@employees= Employee.list_of_employees
 
 			if params[:name].present?
 				@name = params[:name]

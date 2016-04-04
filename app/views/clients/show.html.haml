@@ -6,12 +6,14 @@
   .row
     .col-md-12
       - if ( current_user.role == 'Admin' )
+        = link_to "Back", :back, class: "btn btn-flat btn-success"
         = link_to "UPDATE", edit_client_path(@client.id), class: "btn btn-flat btn-xs btn-success"
         = link_to "REMOVE", client_path(@client.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
         = link_to "PRINT", clients_details_path(@client.id), class: "btn btn-flat btn-xs btn-primary"
       .ui.top.attached.tabular.menu
         %a.active.item{"data-tab" => "first"} Details
         %a.item{"data-tab" => "second"} Company Profile
+        %a.item{"data-tab" => "third"} List Of Orders
       .ui.bottom.attached.active.tab.segment{"data-tab" => "first"}
         .box.box-success
           .box-body
@@ -59,5 +61,20 @@
                   %td
                     %b Status:
                   %td= @client.status
+
+      .ui.bottom.attached.tab.segment{"data-tab" => "third"}
+        %table.ui.selectable.celled.table
+          %thead
+            %tr
+              %th Service Products
+              %th Amount
+          %tbody
+            - @order_particulars.each do |op|
+              %tr
+                %td= op.service_product.name
+                %td= op.service_product.price
+            %th{:colspan => "2"}
+              %center Total
+                    
 :javascript
   $('.menu .item').tab();

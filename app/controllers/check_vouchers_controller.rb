@@ -1,7 +1,7 @@
 class CheckVouchersController < ApplicationController
 	
 	def index
-		@check_vouchers = CheckVoucher.all
+		@check_vouchers = CheckVoucher.list_of_check_vouchers
 	end
 
 	def new

@@ -6,6 +6,7 @@
   .row
     .col-md-12
       - if ( current_user.role == 'Admin' )
+        = link_to "Back", :back, class: "btn btn-flat btn-success"
         = link_to "UPDATE", edit_petty_voucher_path(@petty_voucher.id), class: "btn btn-flat btn-xs btn-success"
         = link_to "REMOVE", petty_voucher_path(@petty_voucher.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
         = link_to "PRINT",  petty_vouchers_details_path(@petty_voucher.id), class: "btn btn-flat btn-xs btn-primary"

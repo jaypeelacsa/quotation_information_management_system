@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 		def index
-			@orders= Order.all
+			@orders= Order.list_of_orders
 
 			if !params[:client_id].blank?
 				@client = Client.find(params[:client_id])

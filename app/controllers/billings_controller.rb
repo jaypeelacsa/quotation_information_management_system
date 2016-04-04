@@ -1,6 +1,6 @@
 class BillingsController < ApplicationController
 		def index
-			@billings= Billing.all
+			@billings= Billing.list_of_billings
 
 			if params[:start_date].present? && params[:end_date].present?
 				@start_date = params[:start_date]

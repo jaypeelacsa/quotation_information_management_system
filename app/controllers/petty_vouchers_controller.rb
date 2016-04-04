@@ -1,7 +1,7 @@
 class PettyVouchersController < ApplicationController
 	
 	def index
-		@petty_vouchers = PettyVoucher.all
+		@petty_vouchers = PettyVoucher.list_of_petty_vouchers
 	end
 
 	def new

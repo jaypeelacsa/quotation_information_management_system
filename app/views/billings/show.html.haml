@@ -8,6 +8,7 @@
       - if ( current_user.role == 'Admin' )
         = link_to "UPDATE", edit_billing_path(@billing.id), class: "btn btn-flat btn-xs btn-success"
         = link_to "REMOVE", billing_path(@billing.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+        = link_to "Back", :back, class: "btn btn-flat btn-xs btn-primary"
       .ui.top.attached.tabular.menu
         %a.active.item{"data-tab" => "first"} Details
         %a.item{"data-tab" => "second"} Particulars

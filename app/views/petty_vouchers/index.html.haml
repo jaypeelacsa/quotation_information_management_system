@@ -13,6 +13,7 @@
             .col-md-8
             .col-md-4
               - if ( current_user.role == 'Admin' )
+                = link_to "Back", :back, class: "btn btn-flat btn-success"
                 = link_to "NEW PETTY CASH VOUCHER", new_petty_voucher_path, class: "btn btn-block btn-primary"
           %table.ui.selectable.celled.table
             %thead

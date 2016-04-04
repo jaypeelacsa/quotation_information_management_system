@@ -6,6 +6,7 @@
   .row
     .col-md-12
       - if ( current_user.role == 'Admin' )
+        = link_to "Back", :back, class: "btn btn-flat btn-success"
         = link_to "UPDATE", edit_proposal_path(@proposal.id), class: "btn btn-flat btn-xs btn-success"
         = link_to "REMOVE", proposal_path(@proposal.id), data: { :confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
         = link_to "PRINT", proposals_details_path(@proposal.id), class: "btn btn-flat btn-xs btn-primary"

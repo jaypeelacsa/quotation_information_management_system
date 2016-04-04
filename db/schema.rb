@@ -11,14 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331122235) do
+ActiveRecord::Schema.define(version: 20160402112253) do
 
   create_table "accounting_codes", force: :cascade do |t|
     t.string   "name"
     t.string   "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "check_voucher_id"
   end
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string   "namespace"
+    t.text     "body"
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -124,8 +140,21 @@ ActiveRecord::Schema.define(version: 20160331122235) do
     t.string   "status"
     t.string   "tin"
     t.string   "company_address"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "primary_contact"
+    t.string   "secondary_contact"
+    t.integer  "order_id"
+    t.integer  "order_particular_id"
+  end
+
+  create_table "company_expenses", force: :cascade do |t|
+    t.string   "name"
+    t.decimal  "amount"
+    t.text     "remarks"
+    t.date     "exdate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "company_profiles", force: :cascade do |t|
@@ -189,13 +218,15 @@ ActiveRecord::Schema.define(version: 20160331122235) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.integer  "order_id"
+    t.integer  "client_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer  "employee_id"
     t.integer  "client_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "order_particular_id"
   end
 
   create_table "petty_particulars", force: :cascade do |t|

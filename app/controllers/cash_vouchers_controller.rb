@@ -1,7 +1,7 @@
 class CashVouchersController < ApplicationController
 	
 	def index
-		@cash_vouchers = CashVoucher.all
+		@cash_vouchers = CashVoucher.list_of_cash_vouchers
 	end
 
 	def new

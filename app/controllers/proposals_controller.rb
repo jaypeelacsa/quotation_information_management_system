@@ -1,7 +1,7 @@
 class ProposalsController < ApplicationController
 	
 	def index
-		@proposals = Proposal.all
+		@proposals = Proposal.list_of_proposals
 
 		if params[:title].present?
 			@title = params[:title]

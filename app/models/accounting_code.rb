@@ -4,6 +4,9 @@ class AccountingCode < ActiveRecord::Base
   validates :code, presence: true
 
 
-	belongs_to :check_voucher
-	belongs_to :check_account
+	has_many :check_vouchers
+	has_many :check_accounts
+
+	scope :list_of_accounting_codes, -> { order(created_at: :desc) }
+	
 end

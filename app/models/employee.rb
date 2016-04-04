@@ -35,4 +35,6 @@ class Employee < ActiveRecord::Base
     ((Time.now - date_employed.to_time)/ (60*60*24*356)).floor
   end
 
+  scope :list_of_employees, -> { order(created_at: :desc) }
+
 end
