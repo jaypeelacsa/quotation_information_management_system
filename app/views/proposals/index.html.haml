@@ -16,12 +16,9 @@
         .box-header
           %h3.box-title Proposal List
         .box-body
-          .row
-            .col-md-9
-            .col-md-3
-              - if ( current_user.role == 'Admin' )
-                = link_to "Back", :back, class: "btn btn-flat btn-success"
-                = link_to "ADD NEW PROPOSAL", new_proposal_path, class: "btn btn-block btn-primary"
+          .pull-right
+            - if ( current_user.role == 'Admin' )
+              = link_to "ADD NEW PROPOSAL", new_proposal_path, class: "btn btn-block btn-primary"
           %table.ui.selectable.celled.table
             %thead
               %tr

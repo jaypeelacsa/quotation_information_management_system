@@ -1,5 +1,8 @@
 class FeatureList < ActiveRecord::Base
 	
+	validates :name, presence: true
+	validates :description, presence: true
+	
 	belongs_to :proposal
 	
 	belongs_to :parent_feature_list, class_name: "FeatureList", :foreign_key => "parent_feature_list_id"

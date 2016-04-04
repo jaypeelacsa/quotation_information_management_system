@@ -16,23 +16,28 @@
         .box-header
           %h3.box-title Expenses List
         .box-body
-          - if ( current_user.role == 'Admin' )
-            = link_to "Back", :back, class: "btn btn-flat btn-success"
-            = link_to "Add Expenses", new_company_expense_path, class: "btn btn-flat btn-xs btn-primary"
+          %br
+          .pull-left
+            = link_to "BACK", :back, class: "btn btn-flat btn-xs btn-success"
+          .pull-right
+            - if ( current_user.role == 'Admin' )
+              = link_to "Add Expenses", new_company_expense_path, class: "btn btn-flat btn-xs btn-primary"
+                
+        %table.ui.selectable.celled.table
+          %thead
+            %tr
+              %th Name
+              %th Remark
+              %th Date
+              %th Amount
+              %th Action
+          %tbody
             - @company_expenses.each do |ce|
-              = link_to "Edit Expense", edit_company_expense_path(ce.id), class: "btn btn-flat btn-xs btn-success"
-
-          %table.ui.selectable.celled.table
-            %thead
               %tr
-                %th Name
-                %th Remark
-                %th Date
-                %th Amount
-            %tbody
-              - @company_expenses.each do |ce|
-                %tr
-                  %td= ce.name
-                  %td= ce.remarks
-                  %td= ce.exdate
-                  %td= ce.amount
+                %td= ce.name
+                %td= ce.remarks
+                %td= ce.exdate
+                %td= ce.amount
+                %td
+                  = link_to "UPDATE", edit_company_expense_path(ce.id), class: "btn btn-flat btn-xs btn-success"
+                  = link_to "REMOVE", company_expense_path(ce.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"

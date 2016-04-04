@@ -68,13 +68,19 @@
           #three.tab-pane
             %table.ui.selectable.celled.table
               %thead
+                %h1 Click Details to see all order list
                 %tr
-                  %th Service Products
-                  %th Amount
+                  %th No.
+                  %th Employee Name
+                  %th Actions
               %tbody
-                - @order_particulars.each do |op|
+                - @num = 1
+                - @proj.each do |p|
                   %tr
-                    %td= op.service_product.name
-                    %td= op.service_product.price
-                %th{:colspan => "2"}
-                  %center Total
+                    %td= @num
+                    %td= p.employee.to_s
+                    %td
+                      = link_to "Details", order_path(p.id), class: "btn btn-flat btn-xs btn-default"    
+                    - @num += 1
+
+            
