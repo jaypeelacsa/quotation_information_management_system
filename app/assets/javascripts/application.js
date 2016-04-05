@@ -28,6 +28,10 @@ $(document).ready(function() {
   $('.datepick').datepicker({ dateFormat: "MM d, yy" });
 });
 
+$(document).ready(function(){
+  $('select').select2();
+});
+
 // $(function() { $("[data-widget='collapse']").click(); })
 
 // $('body').bind('expanded.pushMenu', function() {

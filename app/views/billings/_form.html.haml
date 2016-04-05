@@ -14,7 +14,9 @@
             .form-group
               = e.association :client, as: :select, client: Client.all
             .form-group
-              = e.date_select :bill_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
+              %label Bill Date
+              %br
+                = e.date_select :bill_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
             .form-group
               = e.input :certified_by
           .box-footer

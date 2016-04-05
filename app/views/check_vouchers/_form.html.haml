@@ -33,7 +33,9 @@
                     - @format = Date.today.strftime("CV""%Y%m")
                     = cv.hidden_field :reference_no, :value => @format
               .form-group
-                = cv.input :check_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
+                %label Check date
+                %br
+                  = cv.date_select :check_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
               .form-group
                 = cv.input :si_no
               .form-group

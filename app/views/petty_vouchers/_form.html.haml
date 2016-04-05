@@ -14,7 +14,9 @@
             .form-group
               = pv.input :payee
             .form-group
-              = pv.date_select :petty_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
+              %label Pety Cash Date
+              %br
+                = pv.date_select :petty_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
             .form-group
               = pv.input :approved_by
             .form-group
@@ -22,9 +24,7 @@
             .form-group
               = pv.input :received_by
           .box-footer
-            .row
-              .col-md-10
-              .col-md-2
-                %button.btn.btn-primary
-                  %i.save.icon>
+            .pull-right
+              %button.btn.btn-primary
+                %i.save.icon>
                   SAVE

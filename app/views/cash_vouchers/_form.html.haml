@@ -14,7 +14,9 @@
             .form-group
               = pv.input :paid_to
             .form-group
-              = pv.date_select :cash_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
+              %label Cash Date
+              %br
+                = pv.date_select :cash_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
             .form-group
               = pv.input :address
             .form-group
