@@ -21,7 +21,7 @@
       - @credit = 0
       - @check_accounts.each do |ac|
         %tr
-          %td= ac.check_voucher.reference_no
+          %td= ac.check_voucher.to_s
           %td= ac.check_voucher_id
           - if ac.trans_type == 'Debit'
             %td= ac.amount

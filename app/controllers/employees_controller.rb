@@ -78,7 +78,10 @@ class EmployeesController < ApplicationController
 		end
 
 		def print
-
+			if ( current_user.role == 'Admin' )
+			else
+				redirect_to employees_path
+			end
 		end
 
 		def print_all

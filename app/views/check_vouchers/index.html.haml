@@ -16,8 +16,10 @@
           %h3.box-title Check Voucher List
         .box-body
           - if ( current_user.role == 'Admin' )
-            .pull-right
-              = link_to "Add New Check Voucher", new_check_voucher_path, class: "btn btn-block btn-primary"
+            .row
+              .col-md-9
+              .col-md-3   
+                = link_to "Add New Check Voucher", new_check_voucher_path, class: "btn btn-block btn-primary"
                 
           %table.ui.selectable.celled.table
             %thead

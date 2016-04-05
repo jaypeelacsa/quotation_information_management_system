@@ -5,7 +5,7 @@
       %small Profile
       .pull-right
         - if ( current_user.role == 'Admin' )
-          = link_to "Back", :back, class: "btn btn-flat btn-success"
+          = link_to "Back", :back, class: "btn btn-flat btn-xs btn-success"
           - if (CompanyProfile.count == 0)
             = link_to "Add Company Information", new_company_profile_path, class: "btn btn-flat btn-xs btn-primary"
           - else

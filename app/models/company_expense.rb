@@ -3,4 +3,6 @@ class CompanyExpense < ActiveRecord::Base
 	validates :amount, presence: true
   validates :remarks, presence: true
 	validates :exdate, presence: true
-	end
+
+	scope :list_of_expenses, -> { order(created_at: :desc) }
+end

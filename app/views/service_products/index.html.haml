@@ -15,10 +15,12 @@
         .box-header
           %h3.box-title Service And products List
         .box-body
-          .row
-            .col-md-8
-            .col-md-4
-              - if ( current_user.role == 'Admin' )
+          - if ( current_user.role == 'Admin' )
+            .row
+              .col-md-3
+                = link_to "REPORTS",service_products_print_path, class: "btn btn-block btn-primary", target: "blank"
+              .col-md-5
+              .col-md-4
                 = link_to "ADD NEW SERVICE/PRODUCT", new_service_product_path, class: "btn btn-block btn-primary"
           %table.ui.selectable.celled.table
             %thead

@@ -17,10 +17,12 @@
           %h3.box-title Billing List
         .box-body
           - if ( current_user.role == 'Admin' )
-            .pull-left
-              = link_to "NEW BILLING", billings_print_path, class: "btn btn-block btn-primary", target: "blank"
-            .pull-right
-              = link_to "NEW BILLING", new_billing_path, class: "btn btn-block btn-primary"
+            .row
+              .col-md-3
+                = link_to "REPORTS", billings_print_path, class: "btn btn-block btn-primary", target: "blank"
+              .col-md-6
+              .col-md-3
+                = link_to "NEW BILLING", new_billing_path, class: "btn btn-block btn-primary"
           %table.ui.selectable.celled.table
             %thead
               %tr

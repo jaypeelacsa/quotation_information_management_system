@@ -16,18 +16,25 @@
     %table.table.table-bordered
       %thead
         %tr
-          %th No.
+          %th No
           %th Name
-          %th Position
-          %th Status
-          %th Address
+          %th Remark
+          %th Date
+          %th Amount
       %tbody
-        - @num = 1
-        - @employees.each do |e|
-          %tr
-            %td= @num
-            %td= e.to_s
-            %td= e.position
-            %td= e.status
-            %td= e.address
-            - @num += 1
+      - @num = 1
+      - @company_expenses.each do |ce|
+        %tr
+          %td= @num
+          %td= ce.name
+          %td= ce.remarks
+          %td= ce.exdate
+          %td= ce.amount
+          - @num += 1
+
+      - if @check == "TRUE"
+        %tr
+          %th{:colspan => "3"}
+            %center TOTAL
+          %th= @company_expenses.sum(:amount)
+          %th

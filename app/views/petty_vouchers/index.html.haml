@@ -16,9 +16,11 @@
         .box-header
           %h3.box-title Petty Cash Voucher List
         .box-body
-          .pull-right
-            - if ( current_user.role == 'Admin' )
-              = link_to "NEW PETTY CASH VOUCHER", new_petty_voucher_path, class: "btn btn-block btn-primary"
+          - if ( current_user.role == 'Admin' )
+            .row
+              .col-md-9
+              .col-md-3  
+                = link_to "NEW PETTY CASH VOUCHER", new_petty_voucher_path, class: "btn btn-block btn-primary"
           %table.ui.selectable.celled.table
             %thead
               %tr

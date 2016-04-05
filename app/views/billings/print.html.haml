@@ -9,6 +9,9 @@
         .box-header
           %h3.box-title Filter Tool
         .box-body
+          = link_to "Print All Billing", billings_print_all_path, class: "ui button"
+          %br
+          %br
           = form_tag send("billings_print_all_path"),method: "GET" do
             .row
               .col-md-12

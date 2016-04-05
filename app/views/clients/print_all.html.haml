@@ -17,17 +17,23 @@
       %thead
         %tr
           %th No.
-          %th Name
-          %th Position
-          %th Status
-          %th Address
+          %th Client Name
+          %th Telephone
+          %th Company Name
+          -if @header == "List Of All active Clients"
+          -elsif @header == "List Of All inactive Clients"
+          -else
+            %th Status
       %tbody
         - @num = 1
-        - @employees.each do |e|
+        - @clients.each do |c|
           %tr
             %td= @num
-            %td= e.to_s
-            %td= e.position
-            %td= e.status
-            %td= e.address
+            %td= c.client_name
+            %td= c.telephone
+            %td= c.company_name
+            -if @header == "List Of All active Clients"
+            -elsif @header == "List Of All inactive Clients"
+            -else
+              %td= c.status
             - @num += 1
