@@ -73,6 +73,31 @@ class ServiceProductsController < ApplicationController
 		redirect_to service_products_path
 	end
 
+	def print
+		if ( current_user.role == 'Admin' )
+		else
+				redirect_to service_products_path
+		end
+	end
+
+	def print_all
+		@service_products = ServiceProduct.all
+		@company_profiles = CompanyProfile.all
+		@header = "List Of All Service And Product"
+
+		if params[:type].present?
+			@type = params[:type]
+			@service_products = @service_products.where("type = :type",type: params[:type])
+			@header = "List Of All "+ @type
+		end
+
+		if params[:price_from].present? && params[:price_to].present?
+			@price_from = params[:price_from]
+			@price_to = params[:price_to]
+			@service_products = @service_products.where( :price => @price_from..@price_to )
+			@header = "List Of All Service And Product Price From "+@price_from+" To "+@price_to
+		end
+	end
 
 	def service_product_params
 			params.require(:service_product).permit!

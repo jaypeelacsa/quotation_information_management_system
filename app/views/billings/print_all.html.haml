@@ -16,18 +16,16 @@
     %table.table.table-bordered
       %thead
         %tr
-          %th No.
-          %th Name
-          %th Position
-          %th Status
-          %th Address
+          %th Bill No.
+          %th Bill To
+          %th Certified By
+          %th TIN
+          %th Date
       %tbody
-        - @num = 1
-        - @employees.each do |e|
+        - @billings.each do |b|
           %tr
-            %td= @num
-            %td= e.to_s
-            %td= e.position
-            %td= e.status
-            %td= e.address
-            - @num += 1
+            %td= b.bill_no
+            %td= b.client.company_name
+            %td= b.certified_by
+            %td= b.client.tin
+            %td= b.bill_date

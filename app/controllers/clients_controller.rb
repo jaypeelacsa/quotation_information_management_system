@@ -82,6 +82,24 @@ class ClientsController < ApplicationController
 		
 	end
 
+	def print
+		if ( current_user.role == 'Admin' )
+		else
+				redirect_to clients_path
+		end
+	end
+
+	def print_all
+		@clients = Client.list_of_clients
+		@company_profiles = CompanyProfile.all
+		@header = "List Of All Clients"
+
+		if params[:status].present?
+			@status = params[:status]
+			@clients = @clients.where("status = :status",status: params[:status])
+			@header = "List Of All "+@status+" Clients"
+		end
+	end
 
 
 	def client_params

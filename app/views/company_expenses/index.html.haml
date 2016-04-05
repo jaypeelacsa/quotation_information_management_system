@@ -9,35 +9,52 @@
         .box-header
           %h3.box-title Search Tool
         .box-body
-          / = render partial: "search"
+          = render partial: "search"
 
     .col-md-9
       .box.box-default.box-solid
         .box-header
           %h3.box-title Expenses List
         .box-body
-          %br
-          .pull-left
-            = link_to "BACK", :back, class: "btn btn-flat btn-xs btn-success"
-          .pull-right
-            - if ( current_user.role == 'Admin' )
-              = link_to "Add Expenses", new_company_expense_path, class: "btn btn-flat btn-xs btn-primary"
-                
-        %table.ui.selectable.celled.table
-          %thead
-            %tr
-              %th Name
-              %th Remark
-              %th Date
-              %th Amount
-              %th Action
-          %tbody
+          - if ( current_user.role == 'Admin' )
+            .row
+              .col-md-3
+                = link_to "REPORTS",company_expenses_print_path, class: "btn btn-block btn-primary", target: "blank"
+              .col-md-6
+              .col-md-3
+                = link_to "ADD NEW EXPENSES", new_company_expense_path, class: "btn btn-block btn-primary"      
+          %table.ui.selectable.celled.table
+            %thead
+              %tr
+                %th No
+                %th Name
+                %th Remark
+                %th Date
+                %th Amount
+                - if ( current_user.role == 'Admin' )
+                  %th Action
+            %tbody
+            - @num = 1
             - @company_expenses.each do |ce|
               %tr
+                %td= @num
                 %td= ce.name
                 %td= ce.remarks
                 %td= ce.exdate
                 %td= ce.amount
-                %td
-                  = link_to "UPDATE", edit_company_expense_path(ce.id), class: "btn btn-flat btn-xs btn-success"
-                  = link_to "REMOVE", company_expense_path(ce.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+                - if ( current_user.role == 'Admin' )
+                  %td
+                    = link_to "UPDATE", edit_company_expense_path(ce.id), class: "btn btn-flat btn-xs btn-success"
+                    = link_to "REMOVE", company_expense_path(ce.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+                - @num += 1
+
+            - if @check == "TRUE"
+              %tr
+                %th{:colspan => "3"}
+                  %center TOTAL
+                %th= @company_expenses.sum(:amount)
+                %th
+
+
+
+

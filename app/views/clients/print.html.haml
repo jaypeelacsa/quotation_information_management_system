@@ -1,6 +1,6 @@
 %section.content-header
   %h1
-    Employee
+    Client
     %small Reports
 %section.content
   .row
@@ -9,40 +9,17 @@
         .box-header
           %h3.box-title Filter Tool
         .box-body
-          = link_to "Print All Employee", employees_print_all_path, class: "ui button"
+          = link_to "Print All Client", clients_print_all_path, class: "ui button"
           %br
           %br
-          = form_tag send("employees_print_all_path"),method: "GET" do
+          = form_tag send("clients_print_all_path"),method: "GET" do
             .row
               .col-md-12
-                .ui.icon.input
-                  %input{:name => "start_date", :placeholder => "Employed From", class: "datepick"}
-                  %i.inverted.circular.search.link.icon
-            %br
-            .row
-              .col-md-12
-                .ui.icon.input
-                  %input{:name => "end_date", :placeholder => "Employed To", class: "datepick"}
-                  %i.inverted.circular.search.link.icon
-
-            %br
-            .row
-              .col-md-12
-                .ui.icon.input
-                  %input{:name => "pos", :placeholder => "Enter Position", :type => "text"}
-                  %i.inverted.circular.search.link.icon
-            %br
-            .row
-              .col-md-12
-                = select_tag :gender, options_for_select(Employee::GENDER, @gender), class: "form-control select-select2", prompt: "Select Gender"
-            %br
-            .row
-              .col-md-12
-                = select_tag :status, options_for_select(Employee::STATUS, @status), class: "form-control select-select2", prompt: "Select Status"
-            
+                = select_tag :status, options_for_select(Client::STATUS, @status), class: "form-control select-select2", prompt: "Select Status"
+              
             %br
             .pull-right
               .ui.buttons
                 %button.ui.positive.button Search
                 .or
-                = link_to "Clear", employees_path, class: "ui button"
+                = link_to "Clear", clients_print_path, class: "ui button"

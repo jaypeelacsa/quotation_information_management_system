@@ -1,1 +1,9 @@
-= render partial: "form"
+%section.content-header
+  %h1
+    Company Expenses
+    %small Information
+    %br
+      .pull-left
+        = link_to "BACK", :back, class: "btn btn-flat btn-success"
+%section.content
+  = render partial: "form"

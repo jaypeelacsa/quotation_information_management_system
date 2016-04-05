@@ -1,7 +1,36 @@
 class CompanyExpensesController < ApplicationController
 	
 	def index
+		@company_expenses = CompanyExpense.all.list_of_expenses
+
+		if params[:start_date].present? && params[:end_date].present?
+				@start_date = params[:start_date]
+				@end_date = params[:end_date]
+				@company_expenses = @company_expenses.where(exdate: (@start_date.to_date..@end_date.to_date))
+				@check = "TRUE"
+		end
+	end
+
+
+	def print
+		if ( current_user.role == 'Admin' )
+			else
+				redirect_to company_expenses_path
+			end
+		
+	end
+
+	def print_all
 		@company_expenses = CompanyExpense.all
+		@company_profiles = CompanyProfile.all
+		@header = "List OF All Expenses"
+		if params[:start_date].present? && params[:end_date].present?
+				@start_date = params[:start_date]
+				@end_date = params[:end_date]
+				@company_expenses = @company_expenses.where(exdate: (@start_date.to_date..@end_date.to_date))
+				@check = "TRUE"
+				@header = "List Of All Expenses From "+@start_date+" To "+@end_date
+		end
 	end
 
 	def new

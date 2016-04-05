@@ -16,11 +16,13 @@
         .box-header
           %h3.box-title Client List
         .box-body
-          .row
-            .col-md-9
-            .col-md-3
-              - if ( current_user.role == 'Admin' )
-                = link_to "Add New Client Info", new_client_path, class: "btn btn-block btn-primary"
+          - if ( current_user.role == 'Admin' )
+            .row
+              .col-md-3
+                = link_to "REPORTS",clients_print_path, class: "btn btn-block btn-primary", target: "blank"
+              .col-md-6
+              .col-md-3
+                = link_to "ADD NEW CLIENT", new_client_path, class: "btn btn-block btn-primary"
           %table.ui.selectable.celled.table
             %thead
               %tr

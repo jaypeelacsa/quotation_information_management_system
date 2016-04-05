@@ -10,14 +10,21 @@ class BillingsController < ApplicationController
 		end
 
 		def print
+			if ( current_user.role == 'Admin' )
+			else
+					redirect_to billings_path
+			end
 		end
 
 		def print_all
+			@billings= Billing.all
 			@company_profiles = CompanyProfile.all
+			@header = "List OF All Billing"
 				if params[:start_date].present? && params[:end_date].present?
 				@start_date = params[:start_date]
 				@end_date = params[:end_date]
 				@billings = @billings.where(bill_date: (@start_date.to_date..@end_date.to_date))
+				@header = "List Of All Billing From "+@start_date+" To "+@end_date
 			end
 		end
 

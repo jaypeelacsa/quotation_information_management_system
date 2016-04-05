@@ -1,13 +1,10 @@
-%section.content-header
-  %h1 Information To Add:
-  %br
-    .pull-left
-      = link_to "BACK", :back, class: "btn btn-flat btn-success"
-%section.content
-  .well
-    .box.box-success
-      = simple_form_for @company_expense, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |ce|
-        %form{:role => "form"}
+= simple_form_for @company_expense, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |ce|
+  %form{:role => "form"}
+    .row
+      .col-md-12
+        .box.box-default.box-solid
+          .box-header
+            %h3.box-title New Company Expenses
           .box-body
             .form-group
               = ce.input :name
@@ -24,4 +21,4 @@
               %button.btn.btn-primary
                 %i.save.icon>
                 SAVE
-            
+      

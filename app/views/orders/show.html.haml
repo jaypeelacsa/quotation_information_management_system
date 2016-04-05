@@ -69,15 +69,11 @@
                         %span.label.label-info= op.status
                       - else
                         %span.label.label-danger= op.status
-                    %td
-                      - if ( current_user.role == 'Admin' )
+                    - if ( current_user.role == 'Admin' )
+                      %td
                         - if op.status == "pending"
                           = link_to 'APPROVED', order_approve_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-info"
                         - elsif op.status == "approved"
                           = link_to 'FINISH', order_approve_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-info"
                         = link_to "UPDATE", edit_order_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-success"
                         = link_to "REMOVE", [op.order, op],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-
-
-:javascript
-  $('.menu .item').tab();

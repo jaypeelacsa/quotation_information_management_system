@@ -18,16 +18,20 @@
         %tr
           %th No.
           %th Name
-          %th Position
-          %th Status
-          %th Address
+          %th Price
+          -if @header == "List Of All Service"
+          -elsif @header == "List Of All Product"
+          -else
+            %th Type Offer
       %tbody
         - @num = 1
-        - @employees.each do |e|
+        - @service_products.each do |sp|
           %tr
             %td= @num
-            %td= e.to_s
-            %td= e.position
-            %td= e.status
-            %td= e.address
+            %td= sp.name
+            %td= sp.price
+            -if @header == "List Of All Service"
+            -elsif @header == "List Of All Product"
+            -else
+              %td= sp.type
             - @num += 1
