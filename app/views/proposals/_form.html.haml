@@ -9,7 +9,9 @@
             .form-group
               = p.input :title
             .form-group
-              = p.input :proposal_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
+              %label Proposal Date
+              %br
+              = p.date_select :proposal_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
             .form-group
               = p.input :overview
             .form-group

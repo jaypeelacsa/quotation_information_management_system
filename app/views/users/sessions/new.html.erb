@@ -50,12 +50,14 @@
 </body> -->
 
 
-
 <div class="container">
 	<br><br><br>
+  <div class="login-logo">
+    <a href="../../index2.html"><b>Cloudband</b>Solution</a>
+</div>
 	<div class="col-xs-4 col-xs-offset-4">
 		<div class="panel panel-primary">
-			<div class="panel-heading">LOG IN</div>
+			<div class="panel-heading" align="center">Log In to start your session</div>
 				<div class="panel-body" style="position: relative; margin-left: 3%; margin-right: 3%;">
 					<div class="ui form" style="font-size: 100%">
 						
@@ -63,12 +65,11 @@
 								<%= f.input :email, required: false, label: false, placeholder: "E-mail", autofocus: true%>
 						    <%= f.input :password, required: false, label: false, placeholder: "Password" %>
 						    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-						    <%= f.button :submit, "Log in", class: "btn btn-primary" %>
+						  <div class="pull-right">
+                <%= f.button :submit, "Log in", class: "btn btn-primary" %>
 						<% end %>
 					</div>
-						<div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
 							<%= render "users/shared/links" %>
-						</div>
 				</div>
 			</div>
 		</div>

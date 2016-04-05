@@ -1,9 +1,7 @@
 = form_tag send("accounting_codes_path"),method: "GET" do
-	.row
-		.col-md-12
-			.ui.icon.input
-				%input{:name => "code", :placeholder => "Enter Code", :type => "text"}
-				%i.inverted.circular.search.link.icon
+	.ui.icon.input.fluid
+		%input{:name => "code", :placeholder => "Enter Code", :type => "text"}
+		
 	%br
 	.pull-right
 		.ui.buttons

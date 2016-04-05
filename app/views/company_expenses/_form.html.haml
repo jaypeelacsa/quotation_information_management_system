@@ -11,7 +11,9 @@
             .form-group
               = ce.input :remarks
             .field
-              = ce.date_select :exdate, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
+              %label Expense Date
+              %br
+                = ce.date_select :exdate, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
             .form-group
               = ce.input :amount
           .box-footer

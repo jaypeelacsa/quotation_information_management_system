@@ -5,7 +5,6 @@
       %small Profile
       .pull-right
         - if ( current_user.role == 'Admin' )
-          = link_to "Back", :back, class: "btn btn-flat btn-xs btn-success"
           - if (CompanyProfile.count == 0)
             = link_to "Add Company Information", new_company_profile_path, class: "btn btn-flat btn-xs btn-primary"
           - else
@@ -19,6 +18,8 @@
               %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#one"} Details
             %li
               %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#two"} Mission and Vision
+            %li
+              %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#third"} About Us
           .tab-content
             #one.tab-pane.active
               .row
@@ -54,3 +55,40 @@
                 %dt Vision
                 %dd
                   = company.vission
+            #third.tab-pane
+              .box-body
+                .box-header.with-border
+                .box-body.no-padding
+                  %ul.users-list.clearfix
+                    %li
+                      %img{:alt => "User Image", :src => "/assets/avatar5.png"}
+                        %a.users-list-name{:href => "#"} Raphael Alampay
+                        %span.users-list-position Manager/Founder
+                        %br
+                        %span.users-list-company Cloudband Solution Co.
+                    %li
+                      %img{:alt => "User Image", :src => "/assets/avatar2.png"}
+                        %a.users-list-name{:href => "#"} Kathleen Zita Gayle Logmao
+                        %span.users-list-position Co Founder
+                        %br
+                        %span.users-list-company Cloudband Solution Co.
+                    %li
+                      %img{:alt => "User Image", :src => "/assets/avatar3.png"}
+                        %a.users-list-name{:href => "#"} Lani Gonzales
+                        %span.users-list-position Admin
+                        %br
+                        %span.users-list-company Cloudband Solution Co.
+                    %li
+                      %img{:alt => "User Image", :src => "/assets/avatar04.png"}
+                        %a.users-list-name{:href => "#"} Aljon Laureano
+                        %span.users-list-position Programmer
+                        %br
+                        %span.users-list-company Cloudband Solution Co.
+                    / %li
+                    /   %img{:alt => "User Image", :src => "/assets/kai.jpg"}
+                    /     %a.users-list-name{:href => "#"} Kaiser Velilia
+                    /     %span.users-list-position OJT
+                    / %li
+                    /   %img{:alt => "User Image", :src => "/assets/jay.jpg"}
+                    /     %a.users-list-name{:href => "#"} Jaypee Lacsa
+                    /     %span.users-list-position OJT

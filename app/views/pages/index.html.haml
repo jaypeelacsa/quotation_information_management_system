@@ -44,3 +44,139 @@
         %a.small-box-footer{:href => "/orders"}
           More Info
           %i.fa.fa-arrow-circle-right
+
+  .box-body
+    .row
+      .col-md-6
+        .box.box-primary
+          .box-header.with-border
+            %h3.box-title Recent Products Status
+            .box-tools.pull-right
+              %button.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
+                %i.fa.fa-minus
+              %button.btn.btn-box-tool{"data-widget" => "remove", :type => "button"}
+                %i.fa.fa-times
+          .box-body
+            %table.ui.selectable.celled.table
+              %thead
+                %th Service/Product Name
+                %th Price
+                %th Quantity
+                %th Status
+                / - if ( current_user.role == 'Admin' )
+                /   %th Actions
+              %tbody
+                - @order_particulars.each do |op|
+                  %tr
+                    %td= op.service_product.name
+                    %td= op.service_product.price
+                    %td= op.quantity
+                    - @total = op.service_product.price * op.quantity 
+                    %td
+                      - if op.status == "pending" 
+                        %span.label.label-warning= op.status
+                      - elsif op.status == "approved"
+                        %span.label.label-info= op.status
+                      - else
+                        %span.label.label-danger= op.status
+              
+      .col-md-6
+        .box.box-primary
+          .box-header.with-border
+            %h3.box-title Recently Added Products
+            .box-tools.pull-right
+              %button.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
+                %i.fa.fa-minus
+              %button.btn.btn-box-tool{"data-widget" => "remove", :type => "button"}
+                %i.fa.fa-times
+          .box-body
+            %table.ui.selectable.celled.table
+              %thead
+                %tr
+                  %th No.
+                  %th Name
+                  %th Price
+                  %th Type Offer
+                  %th Action
+              %tbody
+                - @num = 1
+                - @service_products.each do |sp|
+                  %tr
+                    %td= @num
+                    %td= sp.name
+                    %td= sp.price
+                    %td= sp.type
+                    %td
+                      = link_to "Details", service_product_path(sp.id), class: "btn btn-flat btn-xs btn-default"
+                    - @num += 1
+
+            .pull-right
+              %br
+              =link_to "View All Service Products", service_products_path, class: "btn btn-s btn-primary"
+
+  .box-body
+    .row
+      .col-md-6
+        .box.box-primary
+          .box-header.with-border
+            %h3.box-title Recently added employee
+            .box-tools.pull-right
+              %button.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
+                %i.fa.fa-minus
+              %button.btn.btn-box-tool{"data-widget" => "remove", :type => "button"}
+                %i.fa.fa-times
+          .box-body
+            %table.ui.selectable.celled.table
+              %thead
+                %tr
+                  %th No.
+                  %th Name
+                  %th Position
+                  %th Status
+                  %th Actions
+              %tbody
+                - @employees.each do |e|
+                  %tr
+                    %td= e.employee_no
+                    %td= e.to_s
+                    %td= e.position
+                    %td= e.status
+                    %td
+                      = link_to "Details", employee_path(e.id), class: "btn btn-flat btn-xs btn-default"    
+            .pull-right
+              %br
+              =link_to "View All Employees", employees_path, class: "btn btn-s btn-success"
+
+      / .col-md-6
+      /   .box.box-primary
+      /     .box-header.with-border
+      /       %h3.box-title Recently Added Products
+      /       .box-tools.pull-right
+      /         %button.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
+      /           %i.fa.fa-minus
+      /         %button.btn.btn-box-tool{"data-widget" => "remove", :type => "button"}
+      /           %i.fa.fa-times
+      /     .box-body
+      /       %table.ui.selectable.celled.table
+      /         %thead
+      /           %tr
+      /             %th No.
+      /             %th Name
+      /             %th Price
+      /             %th Type Offer
+      /             %th Action
+      /         %tbody
+      /           - @num = 1
+      /           - @service_products.each do |sp|
+      /             %tr
+      /               %td= @num
+      /               %td= sp.name
+      /               %td= sp.price
+      /               %td= sp.type
+      /               %td
+      /                 = link_to "Details", service_product_path(sp.id), class: "btn btn-flat btn-xs btn-default"
+      /               - @num += 1
+
+      /       .pull-right
+      /         %br
+      /         =link_to "View All Service Products", service_products_path, class: "btn btn-s btn-success"

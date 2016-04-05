@@ -1,36 +1,23 @@
 = form_tag send("employees_path"),method: "GET" do
-	.row
-		.col-md-12
-			.ui.icon.input
-				%input{:name => "name", :placeholder => "Enter Name", :type => "text"}
-				%i.inverted.circular.search.link.icon
+	.ui.icon.input.fluid
+		%input{:name => "name", :placeholder => "Enter Name", :type => "text"}
+		
 	%br
-	.row
-		.col-md-12
-			.ui.icon.input
-				%input{:name => "start_date", :placeholder => "Employed From", class: "datepick"}
-				%i.inverted.circular.search.link.icon
+	.ui.icon.input.fluid
+		%input{:name => "start_date", :placeholder => "Employed From", class: "datepick"}
+		
 	%br
-	.row
-		.col-md-12
-			.ui.icon.input
-				%input{:name => "end_date", :placeholder => "Employed To", class: "datepick"}
-				%i.inverted.circular.search.link.icon
-
+	.ui.icon.input.fluid
+		%input{:name => "end_date", :placeholder => "Employed To", class: "datepick"}
+		
 	%br
-	.row
-		.col-md-12
-			.ui.icon.input
-				%input{:name => "pos", :placeholder => "Enter Position", :type => "text"}
-				%i.inverted.circular.search.link.icon
+	.ui.icon.input.fluid
+		%input{:name => "pos", :placeholder => "Enter Position", :type => "text"}
+		
 	%br
-	.row
-		.col-md-12
-			= select_tag :gender, options_for_select(Employee::GENDER, @gender), class: "form-control select-select2", prompt: "Select Gender"
+		= select_tag :gender, options_for_select(Employee::GENDER, @gender), class: "form-control select-select2", prompt: "Select Gender"
 	%br
-	.row
-		.col-md-12
-			= select_tag :status, options_for_select(Employee::STATUS, @status), class: "form-control select-select2", prompt: "Select Status"
+		= select_tag :status, options_for_select(Employee::STATUS, @status), class: "form-control select-select2", prompt: "Select Status"
 	
 	%br
 	.pull-right

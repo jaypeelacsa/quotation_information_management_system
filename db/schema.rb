@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20160405070948) do
 
+
   create_table "accounting_codes", force: :cascade do |t|
     t.string   "name"
     t.string   "code"
@@ -246,7 +247,6 @@ ActiveRecord::Schema.define(version: 20160405070948) do
 
   create_table "proposals", force: :cascade do |t|
     t.string   "title"
-    t.date     "proposal_date"
     t.text     "overview"
     t.text     "objective"
     t.text     "hardware"
@@ -262,6 +262,7 @@ ActiveRecord::Schema.define(version: 20160405070948) do
     t.string   "system_architecture_content_type"
     t.integer  "system_architecture_file_size"
     t.datetime "system_architecture_updated_at"
+    t.date     "proposal_date"
   end
 
   create_table "service_products", force: :cascade do |t|
