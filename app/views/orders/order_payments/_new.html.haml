@@ -1,0 +1,23 @@
+= simple_form_for [@order, @order_payment], defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |f|
+	%form{:role => "form"}
+		- if (OrderPayment.count==0)
+			= f.hidden_field :payment_no, :value => 001
+		- else
+			= f.hidden_field :payment_no, :value => OrderPayment.last.payment_no + 1
+		.row
+			.col-md-12
+				.field
+					= f.input :particular
+		.row
+			.col-md-6
+				.field
+					= f.input :currency
+			.col-md-6
+				.field
+					= f.input :amount
+		.row
+			.col-md-10
+			.col-md-2
+				%button.btn.btn-primary
+					%i.save.icon>
+					SAVE

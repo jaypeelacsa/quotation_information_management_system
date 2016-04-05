@@ -26,14 +26,12 @@
               %tr
                 %th Name
                 %th Code
-                - if ( current_user.role == 'Admin' )
-                  %th Actions
+                %th Actions
             %tbody
               - @accounting_codes.each do |ac|
                 %tr
                   %td= ac.name
                   %td= ac.code
-                  - if ( current_user.role == 'Admin' )
-                    %td
-                      = link_to "Details", accounting_code_path(ac.id), class: "btn btn-flat btn-xs btn-default"
+                  %td
+                    = link_to "Details", accounting_code_path(ac.id), class: "btn btn-flat btn-xs btn-default"
                       

@@ -14,7 +14,6 @@ class OrdersController < ApplicationController
 			else
 					redirect_to orders_path
 			end
-			
 		end
 
 		def create
@@ -28,8 +27,12 @@ class OrdersController < ApplicationController
 
 		def show
 			@order = Order.find(params[:id])
+			
 			@order_particular = OrderParticular.new
 			@order_particulars = OrderParticular.where(order_id: @order.id)
+
+			@order_payment = OrderPayment.new
+			@order_payments = OrderPayment.where(order_id: @order.id)
 		end
 
 		def edit

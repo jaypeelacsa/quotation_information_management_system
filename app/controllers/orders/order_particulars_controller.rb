@@ -16,7 +16,7 @@ module Orders
 					render "new"
 				end
 			end
-			
+
 			def approve
 				@order_particular = OrderParticular.find(params[:id])
 				if @order_particular.status == "pending"
@@ -31,9 +31,8 @@ module Orders
 				if ( current_user.role == 'Admin' )
 					@order_particular = OrderParticular.find(params[:id])
 				else
-						redirect_to orders_path
+						redirect_to order_path(@order)
 				end
-				
 			end
 
 			def update
@@ -55,10 +54,6 @@ module Orders
 			def order_particular_params
 				params.require(:order_particular).permit!
 			end
-
-			# def status_params
-			# 	params.require(:status).permit!
-			# end
 
 			def load_defaults
 				@order = Order.find(params[:order_id])

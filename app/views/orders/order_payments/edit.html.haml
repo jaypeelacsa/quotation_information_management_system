@@ -1,0 +1,32 @@
+%section.content-header
+  %h1
+    Order
+    %small Edit
+%section.content
+  .row
+    = simple_form_for [@order, @order_payment], defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |f|
+      %form{:role => "form"}
+        .col-md-12
+          .box.box-default.box-solid
+            .box-header
+              %h3.box-title Edit
+            .box-body
+              = f.hidden_field :payment_no
+              .row
+                .col-md-12
+                  .field
+                    = f.input :particular
+              .row
+                .col-md-6
+                  .field
+                    = f.input :currency
+                .col-md-6
+                  .field
+                    = f.input :amount
+            .box-footer
+              .row
+                .col-md-10
+                .col-md-2
+                  %button.btn.btn-primary
+                    %i.save.icon>
+                    SAVE

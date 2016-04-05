@@ -50,6 +50,7 @@ end
 
 	resources :orders do
 		resources :order_particulars, module: 'orders'
+    resources :order_payments, module: 'orders'
     get "/orders/:order_id/orders/:id/order_particular/:id/approve", to: "orders/order_particulars#approve", as: :approve_order_particular
 	end
 

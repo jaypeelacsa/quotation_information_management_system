@@ -17,7 +17,9 @@
           %li.active
             %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#one"} Details
           %li
-            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#two"} Order List
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#two"} Order
+          %li
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#three"} Payment
         .tab-content
           #one.tab-pane.active
             %table.ui.selectable.celled.table
@@ -44,7 +46,9 @@
                   %td= @order.client.telephone
           #two.tab-pane
             - if ( current_user.role == 'Admin' )
-              = render partial:"orders/order_particulars/new"
+              - if (@order_particulars.count == 0)
+                = render partial:"orders/order_particulars/new"
+
             %table.ui.selectable.celled.table
               %thead
                 %th Service/Product Name
@@ -53,14 +57,18 @@
                 %th Total Price
                 %th Status
                 - if ( current_user.role == 'Admin' )
-                  %th Actions
+                  - @order_particulars.each do |b|
+                    - if b.status == "finish"
+                    - else
+                      %th Actions
               %tbody
                 - @order_particulars.each do |op|
                   %tr
                     %td= op.service_product.name
                     %td= op.service_product.price
                     %td= op.quantity
-                    - @total = op.service_product.price * op.quantity 
+                    - @total = op.service_product.price * op.quantity
+                    -@balance = @total - @order_payments.sum(:amount) 
                     %td= @total
                     %td
                       - if op.status == "pending" 
@@ -70,10 +78,105 @@
                       - else
                         %span.label.label-danger= op.status
                     - if ( current_user.role == 'Admin' )
-                      %td
+                      - if op.status == "finish"
+                      - else
+                        %td
+                          - if op.status == "pending"
+                            = link_to 'APPROVED', order_approve_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-info"
+                          - if @balance == 0
+                            = link_to 'FINISH', order_approve_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-info"
+                          = link_to "UPDATE", edit_order_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-success"
+                          = link_to "REMOVE", [op.order, op],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+          #three.tab-pane
+            .row
+              .col-md-4
+                - if (@order_particulars.count == 0)
+                  %center
+                    %h2 No Approved Order Found 
+                -else
+                  - @order_particulars.each do |op|
+                    - if op.status == "pending"
+                      %center
+                        %h2 No Approved Order Found 
+                    - else
+                      %table.ui.selectable.celled.table
+                        %tbody
+                          %tr
+                            %td
+                              %b Order
+                            %td= op.service_product.name
+                          %tr
+                            %td
+                              %b Wishlist
+                            %td= @order.client.client_name
+                          %tr
+                            %td
+                              %b Code
+                            %td= op.service_product.code
+                          %tr
+                            %td
+                              %b Unit Price
+                            %td= op.service_product.price
+                          %tr
+                            %td
+                              %b Type
+                            %td= op.service_product.type
+                          %tr
+                            %td
+                              %b Quantity
+                            %td= op.quantity
+                          %tr
+                            %td
+                              %b Status
+                            %td= op.status
+                          %tr
+                            %td
+                              %b Balance
+                            %td= @balance
+              .col-md-8
+                - if ( current_user.role == 'Admin' )
+                  - if @balance == 0
+                  -else
+                    - if (@order_particulars.count == 0)
+                    - else
+                      - @order_particulars.each do |op|
                         - if op.status == "pending"
-                          = link_to 'APPROVED', order_approve_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-info"
-                        - elsif op.status == "approved"
-                          = link_to 'FINISH', order_approve_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-info"
-                        = link_to "UPDATE", edit_order_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-success"
-                        = link_to "REMOVE", [op.order, op],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+                        - else
+                          = render partial:"orders/order_payments/new"
+                - if (@order_payments.count == 0)
+                  %center
+                    %h2 No Billing Records Found
+                -else
+                  %table.ui.selectable.celled.table
+                    %thead
+                      %th Particular
+                      %th Currency
+                      %th Amount
+                      - if ( current_user.role == 'Admin' )
+                        - @order_particulars.each do |y|
+                          - if y.status == "finish"
+                          - else
+                            %th Actions
+                    %tbody
+                      - @order_payments.each do |x|
+                        %tr
+                          %td= x.particular
+                          %td= x.currency
+                          %td= x.amount
+                          - if ( current_user.role == 'Admin' )
+                            - @order_particulars.each do |p|
+                              - if p.status == "finish"
+                              - else
+                                %td
+                                  = link_to "REMOVE", [x.order, x],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+                      %tr
+                        %th
+                          %center TOTAL PAYMENT
+                        %th 
+                        %th
+                          = @order_payments.sum(:amount)
+                        - @order_particulars.each do |m|
+                          - if m.status == "finish"
+                          - else  
+                            %th
+                      
