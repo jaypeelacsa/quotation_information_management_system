@@ -1,7 +1,6 @@
 = form_tag send("orders_path"),method: "GET" do
-	.row
-		.col-md-12
-			= select_tag :client_id, options_from_collection_for_select(Client.all, :id,:client_name, @client.try(:id)), class: "form-control select-select2", prompt: "Select Client Name"
+	= select_tag :client_id, options_from_collection_for_select(Client.all, :id,:client_name, @client.try(:id)), class: "form-control select-select2", prompt: "Select Client Name"
+	%br
 	%br
 	.pull-right
 		.ui.buttons

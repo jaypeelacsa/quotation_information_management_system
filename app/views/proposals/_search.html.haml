@@ -1,21 +1,12 @@
 = form_tag send("proposals_path"),method: "GET" do
-	.row
-		.col-md-12
-			.ui.icon.input
-				%input{:name => "title", :placeholder => "Enter Title", :type => "text"}
-				%i.inverted.circular.search.link.icon
+	.ui.icon.input.fluid
+		%input{:name => "title", :placeholder => "Enter Title", :type => "text"}
 	%br
-	.row
-		.col-md-12
-			.ui.icon.input
-				%input{:name => "start_date", :placeholder => "Proposed From", class: "datepick"}
-				%i.inverted.circular.search.link.icon
+		.ui.icon.input.fluid
+			%input{:name => "start_date", :placeholder => "Proposed From", class: "datepick"}
 	%br
-	.row
-		.col-md-12
-			.ui.icon.input
-				%input{:name => "end_date", :placeholder => "Proposed To", class: "datepick"}
-				%i.inverted.circular.search.link.icon
+		.ui.icon.input.fluid
+			%input{:name => "end_date", :placeholder => "Proposed To", class: "datepick"}
 
 	%br
 	.pull-right

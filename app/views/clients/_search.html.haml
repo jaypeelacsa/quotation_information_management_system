@@ -1,19 +1,11 @@
 = form_tag send("clients_path"),method: "GET" do
-	.row
-		.col-md-12
-			.ui.icon.input
-				%input{:name => "client_name", :placeholder => "Enter Name", :type => "text"}
-				%i.inverted.circular.search.link.icon
+	.ui.icon.input.fluid
+		%input{:name => "client_name", :placeholder => "Enter Name", :type => "text"}
 	%br
-	.row
-		.col-md-12
-			.ui.icon.input
-				%input{:name => "company_name", :placeholder => "Enter Company Name", :type => "text"}
-				%i.inverted.circular.search.link.icon
+		.ui.icon.input.fluid
+			%input{:name => "company_name", :placeholder => "Enter Company Name", :type => "text"}
 	%br
-	.row
-		.col-md-12
-			= select_tag :status, options_for_select(Client::STATUS, @status), class: "form-control select-select2", prompt: "Select Status"
+		= select_tag :status, options_for_select(Client::STATUS, @status), class: "form-control select-select2", prompt: "Select Status"
 	%br
 	.pull-right
 		.ui.buttons

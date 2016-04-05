@@ -1,23 +1,12 @@
 = form_tag send("petty_vouchers_path"),method: "GET" do
-	.row
-		.col-md-12
-			.ui.icon.input
-				%input{:name => "name", :placeholder => "Payee", :type => "text"}
-				%i.inverted.circular.search.link.icon
+	.ui.icon.input.fluid
+		%input{:name => "name", :placeholder => "Payee", :type => "text"}
 	%br
-	.row
-		.col-md-12
-			.ui.icon.input
-				%input{:name => "start_date", :placeholder => "Date From", class: "datepick"}
-				%i.inverted.circular.search.link.icon
+		.ui.icon.input.fluid
+			%input{:name => "start_date", :placeholder => "Date From", class: "datepick"}
 	%br
-	.row
-		.col-md-12
-			.ui.icon.input
-				%input{:name => "end_date", :placeholder => "Date To", class: "datepick"}
-				%i.inverted.circular.search.link.icon
-
-
+		.ui.icon.input.fluid
+			%input{:name => "end_date", :placeholder => "Date To", class: "datepick"}
 	%br
 	.pull-right
 		.ui.buttons
