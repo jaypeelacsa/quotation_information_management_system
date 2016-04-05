@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160405070948) do
 
-
   create_table "accounting_codes", force: :cascade do |t|
     t.string   "name"
     t.string   "code"
