@@ -26,8 +26,8 @@ class AccountingCodesController < ApplicationController
 	def create		
 		@accounting_code = AccountingCode.new(accounting_code_params)
 
-		if @accounting_code.save
-			redirect_to accounting_codes_path
+		if @accounting_code.save 
+			redirect_to accounting_codes_path 
 		else
 			render "new"
 		end

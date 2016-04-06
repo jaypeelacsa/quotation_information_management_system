@@ -12,5 +12,6 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :order_payments, reject_if: :all_blank, allow_destroy: true
 
 	scope :list_of_orders, -> { order(created_at: :desc) }  
-  
+
+
 end
