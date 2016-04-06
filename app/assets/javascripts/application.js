@@ -19,6 +19,7 @@
 //= require select2-full
 //= require jquery-ui
 //= require app
+//= require mustache
 
 $(document).ready(function(){
   $('select').select2();

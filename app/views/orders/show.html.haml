@@ -9,6 +9,7 @@
         - if ( current_user.role == 'Admin' )
           = link_to "UPDATE", edit_order_path(@order.id), class: "btn btn-flat btn-xs btn-success"
           = link_to "REMOVE", order_path(@order.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
+          / = link_to "PRINT",   orders_print_all_path(@order.id), class: "btn btn-flat btn-xs btn-primary", target: "blank"
 %section.content
   .row
     .col-md-12
@@ -57,9 +58,9 @@
                 %th Total Price
                 %th Status
                 - if ( current_user.role == 'Admin' )
-                  - @order_particulars.each do |b|
-                    - if b.status == "finish"
-                    - else
+                  - @order_particulars.each do |yu|
+                    -if yu.status == "finish"
+                    -else
                       %th Actions
               %tbody
                 - @order_particulars.each do |op|
@@ -75,16 +76,22 @@
                         %span.label.label-warning= op.status
                       - elsif op.status == "approved"
                         %span.label.label-info= op.status
+                      - elsif op.status == "finish"
+                        %span.label.label-primary= op.status
                       - else
                         %span.label.label-danger= op.status
                     - if ( current_user.role == 'Admin' )
                       - if op.status == "finish"
+                      - elsif op.status == "maintaining"
+                        %td
+                          = link_to 'FINISH', order_approve_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-info"
                       - else
                         %td
                           - if op.status == "pending"
                             = link_to 'APPROVED', order_approve_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-info"
                           - if @balance == 0
                             = link_to 'FINISH', order_approve_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-info"
+                            = link_to 'MAINTAINING', order_maintain_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-primary"
                           = link_to "UPDATE", edit_order_order_particular_path(op.order, op), class: "btn btn-flat btn-xs btn-success"
                           = link_to "REMOVE", [op.order, op],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
           #three.tab-pane
@@ -136,6 +143,9 @@
               .col-md-8
                 - if ( current_user.role == 'Admin' )
                   - if @balance == 0
+                    - @order_particulars.each do |d|
+                      - if d.status == "maintaining"
+                        = render partial:"orders/order_payments/new"
                   -else
                     - if (@order_particulars.count == 0)
                     - else
@@ -155,6 +165,7 @@
                       - if ( current_user.role == 'Admin' )
                         - @order_particulars.each do |y|
                           - if y.status == "finish"
+                            %th Actions
                           - else
                             %th Actions
                     %tbody
@@ -166,10 +177,12 @@
                           - if ( current_user.role == 'Admin' )
                             - @order_particulars.each do |p|
                               - if p.status == "finish"
+                                %td
+                                  = link_to "VIEW", order_order_payment_path(p.order, p), class: "btn btn-flat btn-xs btn-primary"
                               - else
                                 %td
                                   = link_to "REMOVE", [x.order, x],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
-                      %tr
+                                  = link_to "VIEW", order_order_payment_path(x.order, x), class: "btn btn-flat btn-xs btn-primary"
                         %th
                           %center TOTAL PAYMENT
                         %th 

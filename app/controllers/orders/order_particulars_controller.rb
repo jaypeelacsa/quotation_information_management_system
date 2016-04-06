@@ -23,7 +23,16 @@ module Orders
 					@order_particular.update!(status: "approved")
 				elsif @order_particular.status == "approved"
 					@order_particular.update!(status: "finish")
+				elsif @order_particular.status == "maintaining"
+					@order_particular.update!(status: "finish")
 				end
+				redirect_to order_path(@order)
+			end
+
+
+			def maintain
+				@order_particular = OrderParticular.find(params[:id])
+				@order_particular.update!(status: "maintaining")
 				redirect_to order_path(@order)
 			end
 

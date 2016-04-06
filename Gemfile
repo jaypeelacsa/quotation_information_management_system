@@ -22,6 +22,8 @@ gem 'haml'
 gem "select2-rails"
 gem 'activeadmin', github: 'activeadmin'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem 'axlsx_rails'							
+gem 'mustache-js-rails'
 group :development, :test do
   gem 'byebug'
 

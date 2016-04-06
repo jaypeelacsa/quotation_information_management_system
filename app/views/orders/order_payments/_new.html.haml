@@ -5,9 +5,14 @@
 		- else
 			= f.hidden_field :payment_no, :value => OrderPayment.last.payment_no + 1
 		.row
-			.col-md-12
+			.col-md-6
 				.field
 					= f.input :particular
+			.col-md-6
+				.field
+					%label Date
+					%br
+					= f.date_select :payment_date, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }
 		.row
 			.col-md-6
 				.field

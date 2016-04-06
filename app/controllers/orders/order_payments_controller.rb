@@ -17,6 +17,11 @@ module Orders
 				end
 			end
 
+			def show
+				@order = Order.find(params[:order_id])
+				@order_payment = OrderPayment.find(params[:id])
+			end
+
 			def edit
 				if ( current_user.role == 'Admin' )
 					@order_payment = OrderPayment.find(params[:id])
