@@ -20,6 +20,7 @@ module Orders
 			def show
 				@order = Order.find(params[:order_id])
 				@order_payment = OrderPayment.find(params[:id])
+				@company_profiles = CompanyProfile.all
 			end
 
 			def edit

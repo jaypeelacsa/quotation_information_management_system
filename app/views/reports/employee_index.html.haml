@@ -1,0 +1,35 @@
+%section.content-header
+  %h1
+    Employee
+    %small Reports
+%section.content
+  .row
+    .col-md-3
+      / .ui.icon.input.fluid
+      /   %input{:name => "name", :placeholder => "Enter Name", :type => "text"}
+        
+      / %br
+      .ui.icon.input.fluid
+        %input{:name => "start_date", :placeholder => "Employed From", class: "datepick", id: "employed-from"}
+        
+      %br
+      .ui.icon.input.fluid
+        %input{:name => "end_date", :placeholder => "Employed To", class: "datepick", id: "employed-to"}
+        
+      %br
+      .ui.icon.input.fluid
+        %input{:name => "pos", :placeholder => "Enter Position", :type => "text", id: "position"}
+        
+      %br
+        = select_tag :gender, options_for_select(Employee::GENDER, @gender), class: "form-control select-select2", prompt: "Select Gender", id: "gender-id-select"
+      / %br
+      /   = select_tag :status, options_for_select(Employee::STATUS, @status), class: "form-control select-select2", prompt: "Select Status"
+      = button_tag "Search", class: "ui button", id: "display-btn"
+      = link_to "Clear", employee_index_path, class: "ui button"
+
+    .col-md-9
+      .ui.segment
+        #employee-list-section
+= render partial: "reports/templates/employee_list"
+= javascript_include_tag "list_of_employees"     
+         

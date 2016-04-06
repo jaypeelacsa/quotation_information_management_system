@@ -37,5 +37,4 @@ class Employee < ActiveRecord::Base
   end
 
   scope :list_of_employees, -> { order(created_at: :desc) }
-
 end

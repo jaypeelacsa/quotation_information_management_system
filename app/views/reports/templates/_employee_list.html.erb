@@ -1,0 +1,28 @@
+<script id ="employee-list-template" type="x-tmpl-mustache">
+	<div class="pull-right">
+		<%= link_to "#", class: "ui button", id: "print-btn" do %>
+			Print
+		<% end %>
+	</div>
+
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Firstname</th>
+				<th>Middlename</th>
+				<th>Lastname</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{{#employees}}
+				<tr>
+					<td>{{firstname}}</td>
+					<td>{{middlename}}</td>
+					<td>{{lastname}}</td>
+				</tr>
+			{{/employees}}
+		</tbody>
+	</table>
+<%= javascript_include_tag "list_of_employees" %>
+</script>

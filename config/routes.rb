@@ -1,5 +1,20 @@
 Rails.application.routes.draw do
 
+namespace :api do
+  namespace :v1 do
+    get "/employees/employee_list", to: "employees#list"
+  end
+end
+
+get "/reports/employee_list", to: "reports#employee_list", :as => 'report_list_print'
+get "/reports/employee_index", to: "reports#employee_index", :as => 'employee_index'
+
+
+# for excel printing
+get "/reports/build_list_of_employees_url", to: "reports#build_list_of_employees_url", :as => 'build_list_of_employees_url'
+
+
+
 
 
   devise_for :users, :skip => [:registrations]                                          

@@ -23,6 +23,8 @@
               .col-md-3
                 = link_to "REPORTS",employees_print_path, class: "btn btn-block btn-primary", target: "blank"
               .col-md-6
+                = link_to "PRINT", report_list_print_path, class: "ui default"
+                = link_to "Employee Reports", employee_index_path, class: "ui default"
               .col-md-3
                 = link_to "ADD NEW EMPLOYEE", new_employee_path, class: "btn btn-block btn-primary"
           %table.ui.selectable.celled.table
