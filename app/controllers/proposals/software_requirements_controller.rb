@@ -11,6 +11,7 @@ module Proposals
 				@software_requirement = SoftwareRequirement.new(software_requirement_params)
 				@software_requirement.proposal = @proposal
 				if @software_requirement.save
+					flash[:success] = "Successfully Added"
 					redirect_to proposal_path(@proposal)
 				else
 					render "new"
@@ -25,6 +26,7 @@ module Proposals
 				@software_requirement = SoftwareRequirement.find(params[:id])
 				@software_requirement.proposal = @proposal
 				if @software_requirement.update_attributes(software_requirement_params)
+					flash[:success] = "Successfully Updated"
 					redirect_to proposal_path(@proposal)
 				else
 					render "edit"
@@ -34,6 +36,7 @@ module Proposals
 			def destroy
 				@software_requirement = SoftwareRequirement.find(params[:id])
 				@software_requirement.destroy
+				flash[:success] = "Successfully Deleted"
 				redirect_to proposal_path(@proposal)
 			end
 

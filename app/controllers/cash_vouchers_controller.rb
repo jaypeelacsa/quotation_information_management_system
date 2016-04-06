@@ -26,6 +26,7 @@ class CashVouchersController < ApplicationController
 	def create		
 		@cash_voucher = CashVoucher.new(cash_voucher_params)
 		if @cash_voucher.save
+			flash[:success] = "Successfully Added"
 			redirect_to cash_vouchers_path
 		else
 			render "new"
@@ -51,6 +52,7 @@ class CashVouchersController < ApplicationController
 		@cash_voucher = CashVoucher.find(params[ :id])
 
 		if @cash_voucher.update_attributes(cash_voucher_params)
+			flash[:success] = "Successfully Updated"
 			redirect_to cash_vouchers_path
 		else
 			render "edit"
@@ -60,6 +62,7 @@ class CashVouchersController < ApplicationController
 	def destroy
 		@cash_voucher = CashVoucher.find(params[ :id])
 		@cash_voucher.destroy
+		flash[:success] = "Successfully Deleted"
 		redirect_to cash_vouchers_path
 	end
 

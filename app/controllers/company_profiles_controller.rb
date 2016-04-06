@@ -17,6 +17,7 @@ class CompanyProfilesController < ApplicationController
 		@company_profile = CompanyProfile.new(company_profile_params)
 
 		if @company_profile.save
+			flash[:success] = "Successfully Added"
 			redirect_to company_profiles_path
 		else
 			render "new"
@@ -40,6 +41,7 @@ class CompanyProfilesController < ApplicationController
 		@company_profile = CompanyProfile.find(params[ :id])
 
 		if @company_profile.update_attributes(company_profile_params)
+			flash[:success] = "Successfully Updated"
 			redirect_to company_profiles_path
 		else
 			render "edit"
@@ -49,6 +51,7 @@ class CompanyProfilesController < ApplicationController
 	def destroy
 		@company_profile = CompanyProfile.find(params[ :id])
 		@company_profile.destroy
+		flash[:success] = "Successfully Deleted"
 		redirect_to company_profiles_path
 	end
 

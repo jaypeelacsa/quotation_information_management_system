@@ -11,6 +11,7 @@ module CashVouchers
 				@cash_particular = CashParticular.new(cash_particular_params)
 				@cash_particular.cash_voucher = @cash_voucher
 				if @cash_particular.save
+					flash[:success] = "Successfully Added"
 					redirect_to cash_voucher_path(@cash_voucher)
 				else
 					render "new"
@@ -25,6 +26,7 @@ module CashVouchers
 				@cash_particular = CashParticular.find(params[:id])
 				@cash_particular.cash_voucher = @cash_voucher
 				if @cash_particular.update_attributes(cash_particular_params)
+					flash[:success] = "Successfully Updated"
 					redirect_to cash_voucher_path(@cash_voucher)
 				else
 					render "edit"
@@ -34,6 +36,7 @@ module CashVouchers
 			def destroy
 				@cash_particular = CashParticular.find(params[:id])
 				@cash_particular.destroy
+				flash[:success] = "Successfully Deleted"
 				redirect_to cash_voucher_path(@cash_voucher)
 			end
 

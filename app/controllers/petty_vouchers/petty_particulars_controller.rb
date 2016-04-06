@@ -11,6 +11,7 @@ module PettyVouchers
 				@petty_particular = PettyParticular.new(petty_particular_params)
 				@petty_particular.petty_voucher = @petty_voucher
 				if @petty_particular.save
+					flash[:success] = "Successfully Added"
 					redirect_to petty_voucher_path(@petty_voucher)
 				else
 					render "new"
@@ -25,6 +26,7 @@ module PettyVouchers
 				@petty_particular = PettyParticular.find(params[:id])
 				@petty_particular.petty_voucher = @petty_voucher
 				if @petty_particular.update_attributes(petty_particular_params)
+					flash[:success] = "Successfully Updated"
 					redirect_to petty_voucher_path(@petty_voucher)
 				else
 					render "edit"
@@ -34,6 +36,7 @@ module PettyVouchers
 			def destroy
 				@petty_particular = PettyParticular.find(params[:id])
 				@petty_particular.destroy
+				flash[:success] = "Successfully Deleted"
 				redirect_to petty_voucher_path(@petty_voucher)
 			end
 

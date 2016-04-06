@@ -39,6 +39,7 @@ class BillingsController < ApplicationController
 		def create
 			@billing = Billing.new(billing_params)
 			if @billing.save
+				flash[:success] = "Successfully Added"
 				redirect_to  billings_path
 			else
 				render "new"
@@ -63,6 +64,7 @@ class BillingsController < ApplicationController
 		def update
 			@billing = Billing.find(params[:id])
 			if @billing.update_attributes(billing_params)
+				flash[:success] = "Successfully Updated"
 				redirect_to  billings_path
 			else
 				render "edit"
@@ -72,6 +74,7 @@ class BillingsController < ApplicationController
 		def destroy
 			@billing = Billing.find(params[:id])
 			@billing.destroy
+			flash[:success] = "Successfully Deleted"
 			redirect_to  billings_path
 		end
 

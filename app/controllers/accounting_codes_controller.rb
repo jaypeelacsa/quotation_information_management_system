@@ -26,8 +26,9 @@ class AccountingCodesController < ApplicationController
 	def create		
 		@accounting_code = AccountingCode.new(accounting_code_params)
 
-		if @accounting_code.save
-			redirect_to accounting_codes_path
+		if @accounting_code.save 
+			flash[:success] = "Successfully Added"
+			redirect_to accounting_codes_path 
 		else
 			render "new"
 		end
@@ -46,6 +47,7 @@ class AccountingCodesController < ApplicationController
 		@accounting_code = AccountingCode.find(params[ :id])
 
 		if @accounting_code.update_attributes(accounting_code_params)
+			flash[:success] = "Successfully Updated"
 			redirect_to accounting_code_path(@accounting_code)
 		else
 			render "edit"
@@ -55,6 +57,7 @@ class AccountingCodesController < ApplicationController
 	def destroy
 		@accounting_code = AccountingCode.find(params[ :id])
 		@accounting_code.destroy
+		flash[:success] = "Successfully Deleted"
 		redirect_to accounting_codes_path
 	end
 

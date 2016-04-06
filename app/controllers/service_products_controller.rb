@@ -38,6 +38,7 @@ class ServiceProductsController < ApplicationController
 	def create		
 		@service_product = ServiceProduct.new(service_product_params)
 		if @service_product.save
+				flash[:success] = "Successfully Added"
 			redirect_to service_products_path
 		else
 			render "new"
@@ -61,6 +62,7 @@ class ServiceProductsController < ApplicationController
 		@service_product = ServiceProduct.find(params[ :id])
 
 		if @service_product.update_attributes(service_product_params)
+			flash[:success] = "Successfully Updated"
 			redirect_to service_product_path(@service_product)
 		else
 			render "edit"
@@ -70,6 +72,7 @@ class ServiceProductsController < ApplicationController
 	def destroy
 		@service_product = ServiceProduct.find(params[ :id])
 		@service_product.destroy
+		flash[:success] = "Successfully Deleted"
 		redirect_to service_products_path
 	end
 

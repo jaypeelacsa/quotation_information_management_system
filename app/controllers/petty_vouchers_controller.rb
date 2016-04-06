@@ -26,6 +26,7 @@ class PettyVouchersController < ApplicationController
 	def create		
 		@petty_voucher = PettyVoucher.new(petty_voucher_params)
 		if @petty_voucher.save
+			flash[:success] = "Successfully Added"
 			redirect_to petty_vouchers_path
 		else
 			render "new"
@@ -51,6 +52,7 @@ class PettyVouchersController < ApplicationController
 		@petty_voucher = PettyVoucher.find(params[ :id])
 
 		if @petty_voucher.update_attributes(petty_voucher_params)
+			flash[:success] = "Successfully Updated"
 			redirect_to petty_vouchers_path
 		else
 			render "edit"
@@ -60,6 +62,7 @@ class PettyVouchersController < ApplicationController
 	def destroy
 		@petty_voucher = PettyVoucher.find(params[ :id])
 		@petty_voucher.destroy
+		flash[:success] = "Successfully Deleted"
 		redirect_to petty_vouchers_path
 	end
 

@@ -11,6 +11,7 @@ module CheckVouchers
 				@check_account = CheckAccount.new(check_account_params)
 				@check_account.check_voucher = @check_voucher
 				if @check_account.save
+					flash[:success] = "Successfully Added"
 					redirect_to check_voucher_path(@check_voucher)
 				else
 					render "new"
@@ -25,6 +26,7 @@ module CheckVouchers
 				@check_account = CheckAccount.find(params[:id])
 				@check_account.check_voucher = @check_voucher
 				if @check_account.update_attributes(check_account_params)
+					flash[:success] = "Successfully Updated"
 					redirect_to check_voucher_path(@check_voucher)
 				else
 					render "edit"
@@ -34,6 +36,7 @@ module CheckVouchers
 			def destroy
 				@check_account = CheckAccount.find(params[:id])
 				@check_account.destroy
+				flash[:success] = "Successfully Deleted"
 				redirect_to check_voucher_path(@check_voucher)
 			end
 

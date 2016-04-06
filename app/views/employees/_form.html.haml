@@ -20,10 +20,11 @@
             .field
               = e.input :gender, as: :select, collection: Employee::GENDER
             .field
-              %label
-                Birthdate
-              %br
-              = e.date_select :birthdate, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }, input_html: { class: "datepick form-control" }
+              .select
+                %label
+                  Birthdate
+                %br
+                = e.date_select :birthdate, as: :date, start_year: Date.today.year - 100, :prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }, input_html: { class: "datepick form-control" }
             .field
               = e.input :email
             .field

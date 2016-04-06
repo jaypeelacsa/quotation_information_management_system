@@ -11,6 +11,7 @@ module Proposals
 				@terms_condition = TermsCondition.new(terms_condition_params)
 				@terms_condition.proposal = @proposal
 				if @terms_condition.save
+					flash[:success] = "Successfully Added"
 					redirect_to proposal_path(@proposal)
 				else
 					render "new"
@@ -25,6 +26,7 @@ module Proposals
 				@terms_condition = TermsCondition.find(params[:id])
 				@terms_condition.proposal = @proposal
 				if @terms_condition.update_attributes(terms_condition_params)
+					flash[:success] = "Successfully Updated"
 					redirect_to proposal_path(@proposal)
 				else
 					render "edit"
@@ -34,6 +36,7 @@ module Proposals
 			def destroy
 				@terms_condition = TermsCondition.find(params[:id])
 				@terms_condition.destroy
+				flash[:success] = "Successfully Deleted"
 				redirect_to proposal_path(@proposal)
 			end
 

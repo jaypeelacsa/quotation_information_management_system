@@ -46,6 +46,7 @@ class CompanyExpensesController < ApplicationController
 		@company_expense = CompanyExpense.new(company_expense_params)
 
 		if @company_expense.save
+			flash[:success] = "Successfully Added"
 			redirect_to company_expenses_path
 		else
 			render "new"
@@ -69,6 +70,7 @@ class CompanyExpensesController < ApplicationController
 		@company_expense = CompanyExpense.find(params[ :id])
 
 		if @company_expense.update_attributes(company_expense_params)
+			flash[:success] = "Successfully Updated"
 			redirect_to company_expenses_path
 		else
 			render "edit"
@@ -78,6 +80,7 @@ class CompanyExpensesController < ApplicationController
 	def destroy
 		@company_expense = CompanyExpense.find(params[ :id])
 		@company_expense.destroy
+		flash[:success] = "Successfully Deleted"
 		redirect_to company_expenses_path
 	end
 

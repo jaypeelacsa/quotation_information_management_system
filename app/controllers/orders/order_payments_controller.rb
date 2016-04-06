@@ -11,6 +11,7 @@ module Orders
 				@order_payment = OrderPayment.new(order_payment_params)
 				@order_payment.order = @order
 				if @order_payment.save
+					flash[:success] = "Successfully Added"
 					redirect_to order_path(@order)
 				else
 					render "new"
@@ -35,6 +36,7 @@ module Orders
 				@order_payment = OrderPayment.find(params[:id])
 				@order_payment.order = @order
 				if @order_payment.update_attributes(order_payment_params)
+					flash[:success] = "Successfully Updated"
 					redirect_to order_path(@order)
 				else
 					render "edit"
@@ -44,6 +46,7 @@ module Orders
 			def destroy
 				@order_payment = OrderPayment.find(params[:id])
 				@order_payment.destroy
+				flash[:success] = "Successfully Deleted"
 				redirect_to order_path(@order)
 			end
 

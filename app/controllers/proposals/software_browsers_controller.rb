@@ -11,6 +11,7 @@ module Proposals
 				@software_browser = SoftwareBrowser.new(software_browser_params)
 				@software_browser.proposal = @proposal
 				if @software_browser.save
+					flash[:success] = "Successfully Added"
 					redirect_to proposal_path(@proposal)
 				else
 					render "new"
@@ -25,6 +26,7 @@ module Proposals
 				@software_browser = SoftwareBrowser.find(params[:id])
 				@software_browser.proposal = @proposal
 				if @software_browser.update_attributes(software_browser_params)
+					flash[:success] = "Successfully Updated"
 					redirect_to proposal_path(@proposal)
 				else
 					render "edit"
@@ -34,6 +36,7 @@ module Proposals
 			def destroy
 				@software_browser = SoftwareBrowser.find(params[:id])
 				@software_browser.destroy
+				flash[:success] = "Successfully Deleted"
 				redirect_to proposal_path(@proposal)
 			end
 
