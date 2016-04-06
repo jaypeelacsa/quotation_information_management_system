@@ -16,7 +16,7 @@ module Proposals
 			@feature_list.proposal = @proposal
 
 			if @feature_list.save
-				# @feature_list.update!(user_id: current_user.id)
+				flash[:success] = "Successfully Added"
 				redirect_to proposal_path(@proposal)
 			else
 				render "new"
@@ -40,6 +40,7 @@ module Proposals
 		  @feature_list = Proposal.feature_lists.find(params[:id])
 
 		  if @feature_list.update_attributes(feature_list_params)
+		  	flash[:success] = "Successfully Updated"
 		  	redirect_to proposal_path(@feature_list.proposal_id)
 		  else	
 		  	render"edit"
@@ -52,6 +53,7 @@ module Proposals
 			proposal = Proposal.find(params[:proposal_id])
 		  @feature_list = proposal.feature_lists.find(params[:id])
 		  @feature_list.destroy
+		  flash[:success] = "Successfully Deleted"
 		  redirect_to proposal_path(@proposal)
 		end
 

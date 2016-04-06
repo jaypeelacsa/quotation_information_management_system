@@ -19,6 +19,7 @@ class OrdersController < ApplicationController
 		def create
 			@order = Order.new(order_params)
 			if @order.save
+				flash[:success] = "Successfully Added"
 				redirect_to orders_path
 			else
 				render "new"
@@ -47,6 +48,7 @@ class OrdersController < ApplicationController
 		def update
 			@order = Order.find(params[:id])
 			if @order.update_attributes(order_params)
+				flash[:success] = "Successfully Updated"
 				redirect_to  orders_path
 			else
 				render "edit"
@@ -57,6 +59,7 @@ class OrdersController < ApplicationController
 			@order = Order.find(params[:id])
 			# @order = OrderParticular.destroy(params[:id])
 			@order.destroy
+			flash[:success] = "Successfully Deleted"
 			redirect_to  orders_path
 		end
 

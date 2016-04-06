@@ -11,6 +11,7 @@ module Orders
 				@order_particular = OrderParticular.new(order_particular_params)
 				@order_particular.order = @order
 				if @order_particular.save
+					flash[:success] = "Successfully Added"
 					redirect_to order_path(@order)
 				else
 					render "new"
@@ -23,7 +24,16 @@ module Orders
 					@order_particular.update!(status: "approved")
 				elsif @order_particular.status == "approved"
 					@order_particular.update!(status: "finish")
+				elsif @order_particular.status == "maintaining"
+					@order_particular.update!(status: "finish")
 				end
+				redirect_to order_path(@order)
+			end
+
+
+			def maintain
+				@order_particular = OrderParticular.find(params[:id])
+				@order_particular.update!(status: "maintaining")
 				redirect_to order_path(@order)
 			end
 
@@ -39,6 +49,7 @@ module Orders
 				@order_particular = OrderParticular.find(params[:id])
 				@order_particular.order = @order
 				if @order_particular.update_attributes(order_particular_params)
+					flash[:success] = "Successfully Updated"
 					redirect_to order_path(@order)
 				else
 					render "edit"
@@ -48,6 +59,7 @@ module Orders
 			def destroy
 				@order_particular = OrderParticular.find(params[:id])
 				@order_particular.destroy
+				flash[:success] = "Successfully Deleted"
 				redirect_to order_path(@order)
 			end
 

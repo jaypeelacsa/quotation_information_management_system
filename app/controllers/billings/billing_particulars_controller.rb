@@ -11,6 +11,7 @@ module Billings
 				@billing_particular = BillingParticular.new(billing_particular_params)
 				@billing_particular.billing = @billing
 				if @billing_particular.save
+					flash[:success] = "Successfully Added"
 					redirect_to billing_path(@billing)
 				else
 					render "new"
@@ -30,6 +31,7 @@ module Billings
 				@billing_particular = BillingParticular.find(params[:id])
 				@billing_particular.billing = @billing
 				if @billing_particular.update_attributes(billing_particular_params)
+					flash[:success] = "Successfully Updated"
 					redirect_to billing_path(@billing)
 				else
 					render "edit"
@@ -39,6 +41,7 @@ module Billings
 			def destroy
 				@billing_particular = BillingParticular.find(params[:id])
 				@billing_particular.destroy
+				flash[:success] = "Successfully Deleted"
 				redirect_to billing_path(@billing)
 			end
 

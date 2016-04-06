@@ -15,6 +15,7 @@ module Employees
 				@work_experience = WorkExperience.new(work_experience_params)
 				@work_experience.employee = @employee
 				if @work_experience.save
+					flash[:success] = "Successfully Added"
 					redirect_to employee_path(@employee)
 				else
 					render "new"
@@ -33,6 +34,7 @@ module Employees
 				@work_experience = WorkExperience.find(params[:id])
 				@work_experience.employee = @employee
 				if @work_experience.update_attributes(work_experience_params)
+					flash[:success] = "Successfully Updated"
 					redirect_to employee_path(@employee)
 				else
 					render "edit"
@@ -42,6 +44,7 @@ module Employees
 			def destroy
 				@work_experience = WorkExperience.find(params[:id])
 				@work_experience.destroy
+				flash[:success] = "Successfully Deleted"
 				redirect_to employee_path(@employee)
 			end
 

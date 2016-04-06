@@ -11,6 +11,7 @@ module Proposals
 				@costing = Costing.new(costing_params)
 				@costing.proposal = @proposal
 				if @costing.save
+					flash[:success] = "Successfully Added"
 					redirect_to proposal_path(@proposal)
 				else
 					render "new"
@@ -25,6 +26,7 @@ module Proposals
 				@costing = Costing.find(params[:id])
 				@costing.proposal = @proposal
 				if @costing.update_attributes(costing_params)
+					flash[:success] = "Successfully Updated"
 					redirect_to proposal_path(@proposal)
 				else
 					render "edit"
@@ -34,6 +36,7 @@ module Proposals
 			def destroy
 				@costing = Costing.find(params[:id])
 				@costing.destroy
+				flash[:success] = "Successfully Deleted"
 				redirect_to proposal_path(@proposal)
 			end
 

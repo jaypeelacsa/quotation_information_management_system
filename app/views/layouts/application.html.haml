@@ -7,7 +7,7 @@
     = csrf_meta_tags
   %body.fixed.skin-green-light.sidebar-mini
     .wrapper
-      / = render 'toastr_rails/flash'
+      = render partial: "shared/notification"
       = render partial: "shared/header"
       = render partial: "shared/side_nav"
       .content-wrapper{:style => "min-height: 916px;"}

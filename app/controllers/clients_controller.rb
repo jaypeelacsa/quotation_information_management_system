@@ -35,6 +35,7 @@ class ClientsController < ApplicationController
 		@client = Client.new(client_params)
 
 		if @client.save
+			flash[:success] = "Successfully Added"
 			redirect_to clients_path
 		else
 			render "new"
@@ -60,6 +61,7 @@ class ClientsController < ApplicationController
 		@client = Client.find(params[ :id])
 
 		if @client.update_attributes(client_params)
+			flash[:success] = "Successfully Updated"
 			redirect_to client_path(@client)
 		else
 			render "edit"
@@ -69,6 +71,7 @@ class ClientsController < ApplicationController
 	def destroy
 		@client = Client.find(params[ :id])
 		@client.destroy
+		flash[:success] = "Successfully Deleted"
 		redirect_to clients_path
 	end
 

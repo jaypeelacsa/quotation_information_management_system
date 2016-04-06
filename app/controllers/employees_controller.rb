@@ -41,6 +41,7 @@ class EmployeesController < ApplicationController
 		def create
 			@employee = Employee.new(employee_params)
 			if @employee.save
+				flash[:success] = "Successfully Added"
 				redirect_to employees_path
 			else
 				render "new"
@@ -65,6 +66,7 @@ class EmployeesController < ApplicationController
 		def update
 			@employee = Employee.find(params[:id])
 			if @employee.update_attributes(employee_params)
+				flash[:success] = "Successfully Updated"
 				redirect_to employees_path
 			else
 				render "edit"
@@ -74,6 +76,7 @@ class EmployeesController < ApplicationController
 		def destroy
 			@employee = Employee.find(params[:id])
 			@employee.destroy
+			flash[:success] = "Successfully Deleted"
 			redirect_to employees_path
 		end
 

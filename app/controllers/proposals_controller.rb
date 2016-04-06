@@ -28,6 +28,7 @@ class ProposalsController < ApplicationController
 		@proposal = Proposal.new(proposal_params)
 
 		if @proposal.save
+			flash[:success] = "Successfully Added"
 			redirect_to proposals_path
 		else
 			render "new"
@@ -75,6 +76,7 @@ class ProposalsController < ApplicationController
 		@proposal = Proposal.find(params[ :id])
 
 		if @proposal.update_attributes(proposal_params)
+			flash[:success] = "Successfully Updated"
 			redirect_to proposal_path(@proposal)
 		else
 			render "edit"
@@ -84,6 +86,7 @@ class ProposalsController < ApplicationController
 	def destroy
 		@proposal = Proposal.find(params[ :id])
 		@proposal.destroy
+		flash[:success] = "Successfully Deleted"
 		redirect_to proposals_path
 	end
 

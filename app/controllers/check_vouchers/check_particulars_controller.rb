@@ -11,6 +11,7 @@ module CheckVouchers
 				@check_particular = CheckParticular.new(check_particular_params)
 				@check_particular.check_voucher = @check_voucher
 				if @check_particular.save
+					flash[:success] = "Successfully Added"
 					redirect_to check_voucher_path(@check_voucher)
 				else
 					render "new"
@@ -25,6 +26,7 @@ module CheckVouchers
 				@check_particular = CheckParticular.find(params[:id])
 				@check_particular.check_voucher = @check_voucher
 				if @check_particular.update_attributes(check_particular_params)
+					flash[:success] = "Successfully Updated"
 					redirect_to check_voucher_path(@check_voucher)
 				else
 					render "edit"
@@ -34,6 +36,7 @@ module CheckVouchers
 			def destroy
 				@check_particular = CheckParticular.find(params[:id])
 				@check_particular.destroy
+				flash[:success] = "Successfully Deleted"
 				redirect_to check_voucher_path(@check_voucher)
 			end
 

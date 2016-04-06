@@ -26,6 +26,7 @@ class CheckVouchersController < ApplicationController
 	def create		
 		@check_voucher = CheckVoucher.new(check_voucher_params)
 		if @check_voucher.save
+			flash[:success] = "Successfully Added"
 			redirect_to check_vouchers_path
 		else
 			render "new"
@@ -53,6 +54,7 @@ class CheckVouchersController < ApplicationController
 		@check_voucher = CheckVoucher.find(params[ :id])
 
 		if @check_voucher.update_attributes(check_voucher_params)
+			flash[:success] = "Successfully Updated"
 			redirect_to check_voucher_path(@check_voucher)
 		else
 			render "edit"
@@ -62,6 +64,7 @@ class CheckVouchersController < ApplicationController
 	def destroy
 		@check_voucher = CheckVoucher.find(params[ :id])
 		@check_voucher.destroy
+		flash[:success] = "Successfully Deleted"
 		redirect_to check_vouchers_path
 	end
 
