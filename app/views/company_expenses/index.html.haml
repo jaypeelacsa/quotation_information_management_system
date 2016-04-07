@@ -21,10 +21,10 @@
           - if ( current_user.role == 'Admin' )
             .row
               .col-md-3
-                = link_to "REPORTS",company_expenses_print_path, class: "btn btn-block btn-primary", target: "blank"
+                = link_to "REPORTS",company_expenses_print_path, class: "btn btn-block btn-primary btn-flat", target: "blank"
               .col-md-6
               .col-md-3
-                = link_to "ADD NEW EXPENSES", new_company_expense_path, class: "btn btn-block btn-primary"      
+                = link_to "ADD NEW EXPENSES", new_company_expense_path, class: "btn btn-block btn-primary btn-flat"      
           %table.ui.selectable.celled.table
             %thead
               %tr

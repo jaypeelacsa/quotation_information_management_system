@@ -20,9 +20,9 @@
         .box-body
           - if ( current_user.role == 'Admin' )
             .row
-              .col-md-9
-              .col-md-3  
-                = link_to "NEW PETTY CASH VOUCHER", new_petty_voucher_path, class: "btn btn-block btn-primary"
+              .col-md-8
+              .col-md-4  
+                = link_to "NEW PETTY CASH VOUCHER", new_petty_voucher_path, class: "btn btn-block btn-primary btn-flat"
           %table.ui.selectable.celled.table
             %thead
               %tr

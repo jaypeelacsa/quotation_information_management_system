@@ -14,7 +14,7 @@ module CashVouchers
 					flash[:success] = "Successfully Added"
 					redirect_to cash_voucher_path(@cash_voucher)
 				else
-					render "new"
+					redirect_to cash_voucher_path(@cash_voucher)
 				end
 			end
 
