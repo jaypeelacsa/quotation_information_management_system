@@ -7,7 +7,7 @@ class Proposal < ActiveRecord::Base
   validates :hardware, presence: true  
   validates :software, presence: true 
   validates :feature, presence: true
-  validates :project_costing_text, presence: true  
+  validates :project_costing_description, presence: true  
   validates :signatory, presence: true  
   	
 	belongs_to :employee
