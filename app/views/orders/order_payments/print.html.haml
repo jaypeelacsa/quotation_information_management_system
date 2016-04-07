@@ -24,20 +24,20 @@
               %tbody
                 %tr
                   %th Billed To:
-                  %td= @billing.client.company_name
+                  %td= @order.client.company_name
                 %tr
                   %th Client TIN:
-                  %td= @billing.client.tin
+                  %td= @order.client.tin
           .col-md-3.invoice-col
           .col-md-3.invoice-col
             %p
               %b
                 Bill No.
-              = @billing.bill_no
+              = @order_payment.payment_no
             %p
               %b
                 Date:
-              = @billing.bill_date
+              = @order_payment.payment_date
         %br
         .row
           .col-xs-12.table-responsive
@@ -48,17 +48,16 @@
                   %th Currency
                   %th Amount
               %tbody
-                - @billing_particulars.each do |bp|
-                  %tr
-                    %td= bp.particular
-                    %td= bp.currency
-                    %td= bp.amount
+                %tr
+                  %td= @order_payment.particular
+                  %td= @order_payment.currency
+                  %td= @order_payment.amount
                 %tr
                   %th
                     %center TOTAL
                   %th 
                   %th
-                    = @billing_particulars.sum(:amount)
+                    = @order_payment.amount
         %br
         .row.invoice-info
           .col-md-6.invoice-col
@@ -70,4 +69,4 @@
                 Certified Correct:
             %p
               %b
-            = @billing.certified_by     
+            = @order.employee.to_s    

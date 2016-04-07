@@ -61,13 +61,12 @@ end
 	resources :cash_vouchers do
 		resources :cash_particulars, module: 'cash_vouchers'
 	end
-  get '/orders/:id/print_all', :to => 'orders#print_all', as: "orders_print_all"
-  get '/orders/:id/print', :to => 'orders#print', as: "orders_print"
 	resources :orders do
 		resources :order_particulars, module: 'orders'
     resources :order_payments, module: 'orders'
     get "/orders/:order_id/orders/:id/order_particular/:id/approve", to: "orders/order_particulars#approve", as: :approve_order_particular
     get "/orders/:order_id/orders/:id/order_particular/:id/maintain", to: "orders/order_particulars#maintain", as: :maintain_order_particular
+    get "/orders/:order_id/orders/:id/order_payment/:id/print", to: "orders/order_payments#print", as: :order_payment_print
 	end
 
 	resources :service_products

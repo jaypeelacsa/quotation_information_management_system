@@ -1,72 +1,76 @@
-asd
-/ - @company_profiles.each do |company|
-/   %section
-/     .row
-/       .col-xs-12
-/         %center
-/           = image_tag company.logo.url(:medium)
-/         %center
-/           %small
-/             = company.address
-/             %p
-/               %b
-/                 TIN:
-/               = company.tin
-/         %h3
-/           %center
-/             STATEMENT OF ACCOUNT
+- @company_profiles.each do |company|
+  %section
+    %br
+    %br
+    .row
+      .col-md-11
+      .col-md-1
+        = link_to "PRINT", order_order_payment_print_path, class: "btn btn-flat btn-xs btn-primary", target: "blank"
+    .row
+      .col-xs-12
+        %center
+          = image_tag company.logo.url(:medium)
+        %center
+          %small
+            = company.address
+            %p
+              %b
+                TIN:
+              = company.tin
+        %h3
+          %center
+            STATEMENT OF ACCOUNT
 
-/     %br
-/     .row
-/       .col-md-6
-/         %table.table
-/           %tbody
-/             %tr
-/               %th Billed To:
-/               %td= @billing.client.company_name
-/             %tr
-/               %th Client TIN:
-/               %td= @billing.client.tin
-/       .col-md-3
-/       .col-md-3
-/         %p
-/           %b
-/             Bill No.
-/           = @billing.bill_no
-/         %p
-/           %b
-/             Date:
-/           = @billing.bill_date
-/     %br
-/     .row
-/       .col-xs-12.table-responsive
-/         %table.table.table-bordered
-/           %thead
-/             %tr
-/               %th Particulars
-/               %th Currency
-/               %th Amount
-/           %tbody
-/             - @billing_particulars.each do |bp|
-/               %tr
-/                 %td= bp.particular
-/                 %td= bp.currency
-/                 %td= bp.amount
-/             %tr
-/               %th
-/                 %center TOTAL
-/               %th 
-/               %th
-/                 = @billing_particulars.sum(:amount)
-/     %br
-/     .row.invoice-info
-/       .col-md-6
-/         %p Bills are payable upon receipt. Please make payment within 30 days from the date of biling
-/       .col-md-3
-/       .col-md-3
-/         %p
-/           %b
-/             Certified Correct:
-/         %p
-/           %b
-/         = @billing.certified_by     
+    %br
+    .row
+      .col-md-6
+        %table.table
+          %tbody
+            %tr
+              %th Billed To:
+              %td= @order.client.company_name
+            %tr
+              %th Client TIN:
+              %td= @order.client.tin
+      .col-md-3
+      .col-md-3
+        %p
+          %b
+            Bill No.
+          = @order_payment.payment_no
+        %p
+          %b
+            Date:
+          = @order_payment.payment_date
+    %br
+    .row
+      .col-xs-12.table-responsive
+        %table.table.table-bordered
+          %thead
+            %tr
+              %th Particulars
+              %th Currency
+              %th Amount
+          %tbody
+            %tr
+              %td= @order_payment.particular
+              %td= @order_payment.currency
+              %td= @order_payment.amount
+            %tr
+              %th
+                %center TOTAL
+              %th 
+              %th
+                = @order_payment.amount
+    %br
+    .row.invoice-info
+      .col-md-6
+        %p Bills are payable upon receipt. Please make payment within 30 days from the date of biling
+      .col-md-3
+      .col-md-3
+        %p
+          %b
+            Certified Correct:
+        %p
+          %b
+        = @order.employee.to_s     

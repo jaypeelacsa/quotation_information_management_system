@@ -24,6 +24,12 @@ module Orders
 				@company_profiles = CompanyProfile.all
 			end
 
+			def print
+				@order = Order.find(params[:order_id])
+				@order_payment = OrderPayment.find(params[:id])
+				@company_profiles = CompanyProfile.all
+			end
+
 			def edit
 				if ( current_user.role == 'Admin' )
 					@order_payment = OrderPayment.find(params[:id])
