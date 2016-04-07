@@ -1,7 +1,6 @@
 class OrderParticular < ActiveRecord::Base
 
 	validates :quantity, presence: true
-	validates :status, presence: true
 	
 
 	belongs_to :order

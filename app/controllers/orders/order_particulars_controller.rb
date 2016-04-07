@@ -14,7 +14,7 @@ module Orders
 					flash[:success] = "Successfully Added"
 					redirect_to order_path(@order)
 				else
-					render "new"
+					redirect_to order_path(@order)
 				end
 			end
 
