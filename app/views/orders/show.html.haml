@@ -183,13 +183,13 @@
                                 %td
                                   = link_to "REMOVE", [x.order, x],data: {:confirm => "Are you sure?"}, :method => :delete, class: "btn btn-flat btn-xs btn-danger"
                                   = link_to "VIEW", order_order_payment_path(x.order, x), class: "btn btn-flat btn-xs btn-primary"
-                        %th
-                          %center TOTAL PAYMENT
-                        %th 
-                        %th
-                          = @order_payments.sum(:amount)
-                        - @order_particulars.each do |m|
-                          - if m.status == "finish"
-                          - else  
-                            %th
+                      %th
+                        %center TOTAL PAYMENT
+                      %th 
+                      %th
+                        = @order_payments.sum(:amount)
+                      - @order_particulars.each do |m|
+                        - if m.status == "finish"
+                        - else  
+                          %th
                       
