@@ -14,7 +14,7 @@ module PettyVouchers
 					flash[:success] = "Successfully Added"
 					redirect_to petty_voucher_path(@petty_voucher)
 				else
-					render "new"
+					redirect_to petty_voucher_path(@petty_voucher)
 				end
 			end
 

@@ -18,11 +18,6 @@
         .box-header
           %h3.box-title Accounting Code List
         .box-body
-          - if ( current_user.role == 'Admin' )
-            .row
-              .col-md-9
-              .col-md-3   
-                = link_to "Add New Accounting Code", new_accounting_code_path, class: "btn btn-block btn-primary"
           %table.ui.selectable.celled.table
             %thead
               %tr

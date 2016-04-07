@@ -14,7 +14,7 @@ module CheckVouchers
 					flash[:success] = "Successfully Added"
 					redirect_to check_voucher_path(@check_voucher)
 				else
-					render "new"
+					redirect_to check_voucher_path(@check_voucher)
 				end
 			end
 

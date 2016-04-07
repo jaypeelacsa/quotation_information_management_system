@@ -19,7 +19,7 @@ module Proposals
 				flash[:success] = "Successfully Added"
 				redirect_to proposal_path(@proposal)
 			else
-				render "new"
+				redirect_to proposal_path(@proposal)
 			end
 		end
 

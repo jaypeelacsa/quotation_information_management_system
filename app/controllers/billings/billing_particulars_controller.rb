@@ -14,7 +14,7 @@ module Billings
 					flash[:success] = "Successfully Added"
 					redirect_to billing_path(@billing)
 				else
-					render "new"
+					redirect_to billing_path(@billing)
 				end
 			end
 

@@ -18,7 +18,7 @@ module Employees
 					flash[:success] = "Successfully Added"
 					redirect_to employee_path(@employee)
 				else
-					render "new"
+					redirect_to employee_path(@employee)
 				end
 			end
 
