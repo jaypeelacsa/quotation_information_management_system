@@ -15,11 +15,11 @@
         .nav-tabs-custom
           %ul.nav.nav-tabs
             %li.active
-              %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#one"} Details
+              %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#one"} About Us
             %li
-              %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#two"} Mission and Vision
+              %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#two"} Contact Us
             %li
-              %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#third"} About Us
+              %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#third"} Our Team
           .tab-content
             #one.tab-pane.active
               .row
@@ -33,55 +33,67 @@
                     %dd
                       = company.website
                     %br/
-                    %dt Address
-                    %dd
-                      = company.address
-                    %br/
-                    %dt Telephone Number
-                    %dd
-                      = company.telephone
-                    %br/
-                    %dt TIN Number
+                    %dt Tin Number
                     %dd
                       = company.tin
+                    %br/
+                    %dt Mission
+                    %dd
+                      = company.mission
+                    %br/
+                    %dt Vission
+                    %dd
+                      = company.vission
+                    / %br/
+                    / %dt Telephone
+                    / %dd
+                    /   = company.telephone
                 .col-md-7
                 = image_tag company.logo.url(:medium)
             #two.tab-pane
               %dl
-                %dt Mission
+                %dt Website
                 %dd
-                  = company.mission
+                  = company.website
                 %br/
-                %dt Vision
+                %dt Address
                 %dd
-                  = company.vission
+                  = company.address
+                %br/
+                %dt Telephone
+                %dd
+                  = company.telephone
+                %br/
+                %dt Email Address
+                %dd
+                  = company.email_add
             #third.tab-pane
               .box-body
                 .box-header.with-border
                 .box-body.no-padding
                   %ul.users-list.clearfix
                     %li
-                      %img{:alt => "User Image", :src => "/assets/avatar5.png"}
+                      %img{:alt => "User Image", :src => "/assets/avatar04.png"}
                         %a.users-list-name{:href => "#"} Raphael Alampay
-                        %span.users-list-position Manager/Founder
+                        %span.users-list-position Senior Managing Partner
                         %br
                         %span.users-list-company Cloudband Solution Co.
                     %li
                       %img{:alt => "User Image", :src => "/assets/avatar2.png"}
                         %a.users-list-name{:href => "#"} Kathleen Zita Gayle Logmao
-                        %span.users-list-position Co Founder
+                        %span.users-list-position Managing Partner
                         %br
                         %span.users-list-company Cloudband Solution Co.
                     %li
                       %img{:alt => "User Image", :src => "/assets/avatar3.png"}
-                        %a.users-list-name{:href => "#"} Lani Gonzales
+                        %a.users-list-name{:href => "#"} Lani Gonzalez
                         %span.users-list-position Admin
                         %br
                         %span.users-list-company Cloudband Solution Co.
                     %li
-                      %img{:alt => "User Image", :src => "/assets/avatar04.png"}
+                      %img{:alt => "User Image", :src => "/assets/avatar5.png"}
                         %a.users-list-name{:href => "#"} Aljon Laureano
-                        %span.users-list-position Programmer
+                        %span.users-list-position Web Developer
                         %br
                         %span.users-list-company Cloudband Solution Co.
                     / %li

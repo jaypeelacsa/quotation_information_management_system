@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407090238) do
+ActiveRecord::Schema.define(version: 20160407095631) do
 
   create_table "accounting_codes", force: :cascade do |t|
     t.string   "name"
@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(version: 20160407090238) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.text     "email_add"
   end
 
   create_table "costings", force: :cascade do |t|
