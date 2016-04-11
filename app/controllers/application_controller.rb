@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
         "printing"
       elsif params[:controller] == "company_expenses" && ["print_all"].include?(params[:action])
         "printing"
-      elsif params[:controller] == "order_payments" && ["print"].include?(params[:action])
+      elsif params[:controller] == "orders/order_payments" && ["print"].include?(params[:action])
         "printing"
       else
         "application"

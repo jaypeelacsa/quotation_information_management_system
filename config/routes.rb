@@ -61,6 +61,8 @@ end
 	resources :cash_vouchers do
 		resources :cash_particulars, module: 'cash_vouchers'
 	end
+
+  get '/orders/status_list', :to => 'orders#status_list', as: "status_list"
 	resources :orders do
 		resources :order_particulars, module: 'orders'
     resources :order_payments, module: 'orders'

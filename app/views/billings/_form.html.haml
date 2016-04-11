@@ -7,10 +7,13 @@
             %h3.box-title New Billing
           .box-body
             .form-group
-              - if (Billing.count==0)
+              - @billing_count = Billing.count
+              - @payment_count = OrderPayment.count
+              - @current = @billing_count + @payment_count
+              - if (@current==0)
                 = e.hidden_field :bill_no, :value => 001
               - else
-                = e.hidden_field :bill_no, :value => Billing.last.bill_no + 1
+                = e.hidden_field :bill_no, :value => @current + 1
             .form-group
               = e.association :client, as: :select, client: Client.all
             .form-group

@@ -18,7 +18,9 @@
           %h3.box-title Order List
         .box-body
           .row
-            .col-md-9
+            .col-md-3
+              = link_to "STATUS LIST", status_list_path, class: "btn btn-block btn-primary btn-flat"
+            .col-md-6
             .col-md-3
               - if ( current_user.role == 'Admin' )
                 = link_to "ADD NEW ORDER", new_order_path, class: "btn btn-block btn-primary btn-flat"
