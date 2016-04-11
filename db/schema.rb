@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405070948) do
+ActiveRecord::Schema.define(version: 20160407090238) do
 
   create_table "accounting_codes", force: :cascade do |t|
     t.string   "name"
@@ -266,7 +266,6 @@ ActiveRecord::Schema.define(version: 20160405070948) do
     t.text     "hardware"
     t.text     "software"
     t.text     "feature"
-    t.string   "project_costing_text"
     t.text     "signatory"
     t.integer  "employee_id"
     t.integer  "client_id"
@@ -277,6 +276,7 @@ ActiveRecord::Schema.define(version: 20160405070948) do
     t.integer  "system_architecture_file_size"
     t.datetime "system_architecture_updated_at"
     t.date     "proposal_date"
+    t.text     "project_costing_description"
   end
 
   create_table "service_products", force: :cascade do |t|
