@@ -1,0 +1,66 @@
+%section.content-header
+  %h1
+    Order
+    %small Control Panel
+%section.content
+  .row
+    .col-md-4
+      .box.box-default.box-solid
+        .box-header
+          %h3.box-title ONGOING PROJECTS LIST
+        .box-body
+          %table.ui.selectable.celled.table
+            %thead
+              %tr
+                %th No.
+                %th Client Name
+                %th Title
+            %tbody
+              - @num = 1
+              - @order_particulars.each do |o|
+                - if o.status == "approved"
+                  %tr
+                    %td= @num
+                    %td= o.order.client.client_name
+                    %td= o.service_product.name
+                    - @num += 1
+    .col-md-4
+      .box.box-default.box-solid
+        .box-header
+          %h3.box-title FINISH PROJECTS LIST
+        .box-body
+          %table.ui.selectable.celled.table
+            %thead
+              %tr
+                %th No.
+                %th Client Name
+                %th Title
+            %tbody
+              - @num = 1
+              - @order_particulars.each do |x|
+                - if x.status == "finish"
+                  %tr
+                    %td= @num
+                    %td= x.order.client.client_name
+                    %td= x.service_product.name
+                    - @num += 1
+    .col-md-4
+      .box.box-default.box-solid
+        .box-header
+          %h3.box-title MAINTENANCE PROJECTS LIST
+        .box-body
+          %table.ui.selectable.celled.table
+            %thead
+              %tr
+                %th No.
+                %th Client Name
+                %th Title
+            %tbody
+              - @num = 1
+              - @order_particulars.each do |o|
+                - if o.status == "maintaining"
+                  %tr
+                    %td= @num
+                    %td= o.order.client.client_name
+                    %td= o.service_product.name
+                    - @num += 1

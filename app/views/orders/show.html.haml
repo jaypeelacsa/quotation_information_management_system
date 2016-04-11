@@ -151,6 +151,7 @@
                     - else
                       - @order_particulars.each do |op|
                         - if op.status == "pending"
+                        - elsif op.status == "finish"
                         - else
                           = render partial:"orders/order_payments/new"
                 - if (@order_payments.count == 0)

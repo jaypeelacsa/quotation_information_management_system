@@ -1,9 +1,12 @@
 = simple_form_for [@order, @order_payment], defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |f|
 	%form{:role => "form"}
-		- if (OrderPayment.count==0)
+		- @billing_count = Billing.count
+		- @payment_count = OrderPayment.count
+		- @current = @billing_count + @payment_count
+		- if (@current==0)
 			= f.hidden_field :payment_no, :value => 001
 		- else
-			= f.hidden_field :payment_no, :value => OrderPayment.last.payment_no + 1
+			= f.hidden_field :payment_no, :value => @current + 1
 		.row
 			.col-md-6
 				.field

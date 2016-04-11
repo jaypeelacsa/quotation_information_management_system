@@ -28,12 +28,14 @@ class OrdersController < ApplicationController
 
 		def show
 			@order = Order.find(params[:id])
-			
 			@order_particular = OrderParticular.new
 			@order_particulars = OrderParticular.where(order_id: @order.id)
-
 			@order_payment = OrderPayment.new
 			@order_payments = OrderPayment.where(order_id: @order.id)
+		end
+
+		def status_list
+			@order_particulars = OrderParticular.all
 		end
 
 		def edit
