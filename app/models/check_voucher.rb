@@ -4,7 +4,6 @@ class CheckVoucher < ActiveRecord::Base
 	validates :check_date, presence: true
 	validates :bank, presence: true
 	validates :received_by, presence: true
-	validates :prepared_by, presence: true
   validates :certified_by, presence: true
 	validates :approved_by, presence: true
 	validates :check_no, presence: true
@@ -12,6 +11,7 @@ class CheckVoucher < ActiveRecord::Base
   validates :si_no, presence: true
 	validates :apv_no, presence: true
 
+	belongs_to :employee
 	has_many :check_particulars
   accepts_nested_attributes_for :check_particulars, reject_if: :all_blank, allow_destroy: true
   has_many :check_accounts

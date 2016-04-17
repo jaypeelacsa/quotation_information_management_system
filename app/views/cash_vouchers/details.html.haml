@@ -56,7 +56,7 @@
                 %th APPROVED BY:
             %tbody
               %tr
-                %td= @cash_voucher.prepared_by
+                %td= @cash_voucher.employee.to_s
                 %td= @cash_voucher.checked_by
                 %td= @cash_voucher.approved_by
         .col-xs-3

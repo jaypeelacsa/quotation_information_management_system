@@ -49,7 +49,7 @@
         .col-md-4.invoice-col
           %dl
             %dt Paid by:
-            %dd= @petty_voucher.paid_by
+            %dd= @petty_voucher.employee.to_s
         .col-md-4.invoice-col
           %dl
             %dt Received Payment:

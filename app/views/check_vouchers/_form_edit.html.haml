@@ -31,7 +31,7 @@
               .field
                 = cv.input :received_by
               .form-group
-                = cv.input :prepared_by
+                = cv.association :employee, as: :select, collection: Employee.all
               .form-group
                 = cv.input :certified_by
               .form-group

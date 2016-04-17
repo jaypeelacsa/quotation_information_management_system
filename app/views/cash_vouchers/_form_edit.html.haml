@@ -21,7 +21,7 @@
             .form-group
               = pv.input :approved_by
             .form-group
-              = pv.input :prepared_by
+              = pv.association :employee, as: :select, collection: Employee.all
             .form-group
               = pv.input :checked_by
           .box-footer

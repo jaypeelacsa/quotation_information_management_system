@@ -15,7 +15,7 @@
             .form-group
               = pv.input :approved_by
             .form-group
-              = pv.input :paid_by
+              = pv.association :employee, as: :select, collection: Employee.all
             .form-group
               = pv.input :received_by
           .box-footer

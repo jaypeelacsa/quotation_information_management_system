@@ -18,6 +18,10 @@ class Employee < ActiveRecord::Base
 
   has_many :orders
   has_many :order_particulars
+
+  has_many :cash_vouchers
+  has_many :check_vouchers
+  has_many :petty_vouchers
 	def to_s
   	"#{firstname} #{middlename} #{lastname}"
   end

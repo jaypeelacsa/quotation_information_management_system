@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407090238) do
+ActiveRecord::Schema.define(version: 20160415095050) do
 
   create_table "accounting_codes", force: :cascade do |t|
     t.string   "name"
@@ -20,21 +20,6 @@ ActiveRecord::Schema.define(version: 20160407090238) do
     t.datetime "updated_at",       null: false
     t.integer  "check_voucher_id"
   end
-
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string   "namespace"
-    t.text     "body"
-    t.string   "resource_id",   null: false
-    t.string   "resource_type", null: false
-    t.integer  "author_id"
-    t.string   "author_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -87,11 +72,11 @@ ActiveRecord::Schema.define(version: 20160407090238) do
     t.string   "address"
     t.string   "received_from"
     t.string   "amount"
-    t.string   "prepared_by"
     t.string   "checked_by"
     t.string   "approved_by"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "employee_id"
   end
 
   create_table "check_accounts", force: :cascade do |t|
@@ -118,7 +103,6 @@ ActiveRecord::Schema.define(version: 20160407090238) do
     t.date     "check_date"
     t.string   "bank"
     t.string   "received_by"
-    t.string   "prepared_by"
     t.string   "certified_by"
     t.string   "approved_by"
     t.datetime "created_at",   null: false
@@ -128,6 +112,7 @@ ActiveRecord::Schema.define(version: 20160407090238) do
     t.string   "or_no"
     t.string   "apv_no"
     t.integer  "counter"
+    t.integer  "employee_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -255,8 +240,8 @@ ActiveRecord::Schema.define(version: 20160407090238) do
     t.datetime "updated_at",   null: false
     t.string   "payee"
     t.string   "approved_by"
-    t.string   "paid_by"
     t.string   "received_by"
+    t.integer  "employee_id"
   end
 
   create_table "proposals", force: :cascade do |t|
