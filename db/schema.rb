@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(version: 20160415095050) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.text     "email_add"
   end
 
   create_table "costings", force: :cascade do |t|

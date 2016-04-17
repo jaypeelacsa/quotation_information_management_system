@@ -11,5 +11,6 @@ class CompanyProfile < ActiveRecord::Base
 	validates :tin, presence: true
 	validates :mission, presence: true
 	validates :vission, presence: true
+	validates :email_add, presence: true
 	
 end
